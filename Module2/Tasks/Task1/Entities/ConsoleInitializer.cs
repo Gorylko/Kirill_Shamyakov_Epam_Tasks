@@ -41,20 +41,18 @@ namespace Task1.Entities
             double tax;
 
             Console.WriteLine("Enter the number of companies");
-            if (!int.TryParse(Console.ReadLine(), out companyCount))
+            if (!int.TryParse(Console.ReadLine(), out companyCount) &&
+                companyCount < 0)
             {
                 BugReport(nameof(this._companyCount));
             }
 
             Console.WriteLine("Enter tax percentage");
-            if(!double.TryParse(Console.ReadLine(), out tax))
+            if(!double.TryParse(Console.ReadLine(), out tax) &&
+                tax < 0 &&
+                tax > 100)
             {
                 BugReport(nameof(this._taxPercentage));
-            }
-
-            if(tax < 0 || tax > 100)
-            {
-                BugReport(nameof(tax));
             }
 
             if (this._isSuccessful)
