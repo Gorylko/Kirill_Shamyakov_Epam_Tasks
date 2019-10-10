@@ -15,5 +15,7 @@ namespace Task1.Interfaces
         double GetTaxPercentage();
 
         double GetProfit();
+
+        bool IsSuccessful();
     }
 }
