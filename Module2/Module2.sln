@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tasks", "Tasks", "{ED433A81-B38E-445E-8B7B-EDDB9EAD8D08}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Other", "Other", "{DB8940BC-05F3-4F22-A456-5AA17D2262BB}"
+	ProjectSection(SolutionItems) = preProject
+		Other\Tasks.docx = Other\Tasks.docx
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task1", "Tasks\Task1\Task1.csproj", "{F555B78F-E03F-4550-9FA7-F6B12AEFC735}"
 EndProject

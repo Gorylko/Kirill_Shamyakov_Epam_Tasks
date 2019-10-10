@@ -43,8 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\ConsoleInitializer.cs" />
+    <Compile Include="Interfaces\IInitializer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Entities\TaxCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
