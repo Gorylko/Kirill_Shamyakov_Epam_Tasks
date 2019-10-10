@@ -34,12 +34,13 @@ namespace Task1.Entities
             return this._taxPercentage;
         }
 
-        public void Initialize()
+        public void Initialize() // Need more if's !!!
         {
-            Console.WriteLine("Enter the number of companies");
+            this._isSuccessful = true;
             int companyCount;
             double tax;
 
+            Console.WriteLine("Enter the number of companies");
             if (!int.TryParse(Console.ReadLine(), out companyCount))
             {
                 BugReport(nameof(this._companyCount));
@@ -51,10 +52,17 @@ namespace Task1.Entities
                 BugReport(nameof(this._taxPercentage));
             }
 
-            if(tax < 0 && tax > 100)
+            if(tax < 0 || tax > 100)
             {
                 BugReport(nameof(tax));
             }
+
+            if (this._isSuccessful)
+            {
+                this._companyCount  = companyCount;
+                this._taxPercentage = tax;
+            }
+
             //Console.WriteLine("");
             //if(!double.TryParse(Console.ReadLine(), out this._profit)) { }  %% By condition %%
         }

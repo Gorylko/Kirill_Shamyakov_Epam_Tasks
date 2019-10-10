@@ -9,13 +9,25 @@ namespace Task1.Entities
 {
     public class TaxCalculator
     {
-        private IInitializer _initializer;
+        private int _companyCount;
+        private double _profit;
+        private double _taxPercentage;
 
         public TaxCalculator(IInitializer initializer)
         {
-            this._initializer = initializer ?? throw new NullReferenceException(nameof(initializer));
+            if(initializer == null)
+            {
+                throw new NullReferenceException(nameof(initializer));
+            }
+
+            this._companyCount  = initializer.GetCompanyCount();
+            this._profit        = initializer.GetProfit();
+            this._taxPercentage = initializer.GetTaxPercentage();
         }
 
-
+        public double CalculateTotalTax()
+        {
+            return this._companyCount * this._profit * this._taxPercentage / 100;
+        }
     }
 }

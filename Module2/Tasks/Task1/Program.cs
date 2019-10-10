@@ -13,9 +13,12 @@ namespace Task1
         {
             var initializer = new ConsoleInitializer();
             initializer.Initialize();
-            var calculator = new TaxCalculator(initializer);
 
-
+            if (initializer.IsSuccessful())
+            {
+                var calculator = new TaxCalculator(initializer);
+                Console.WriteLine(calculator.CalculateTotalTax());
+            }
 
             Console.ReadKey();
         }
