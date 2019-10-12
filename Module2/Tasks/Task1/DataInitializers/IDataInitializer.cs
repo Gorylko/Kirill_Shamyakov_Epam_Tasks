@@ -1,0 +1,9 @@
+﻿using Task1.DataInitializers.Params;
+
+namespace Task1.DataInitializers
+{
+    public interface IDataInitializer<TParams>
+    {
+        DataInitializerResult<TParams> InitializeData();
+    }
+}

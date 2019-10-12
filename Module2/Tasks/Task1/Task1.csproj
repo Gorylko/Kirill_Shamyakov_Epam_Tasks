@@ -43,14 +43,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\ConsoleInitializer.cs" />
-    <Compile Include="Interfaces\IInitializer.cs" />
+    <Compile Include="DataInitializers\ConsoleTaxDataInitializer.cs" />
+    <Compile Include="DataInitializers\DataInitializerResult.cs" />
+    <Compile Include="DataInitializers\Params\TaxCalculatorParams.cs" />
+    <Compile Include="DataInitializers\IDataInitializer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Entities\TaxCalculator.cs" />
+    <Compile Include="Calculators\TaxCalculator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

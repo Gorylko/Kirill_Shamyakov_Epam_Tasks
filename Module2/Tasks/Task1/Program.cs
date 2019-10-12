@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Task1.Entities;
+using Task1.Calculators;
+using Task1.DataInitializers;
 
 namespace Task1
 {
@@ -11,13 +8,17 @@ namespace Task1
     {
         static void Main(string[] args)
         {
-            var initializer = new ConsoleInitializer();
-            initializer.Initialize();
+            var initializer = new ConsoleTaxDataInitializer();
+            var result = initializer.InitializeData();
 
-            if (initializer.IsSuccessful())
+            if (result.IsSuccessful)
             {
-                var calculator = new TaxCalculator(initializer);
+                var calculator = new TaxCalculator(result.Parameters);
                 Console.WriteLine(calculator.CalculateTotalTax());
+            }
+            else
+            {
+                Console.WriteLine(result.ErrorMessage);
             }
 
             Console.ReadKey();
