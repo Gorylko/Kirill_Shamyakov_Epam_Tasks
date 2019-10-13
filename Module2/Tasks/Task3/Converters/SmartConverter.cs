@@ -10,7 +10,7 @@ namespace Task3.Converters
 {
     public static class SmartConverter
     {
-        public static double ConvertToDouble(this string stringNumber)
+        public static ConvertedResult<double> ConvertToDouble(this string stringNumber)
         {
             if (stringNumber.Contains('.') &&
                 Thread.CurrentThread.CurrentCulture.IetfLanguageTag == "ru-RU")
@@ -20,10 +20,23 @@ namespace Task3.Converters
 
             if (double.TryParse(stringNumber, out double number))
             {
-                return number;
+                return new ConvertedResult<double>
+                {
+                    Value = number,
+                    IsSuccessful = true
+                };
             }
 
-            return default;
+            return GetErrorResult("Invalid value of input");
+        }
+
+        private static ConvertedResult<double> GetErrorResult(string errorMessage)
+        {
+            return new ConvertedResult<double>
+            {
+                IsSuccessful = false,
+                ErrorMessage = errorMessage
+            };
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System;
-using Task3.Entities;
+using Task3.Converters;
 
 namespace Module_1
 {
@@ -11,25 +11,35 @@ namespace Module_1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("");
-            double firstNumber = Console.ReadLine().ConvertToDouble();
+            Console.WriteLine("Enter first number");
+            var firstNumberResult = Console.ReadLine().ConvertToDouble();
 
-            Console.WriteLine("");
-            double secondNumber = Console.ReadLine().ConvertToDouble();
+            Console.WriteLine("Enter second number");
+            var secondNumberResult = Console.ReadLine().ConvertToDouble();
 
-            Console.WriteLine($"Before magic - a: {a} ## b: {b}");
-            Swap(ref firstNumber, ref secondNumber);
-            Console.WriteLine($"After magic - a: {a} ## b: {b}");
-            ReportBug();
+            if(firstNumberResult.IsSuccessful &&
+              secondNumberResult.IsSuccessful)
+            {
+                var firstNumber = firstNumberResult.Value;
+                var secondNumber = secondNumberResult.Value;
+
+                Console.WriteLine($"Before magic - a: {firstNumber} ## b: {secondNumber}");
+
+                Swap<double>(ref firstNumber, ref secondNumber);
+
+                Console.WriteLine($"After magic - a: {firstNumber} ## b: {secondNumber}");
+            }
+            else
+            {
+                ReportBug();
+            }
 
             Console.ReadKey();
         }
 
-        private static void Swap(ref double a, ref double b)
+        private static void Swap<T>(ref T a, ref T b)
         {
-            double temp = a;
-            a = b;
-            b = temp;
+            (a, b) = (b, a);
         }
 
         private static void ReportBug()
