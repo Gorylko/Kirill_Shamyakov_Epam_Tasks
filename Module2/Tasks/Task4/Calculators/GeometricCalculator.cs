@@ -9,9 +9,32 @@ namespace Task4.Calculators
 {
     public class GeometricCalculator
     {
+        public GeometricCalculator()
+        {
+            Shapes = new List<Shape>
+            {
+                new Circle(),
+                new Square(),
+                new Triangle()
+            };
+        }
+
         public double GeneralArea { get; set; }
 
         public IReadOnlyCollection<Shape> Shapes { get; set; }
+
+        public void Initialize()
+        {
+            if(this.GeneralArea == default(double))
+            {
+                return;
+            }
+
+            foreach(var shape in Shapes)
+            {
+                shape.InitializeByArea(this.GeneralArea);
+            }
+        }
 
         public override string ToString()
         {
