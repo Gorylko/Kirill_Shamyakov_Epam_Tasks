@@ -8,7 +8,7 @@ namespace Task4.Shapes
 {
     public class Circle : Shape
     {
-        public override void Initialize()
+        public override void InitializeByArea(double area)
         {
             throw new NotImplementedException();
         }

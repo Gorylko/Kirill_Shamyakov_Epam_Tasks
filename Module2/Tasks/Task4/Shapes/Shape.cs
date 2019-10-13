@@ -12,6 +12,6 @@ namespace Task4.Shapes
 
         public double Perimeter { get; set; }
 
-        public abstract void Initialize();
+        public abstract void InitializeByArea(double area);
     }
 }
