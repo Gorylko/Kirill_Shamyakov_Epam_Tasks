@@ -4,13 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task4
+namespace Task4.Shapes
 {
-    class Program
+    public class Square : Shape
     {
-        static void Main(string[] args)
+        public override void Initialize()
         {
-
+            throw new NotImplementedException();
         }
     }
 }

@@ -4,13 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Task4
+namespace Task4.Calculators
 {
-    class Program
+    public class GeometricCalculator
     {
-        static void Main(string[] args)
-        {
+        public double GeneralArea { get; set; }
 
-        }
+
     }
 }
