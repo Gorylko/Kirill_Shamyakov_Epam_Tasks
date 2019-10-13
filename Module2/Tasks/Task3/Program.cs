@@ -17,9 +17,9 @@ namespace Module_1
             Console.WriteLine("");
             double secondNumber = Console.ReadLine().ConvertToDouble();
 
-            //Console.WriteLine($"Before magic - a: {a} ## b: {b}");
+            Console.WriteLine($"Before magic - a: {a} ## b: {b}");
             Swap(ref firstNumber, ref secondNumber);
-            //Console.WriteLine($"After magic - a: {a} ## b: {b}");
+            Console.WriteLine($"After magic - a: {a} ## b: {b}");
             ReportBug();
 
             Console.ReadKey();
