@@ -42,9 +42,7 @@ namespace Task4.Calculators
 
             foreach(var shape in Shapes)
             {
-                builder.AppendLine($"***{nameof(shape)}***\n" +
-                    $"Area: {shape.Area}\n" +
-                    $"Perimeter: {shape.Perimeter}\n");
+                builder.AppendLine(shape.ToString() + "\n");
             }
 
             return builder.ToString();
