@@ -49,6 +49,7 @@
     <Compile Include="DataInitializers\IDataInitializer.cs" />
     <Compile Include="DataInitializers\Params\GeometricCalculatorParams.cs" />
     <Compile Include="DataInitializers\Params\UserInputParams.cs" />
+    <Compile Include="DataInitializers\UserInputResult.cs" />
     <Compile Include="Enums\ParamType.cs" />
     <Compile Include="Enums\ShapeType.cs" />
     <Compile Include="Program.cs" />

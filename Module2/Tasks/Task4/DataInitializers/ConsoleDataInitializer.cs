@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using Task4.DataInitializers.Params;
 using Task4.Enums;
@@ -17,28 +18,38 @@ namespace Task4.DataInitializers
 
         public DataInitializerResult<GeometricCalculatorParams> InitializeData()
         {
-            (var shapeType, var paramType) = GetUserInput();
-            var convertedResult = ConvertUserInputToEnums(shapeType, paramType);
+            var modeInputResult = GetUserSelectedMode();
 
-            if (!convertedResult.IsSuccessful)
+            if (!modeInputResult.IsSuccessful)
             {
-                return GetErrorResult(convertedResult.ErrorMessage);
+                return GetErrorResult(modeInputResult.ErrorMessage);
+            }
+            else if (modeInputResult.Param.ParamType == ParamType.Area)
+            {
+                return GetCalculatorParamByUserInput("Enter the area", ParamType.Area, "Invalid value of area");
             }
 
-            switch (convertedResult.Parameters.ShapeType)
+            var perimeterInputResult = GetCalculatorParamByUserInput("Enter the perimeter", ParamType.Perimeter, "Invalid value of perimeter");
+
+            if (!perimeterInputResult.IsSuccessful)
             {
-                case ShapeType.Circle:
-                    return GetCircleResult(convertedResult.Parameters.ParamType);
-
-                case ShapeType.Square:
-                    return GetSquareResult(convertedResult.Parameters.ParamType);
-
-                case ShapeType.Triangle:
-                    return GetTriangleResult(convertedResult.Parameters.ParamType);
-
-                default:
-                    return GetErrorResult("Invalid value of shape number");
+                GetErrorResult(perimeterInputResult.ErrorMessage);
             }
+
+            switch (modeInputResult.Param.ShapeType)
+                {
+                    case ShapeType.Circle:
+                        return GetResultByCirclePerimeter(perimeterInputResult.Parameters.Perimeter);
+
+                    case ShapeType.Square:
+                        return GetResultBySquarePerimeter(perimeterInputResult.Parameters.Perimeter);
+
+                    case ShapeType.Triangle:
+                        return GetResultByTrianglePerimeter(perimeterInputResult.Parameters.Perimeter);
+
+                    default:
+                        return GetErrorResult("Invalid value of shape number");
+                }
 
         }
 
@@ -51,22 +62,43 @@ namespace Task4.DataInitializers
             };
         }
 
-        private DataInitializerResult<GeometricCalculatorParams> GetCircleResult(ParamType paramType)
+        private DataInitializerResult<GeometricCalculatorParams> GetResultByCirclePerimeter(double perimeter)
         {
-
+            return new DataInitializerResult<GeometricCalculatorParams>
+            {
+                Parameters = new GeometricCalculatorParams
+                {
+                    GeneralArea = Math.PI * Math.Pow(perimeter / (2 * Math.PI), 2)
+                },
+                IsSuccessful = true
+            };
         }
 
-        private DataInitializerResult<GeometricCalculatorParams> GetSquareResult(ParamType paramType)
+        private DataInitializerResult<GeometricCalculatorParams> GetResultBySquarePerimeter(double perimeter)
         {
-
+            return new DataInitializerResult<GeometricCalculatorParams>
+            {
+                Parameters = new GeometricCalculatorParams
+                {
+                    GeneralArea = Math.Pow((perimeter / 4), 2)
+                },
+                IsSuccessful = true
+            };
         }
 
-        private DataInitializerResult<GeometricCalculatorParams> GetTriangleResult(ParamType paramType)
+        private DataInitializerResult<GeometricCalculatorParams> GetResultByTrianglePerimeter(double perimeter)
         {
-
+            return new DataInitializerResult<GeometricCalculatorParams>
+            {
+                Parameters = new GeometricCalculatorParams
+                {
+                    GeneralArea = Math.Sqrt(3) / 4 * Math.Pow(perimeter / 3, 2)
+                },
+                IsSuccessful = true
+            };
         }
 
-        private (string, string) GetUserInput()
+        private (string, string) GetUserModeInput()
         {
             Console.WriteLine("Choose a shape" + "\n" +
                                 "1. Circle" + "\n" +
@@ -86,14 +118,16 @@ namespace Task4.DataInitializers
             return (shapeTypeNumber, shapeParamNumber);
         }
 
-        private DataInitializerResult<UserInputParams> ConvertUserInputToEnums(string shapeTypeNumber, string shapeParamNumber)
+        private UserInputResult<UserInputParams> GetUserSelectedMode()
         {
+            (string shapeTypeNumber, string shapeParamNumber) = GetUserModeInput();
+
             if (Enum.TryParse(shapeTypeNumber, true, out ShapeType shapeTypeValue) &&
                 Enum.TryParse(shapeParamNumber, true, out ParamType paramTypeValue))
             {
-                return new DataInitializerResult<UserInputParams>
+                return new UserInputResult<UserInputParams>
                 {
-                    Parameters = new UserInputParams
+                    Param = new UserInputParams
                     {
                         ParamType = paramTypeValue,
                         ShapeType = shapeTypeValue
@@ -103,12 +137,57 @@ namespace Task4.DataInitializers
             }
             else
             {
-                return new DataInitializerResult<UserInputParams>
+                return new UserInputResult<UserInputParams>
                 {
                     IsSuccessful = false,
                     ErrorMessage = "Invalid user input"
                 };
             }
+        }
+
+        private DataInitializerResult<GeometricCalculatorParams> GetCalculatorParamByUserInput(
+            string messageToUser, 
+            ParamType paramType,
+            string errorMessage = "Invalid value of user input")
+        {
+            Console.WriteLine(messageToUser);
+
+            string stringNumber = Console.ReadLine();
+
+            if (stringNumber.Contains('.') &&
+                Thread.CurrentThread.CurrentCulture.IetfLanguageTag == "ru-RU")
+            {
+                stringNumber = stringNumber.Replace('.', ',');
+            }
+
+            if (double.TryParse(stringNumber, out double number) &&
+                number != 0)
+            {
+                if(paramType == ParamType.Area)
+                {
+                    return new DataInitializerResult<GeometricCalculatorParams>
+                    {
+                        Parameters = new GeometricCalculatorParams
+                        {
+                            GeneralArea = number
+                        },
+                        IsSuccessful = true
+                    };
+                }
+                else
+                {
+                    return new DataInitializerResult<GeometricCalculatorParams>
+                    {
+                        Parameters = new GeometricCalculatorParams
+                        {
+                            Perimeter = number
+                        },
+                        IsSuccessful = true
+                    };
+                }
+            }
+
+            return GetErrorResult(errorMessage);
         }
 
     }

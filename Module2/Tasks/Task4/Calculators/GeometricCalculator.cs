@@ -9,8 +9,13 @@ namespace Task4.Calculators
 {
     public class GeometricCalculator
     {
-        public GeometricCalculator()
+        public GeometricCalculator(double area)
         {
+            if(area != default(double))
+            {
+                this.GeneralArea = area;
+            }
+
             Shapes = new List<Shape>
             {
                 new Circle(),
@@ -36,7 +41,7 @@ namespace Task4.Calculators
             }
         }
 
-        public override string ToString()
+        public string GetFullInfo()
         {
             var builder = new StringBuilder();
 
