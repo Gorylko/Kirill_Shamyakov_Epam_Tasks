@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Task1.DataInitializers
+﻿namespace Task1.DataInitializers
 {
     public class DataInitializerResult<TParams>
     {
