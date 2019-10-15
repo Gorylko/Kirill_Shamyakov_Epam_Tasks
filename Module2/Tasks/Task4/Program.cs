@@ -24,6 +24,8 @@ namespace Task4
             {
                 Console.WriteLine(initializedResult.ErrorMessage);
             }
+
+            Console.ReadKey();
         }
     }
 }

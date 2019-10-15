@@ -154,7 +154,7 @@ namespace Task4.DataInitializers
 
             string stringNumber = Console.ReadLine();
 
-            if (stringNumber.Contains('.') &&
+            if (stringNumber.Contains('.') &&  // 2,3 == 2.3
                 Thread.CurrentThread.CurrentCulture.IetfLanguageTag == "ru-RU")
             {
                 stringNumber = stringNumber.Replace('.', ',');

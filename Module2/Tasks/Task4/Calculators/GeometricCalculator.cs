@@ -22,13 +22,15 @@ namespace Task4.Calculators
                 new Square(),
                 new Triangle()
             };
+
+            this.Initialize();
         }
 
         public double GeneralArea { get; set; }
 
         public IReadOnlyCollection<Shape> Shapes { get; set; }
 
-        public void Initialize()
+        private void Initialize()
         {
             if(this.GeneralArea == default(double))
             {
