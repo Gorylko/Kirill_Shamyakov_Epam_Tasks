@@ -13,15 +13,15 @@ namespace Task1.DataInitializers
             double tax;
 
             Console.WriteLine("Enter the number of companies");
-            if (!int.TryParse(Console.ReadLine(), out companyCount) &&
+            if (!int.TryParse(Console.ReadLine(), out companyCount) ||
                 companyCount < 0)
             {
                 return GetErrorResult($"Invalid value of {nameof(companyCount)}");
             }
 
             Console.WriteLine("Enter tax percentage");
-            if (!double.TryParse(Console.ReadLine(), out tax) &&
-                tax < 0 &&
+            if (!double.TryParse(Console.ReadLine(), out tax) ||
+                tax < 0 ||
                 tax > 100)
             {
                 return GetErrorResult($"Invalid value of {nameof(tax)}");
