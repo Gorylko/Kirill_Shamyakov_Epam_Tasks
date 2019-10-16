@@ -8,11 +8,6 @@ namespace Task4.DataInitializers
 {
     public class ConsoleDataInitializer : IDataInitializer<GeometricCalculatorParams>
     {
-        public ConsoleDataInitializer()
-        {
-
-        }
-
         public DataInitializerResult<GeometricCalculatorParams> InitializeData()
         {
             var modeInputResult = GetUserSelectedMode();
