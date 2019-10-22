@@ -41,8 +41,10 @@ namespace Task4
                 number *= -1;
             }
 
-            number = this._isNegative? - double.Parse(new string(number.ToString().ToCharArray().Reverse().ToArray()))
+            number = this._isNegative? 
+                - double.Parse(new string(number.ToString().ToCharArray().Reverse().ToArray()))
                 : double.Parse(new string(number.ToString().ToCharArray().Reverse().ToArray()));
+
             _isNegative = false;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -17,14 +18,10 @@ namespace Task4
 
                 var userString = Console.ReadLine();
 
-                if (IsValidForDoubleParsing(userString))
+                if (GetDouble(userString, out double parsedDouble))
                 {
-
-                    if (double.TryParse(userString, out double parsedDouble))
-                    {
-                        reverser.Reverse(ref parsedDouble);
-                        Console.WriteLine(parsedDouble);
-                    }
+                    reverser.Reverse(ref parsedDouble);
+                    Console.WriteLine(parsedDouble);
                 }
                 else if (int.TryParse(userString, out int parsedInt))
                 {
@@ -53,6 +50,24 @@ namespace Task4
             return stringDouble.Where(el => el == ',' || el == '.').Count() == 1 &&
                     !".,".Contains(stringDouble[stringDouble.Length - 1]) &&
                     (!".,".Contains(stringDouble[0]) || !(stringDouble[0] != '-'));
+        }
+
+        public static bool GetDouble(string stringInput, out double number)
+        {
+
+            number = default;
+            if (!IsValidForDoubleParsing(stringInput))
+            {
+                return false;
+            }
+            if (
+                !double.TryParse(stringInput, NumberStyles.Any, CultureInfo.CurrentCulture, out number) &&
+                !double.TryParse(stringInput, NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out number) &&
+                !double.TryParse(stringInput, NumberStyles.Any, CultureInfo.InvariantCulture, out number))
+            {
+                return false;
+            }
+            return true;
         }
 
         private static void BugReport(string additionalInformation)
