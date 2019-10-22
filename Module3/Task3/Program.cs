@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Task3.Extensions;
 
 namespace Task3
@@ -19,11 +17,8 @@ namespace Task3
                 var result = GetFibonacciNums().TakeWhile((el, index) => index < number);
 
                 Console.WriteLine(result.AsString());
-
             }
             else
-
-
             {
                 BugReport();
             }
