@@ -11,7 +11,7 @@ namespace Task2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Enter int number");
+            Console.WriteLine("Enter an integer");
 
             if(int.TryParse(Console.ReadLine(), out int number) &&
                 number > 0)
