@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
+using Task4.Parsers;
 
 namespace Task4
 {
@@ -12,62 +9,25 @@ namespace Task4
         {
             var reverser = new NumberReverser();
 
-            while (true)
+            Console.WriteLine("Enter the number");
+
+            var userString = Console.ReadLine();
+
+            if (DoubleParser.TryParse(userString, out double parsedDouble))
             {
-                Console.WriteLine("Enter the number");
-
-                var userString = Console.ReadLine();
-
-                if (GetDouble(userString, out double parsedDouble))
-                {
-                    reverser.Reverse(ref parsedDouble);
-                    Console.WriteLine(parsedDouble);
-                }
-                else if (int.TryParse(userString, out int parsedInt))
-                {
-                    reverser.Reverse(ref parsedInt);
-                    Console.WriteLine(parsedInt);
-                }
-                else
-                {
-                    BugReport("Input is not a number");
-                }
-                Console.ReadKey();
-                Console.Clear();
+                reverser.Reverse(ref parsedDouble);
+                Console.WriteLine(parsedDouble);
             }
-        }
-
-        private static bool IsValidForDoubleParsing(string stringDouble)
-        {
-            if (stringDouble == null
-                || stringDouble == ""
-                || stringDouble.Contains("-,")
-                || stringDouble.Contains("-."))
+            else if (int.TryParse(userString, out int parsedInt))
             {
-                return false;
+                reverser.Reverse(ref parsedInt);
+                Console.WriteLine(parsedInt);
             }
-
-            return stringDouble.Where(el => el == ',' || el == '.').Count() == 1 &&
-                    !".,".Contains(stringDouble[stringDouble.Length - 1]) &&
-                    (!".,".Contains(stringDouble[0]) || !(stringDouble[0] != '-'));
-        }
-
-        public static bool GetDouble(string stringInput, out double number)
-        {
-
-            number = default;
-            if (!IsValidForDoubleParsing(stringInput))
+            else
             {
-                return false;
+                BugReport("Input is not a number");
             }
-            if (
-                !double.TryParse(stringInput, NumberStyles.Any, CultureInfo.CurrentCulture, out number) &&
-                !double.TryParse(stringInput, NumberStyles.Any, CultureInfo.GetCultureInfo("en-US"), out number) &&
-                !double.TryParse(stringInput, NumberStyles.Any, CultureInfo.InvariantCulture, out number))
-            {
-                return false;
-            }
-            return true;
+            Console.ReadKey();
         }
 
         private static void BugReport(string additionalInformation)
