@@ -8,7 +8,7 @@ namespace Task6
         static void Main(string[] args)
         {
             var arrayTrans = new ArrayTransformer();
-            arrayTrans.RandomlyInitialize(ArrayLength);
+            arrayTrans.InitializeRandomly(ArrayLength);
 
             Console.WriteLine("Before");
             Console.WriteLine(arrayTrans + "\n");

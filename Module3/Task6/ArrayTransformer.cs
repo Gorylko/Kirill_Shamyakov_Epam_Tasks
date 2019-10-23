@@ -25,7 +25,7 @@ namespace Task6
             return builder.ToString();
         }
 
-        public void RandomlyInitialize(int elemCount, int minValue = -100, int maxValue = 101)
+        public void InitializeRandomly(int elemCount, int minValue = -100, int maxValue = 101)
         {
             if (elemCount < 1)
             {
