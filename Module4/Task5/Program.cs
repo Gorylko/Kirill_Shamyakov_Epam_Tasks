@@ -10,6 +10,12 @@ namespace Task5
     {
         static void Main(string[] args)
         {
+           
+        }
+
+        private static int GetDaysInMonth(int year, int month)
+        {
+            return DateTime.DaysInMonth(year, month);
         }
     }
 }
