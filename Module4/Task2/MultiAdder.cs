@@ -1,13 +1,13 @@
 ﻿using Module.Helper.Results;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using Sistim.NedoLinq;
 
 namespace Task2
 {
     public class MultiAdder
     {
-        public CountingResult<int> SumIntNumbers(IEnumerable<int> numbers)
+        public CountingResult<int> SumIntNumbers(params int[] numbers)
         {
             if(numbers == null)
             {
@@ -29,7 +29,7 @@ namespace Task2
             }
         }
 
-        public CountingResult<double> SumDoubleNumbers(IEnumerable<double> numbers)
+        public CountingResult<double> SumDoubleNumbers(params double[] numbers)
         {
             if (numbers == null)
             {
@@ -51,7 +51,7 @@ namespace Task2
             }
         }
         
-        public CountingResult<string> JoinStrings(IEnumerable<string> strings)
+        public CountingResult<string> JoinStrings(params string[] strings)
         {
             if(strings == null)
             {

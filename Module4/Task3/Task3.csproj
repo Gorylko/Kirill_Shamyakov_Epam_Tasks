@@ -55,6 +55,10 @@
       <Project>{48500914-2e2a-4033-a76e-610e8e8da460}</Project>
       <Name>Module.Helper</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Module.NedoLinq\Sistim.NedoLinq.csproj">
+      <Project>{1e413436-c5a0-43fa-9c9d-6181928ce080}</Project>
+      <Name>Sistim.NedoLinq</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,23 +1,27 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using Sistim.NedoLinq;
+using System.Text;
 
 namespace Task1
 {
     public static class CollectionExtensions
     {
-        public static void RedoCollection(this IEnumerable<int> collection)
+        public static IEnumerable<int> GetRedoneCillection(this IEnumerable<int> collection)
         {
-            collection = collection.Select(element => element % 2 == 0 ?
-            element + collection.Max() : 
-            element - collection.Min());
+            var maxElement = collection.Max();
+            var minElement = collection.Min();
+
+            return collection.Select(element => element % 2 == 0 ?
+            element + maxElement : 
+            element - minElement);
         }
 
-        public static T GetMax<T>(this IEnumerable<T> collection)
+        public static int GetMax(this IEnumerable<int> collection)
         {
             return collection.Max();
         }
 
-        public static T GetMin<T>(this IEnumerable<T> collection)
+        public static int GetMin(this IEnumerable<int> collection)
         {
             return collection.Min();
         }
@@ -40,6 +44,17 @@ namespace Task1
         public static double GetDifferenceBetweenMaxAndMin(this IEnumerable<double> collection)
         {
             return collection.Max() - collection.Min();
+        }
+
+        public static string AsString<T>(this IEnumerable<T> collection)
+        {
+            var builder = new StringBuilder();
+
+            foreach(var elem in collection)
+            {
+                builder.Append(elem + " ");
+            }
+            return builder.ToString();
         }
     }
 }
