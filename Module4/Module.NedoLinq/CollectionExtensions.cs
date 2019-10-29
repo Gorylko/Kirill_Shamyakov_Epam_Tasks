@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace Sistim.NedoLinq
 {
@@ -201,6 +202,17 @@ namespace Sistim.NedoLinq
             }
 
             return list;
+        }
+
+        public static string AsString<T>(this IEnumerable<T> collection)
+        {
+            var builder = new StringBuilder();
+
+            foreach (var elem in collection)
+            {
+                builder.Append(elem + " ");
+            }
+            return builder.ToString();
         }
     }
 }

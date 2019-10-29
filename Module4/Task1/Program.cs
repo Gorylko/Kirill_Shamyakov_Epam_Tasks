@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using Module.Helper;
+using Sistim.NedoLinq;
 
 namespace Task1
 {
@@ -9,20 +11,25 @@ namespace Task1
         {
             var initializer = new ConsoleDataInitializer();
 
-            var dataResult = initializer.GetArrayInput();
+            var dataResult = initializer.GetIntArray();
 
             if (dataResult.IsSuccessful)
             {
                 var array = dataResult.Value;
-                Console.WriteLine("Array : " + array.AsString());
-                Console.WriteLine("Max : " + array.GetMax());
-                Console.WriteLine("Min : " + array.GetMin());
-                Console.WriteLine("Sum : " + array.GetSum());
-                Console.WriteLine("Difference : " + array.GetDifferenceBetweenMaxAndMin());
-                Console.WriteLine("Redo : " + array.GetRedoneCillection().AsString());
+                GetFullInfo(array);
             }
 
             Console.ReadKey();
+        }
+
+        private static void GetFullInfo(IEnumerable<int> collection)
+        {
+            Console.WriteLine("Array : " + collection.AsString());
+            Console.WriteLine("Max : " + collection.GetMax());
+            Console.WriteLine("Min : " + collection.GetMin());
+            Console.WriteLine("Sum : " + collection.GetSum());
+            Console.WriteLine("Difference : " + collection.GetDifferenceBetweenMaxAndMin());
+            Console.WriteLine("Redo : " + collection.GetRedoneCillection().AsString());
         }
     }
 }

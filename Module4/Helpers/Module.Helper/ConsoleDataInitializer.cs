@@ -1,28 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Module.Helper.Results;
+using System;
 using System.Linq;
-using System.Text;
-using Module.Helper.Results;
-using System.Threading.Tasks;
 
 namespace Module.Helper
 {
     public class ConsoleDataInitializer
     {
-        public UserInputResult<int[]> GetArrayInput()
+        public UserInputResult<int[]> GetIntArray()
         {
-            Console.WriteLine("Enter the array"); 
+            Console.WriteLine("Enter the array");
 
             var array = Console.ReadLine()
                 .Split(' ')
                 .Where(x => int.TryParse(x.ToString(), out int intEl))
                 .Select(x => int.Parse(x.ToString())).ToArray();
 
-            return array.Length == 0 ? GetErrorResult<int[]>("Invalid value of user input") : new UserInputResult<int[]>
-            {
-                IsSuccessful = true,
-                Value = array
-            };
+            return array.Length == 0 ?
+                GetErrorResult<int[]>("Invalid value of user input") :
+                new UserInputResult<int[]>
+                {
+                    IsSuccessful = true,
+                    Value = array
+                };
         }
 
         private UserInputResult<T> GetErrorResult<T>(string errorResult)

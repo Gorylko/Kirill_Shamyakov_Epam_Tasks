@@ -20,8 +20,16 @@ namespace Task1
         {
             return collection.Max();
         }
+        public static double GetMax(this IEnumerable<double> collection)
+        {
+            return collection.Max();
+        }
 
         public static int GetMin(this IEnumerable<int> collection)
+        {
+            return collection.Min();
+        }
+        public static double GetMin(this IEnumerable<double> collection)
         {
             return collection.Min();
         }
@@ -44,17 +52,6 @@ namespace Task1
         public static double GetDifferenceBetweenMaxAndMin(this IEnumerable<double> collection)
         {
             return collection.Max() - collection.Min();
-        }
-
-        public static string AsString<T>(this IEnumerable<T> collection)
-        {
-            var builder = new StringBuilder();
-
-            foreach(var elem in collection)
-            {
-                builder.Append(elem + " ");
-            }
-            return builder.ToString();
         }
     }
 }
