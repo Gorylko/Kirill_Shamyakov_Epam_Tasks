@@ -6,9 +6,9 @@ namespace Module.Helper
 {
     public class ConsoleDataInitializer
     {
-        public UserInputResult<int[]> GetIntArray()
+        public UserInputResult<int[]> GetIntArray(string messageForUser = "Enter the array")
         {
-            Console.WriteLine("Enter the array");
+            Console.WriteLine(messageForUser);
 
             var array = Console.ReadLine()
                 .Split(' ')
@@ -22,6 +22,21 @@ namespace Module.Helper
                     IsSuccessful = true,
                     Value = array
                 };
+        }
+
+        public UserInputResult<int> GetIntNumber(string messageForUser = "Enter the int number")
+        {
+            Console.WriteLine(messageForUser);
+
+            if(int.TryParse(Console.ReadLine(), out int number))
+            {
+                return new UserInputResult<int>
+                {
+                    Value = number,
+                    IsSuccessful = true
+                };
+            }
+            return GetErrorResult<int>("Invalid value of user input");
         }
 
         private UserInputResult<T> GetErrorResult<T>(string errorResult)

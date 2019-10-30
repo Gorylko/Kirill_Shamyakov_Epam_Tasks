@@ -5,7 +5,7 @@ using Module.Helper;
 
 namespace Task3
 {
-    public class JackOfAllTrades
+    public class TaskPerformer //The class violates SOLID, so the name is bad
     {
         public void IncreaseNumbers(ref int number1, ref int number2, ref int number3)
         {

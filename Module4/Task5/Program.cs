@@ -10,7 +10,10 @@ namespace Task5
     {
         static void Main(string[] args)
         {
-           
+            var calculator = new Calculator();
+            Console.WriteLine();
+
+            Console.ReadKey();
         }
 
         private static int GetDaysInMonth(int year, int month)
