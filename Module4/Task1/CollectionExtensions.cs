@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Sistim.NedoLinq;
-using System.Text;
 
 namespace Task1
 {

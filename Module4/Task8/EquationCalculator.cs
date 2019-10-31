@@ -1,5 +1,5 @@
-﻿using System;
-using Module.Helper.Results;
+﻿using Module.Helper.Results;
+using System;
 
 namespace Task8
 {

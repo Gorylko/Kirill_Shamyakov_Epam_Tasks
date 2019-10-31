@@ -1,18 +1,18 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
+using Sistim.NedoLinq;
 
 namespace Task6
 {
     public static class CollectionExtensions
     {
-        private static void IncreaseAllNumbers(this IEnumerable<int> numberCollection, int amount)
+        public static IEnumerable<int> IncreaseAllNumbers(this IEnumerable<int> numberCollection, int amount)
         {
-            numberCollection = numberCollection.Select(el => el + amount);
+            return numberCollection.Select(el => el + amount);
         }
 
-        private static void IncreaseAllNumbers(this IEnumerable<double> numberCollection, double amount)
+        public static IEnumerable<double> IncreaseAllNumbers(this IEnumerable<double> numberCollection, double amount)
         {
-            numberCollection = numberCollection.Select(el => el + amount);
+            return numberCollection.Select(el => el + amount);
         }
     }
 }

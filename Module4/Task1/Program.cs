@@ -7,17 +7,22 @@ namespace Task1
 {
     class Program
     {
+        private static bool isValidInput;
+
         static void Main(string[] args)
         {
-            var initializer = new ConsoleDataInitializer();
-
-            var dataResult = initializer.GetIntArray();
-
-            if (dataResult.IsSuccessful)
+            do
             {
-                var array = dataResult.Value;
-                GetFullInfo(array);
-            }
+                var initializer = new ConsoleDataInitializer();
+
+                var dataResult = initializer.GetIntArray();
+
+                if (isValidInput = dataResult.IsSuccessful)
+                {
+                    var array = dataResult.Value;
+                    GetFullInfo(array);
+                }
+            } while (!isValidInput);
 
             Console.ReadKey();
         }

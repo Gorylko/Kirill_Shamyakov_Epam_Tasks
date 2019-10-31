@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Module.Helper;
 
 namespace Task4
 {
     public class TaskPerformer //The class violates SOLID, so the name is bad
     {
-        public (int, int, int) IncreaseNumbers(int number1, int number2, int number3)
+        public (int, int, int) IncreaseNumbers((int number1, int number2, int number3) numbers)
         {
-            return (number1 + 10, number2 + 10, number3 + 10);
+            return (numbers.number1 + 10, numbers.number2 + 10, numbers.number3 + 10);
         }
 
         public (double, double) InitializeCircle(double radius)

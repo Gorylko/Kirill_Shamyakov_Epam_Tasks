@@ -1,7 +1,6 @@
 ﻿using Module.Helper.Results;
-using System;
-using System.Collections.Generic;
 using Sistim.NedoLinq;
+using System;
 
 namespace Task2
 {
@@ -60,7 +59,7 @@ namespace Task2
 
             return new CountingResult<string>
             {
-                Params = string.Join(" ", strings),
+                Params = string.Join("", strings),
                 IsSuccessful = true
             };
         }

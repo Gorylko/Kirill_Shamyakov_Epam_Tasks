@@ -9,7 +9,9 @@ namespace Task3
 
         private static ConsoleDataInitializer initializer { get; set; } = new ConsoleDataInitializer();
         private static TaskPerformer performer { get; set; } = new TaskPerformer();
-        
+
+        private static bool isValidInput;
+
         static void Main(string[] args)
         {
             CheckCircleInitializer();
@@ -21,41 +23,55 @@ namespace Task3
 
         private static void CheckCircleInitializer()
         {
-            var userInputResult = initializer.GetIntNumber();
-
-            if (!userInputResult.IsSuccessful)
+            do
             {
-                BugReport($"Invalid value of {nameof(userInputResult)}");
-            }
-            performer.InitializeCircle(userInputResult.Value, out double circleLength, out double circleArea);
-            Console.WriteLine($"Circle length : {circleLength}\n Circle area : {circleArea}{Separator}");
+                var userInputResult = initializer.GetIntNumber();
+
+                if (isValidInput = userInputResult.IsSuccessful)
+                {
+                    performer.InitializeCircle(userInputResult.Value, out double circleLength, out double circleArea);
+                    Console.WriteLine($"Circle length : {circleLength}\n Circle area : {circleArea}{Separator}");
+                }
+                else
+                {
+                    BugReport($"Invalid value of {nameof(userInputResult)}");
+                }
+            } while (!isValidInput);
         }
 
         private static void CheckNumberIncreaser()
         {
-            Console.WriteLine("Enter 3 numbers (press enter after each)");
-            if (int.TryParse(Console.ReadLine(), out int number1)
-                && int.TryParse(Console.ReadLine(), out int number2)
-                && int.TryParse(Console.ReadLine(), out int number3))
+            do
             {
-                Console.WriteLine($"Before : {number1}, {number2}, {number3}");
-                performer.IncreaseNumbers(ref number1, ref number2, ref number3);
-                Console.WriteLine($"After : {number1}, {number2}, {number3}{Separator}");
-            }
-            else
-            {
-                BugReport("Invalid value of user input");
-            }
+                Console.WriteLine("Enter 3 numbers (press enter after each)");
+                if (int.TryParse(Console.ReadLine(), out int number1)
+                    && int.TryParse(Console.ReadLine(), out int number2)
+                    && int.TryParse(Console.ReadLine(), out int number3))
+                {
+                    isValidInput = true;
+                    Console.WriteLine($"Before : {number1}, {number2}, {number3}");
+                    performer.IncreaseNumbers(ref number1, ref number2, ref number3);
+                    Console.WriteLine($"After : {number1}, {number2}, {number3}{Separator}");
+                }
+                else
+                {
+                    isValidInput = false;
+                    BugReport("Invalid value of user input");
+                }
+            } while (!isValidInput);
         }
 
         private static void CheckArrayInformer()
         {
-            var arrayResult = initializer.GetIntArray();
-            if (arrayResult.IsSuccessful)
+            do
             {
-                performer.GetArrayInfo(arrayResult.Value, out ArrayInfo<int> info);
-                Console.WriteLine(info);
-            }
+                var arrayResult = initializer.GetIntArray();
+                if (isValidInput = arrayResult.IsSuccessful)
+                {
+                    performer.GetArrayInfo(arrayResult.Value, out ArrayInfo<int> info);
+                    Console.WriteLine(info);
+                }
+            } while (!isValidInput);
         }
 
         private static void BugReport(string additionalInfo)

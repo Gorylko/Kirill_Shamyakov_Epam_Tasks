@@ -1,13 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Task8
 {
     class Program
     {
+        private static bool isValidInput;
+
         static void Main(string[] args)
         {
             Func<double, double> function = x => 12 * x * x + 15 * x - 7;
