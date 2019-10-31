@@ -9,10 +9,10 @@ namespace Task5
 
         static void Main(string[] args)
         {
+            var initializer = new ConsoleDataInitializer();
+
             do
             {
-                var initializer = new ConsoleDataInitializer();
-
                 var firstResult = initializer.GetIntNumber("Enter the first int number");
                 var secondResult = initializer.GetIntNumber("Enter the second int number");
 
@@ -37,7 +37,7 @@ namespace Task5
             Console.ReadKey();
         }
 
-        private static int GetDaysInMonth(int year, int month)
+        private static int GetDaysInMonth(int year, int month) // System lib, all ok :)
         {
             return DateTime.DaysInMonth(year, month);
         }

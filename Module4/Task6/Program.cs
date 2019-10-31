@@ -12,11 +12,11 @@ namespace Task6
 
         static void Main(string[] args)
         {
+            var initializer = new ConsoleDataInitializer();
+
             do
             {
                 Console.Clear();
-
-                var initializer = new ConsoleDataInitializer();
                 var intArrayResult = initializer.GetIntArray();
 
                 if (isValidInput = intArrayResult.IsSuccessful)

@@ -10,10 +10,10 @@ namespace Task2
 
         static void Main(string[] args)
         {
+            var initializer = new ConsoleDataInitializer();
+
             do
             {
-                var initializer = new ConsoleDataInitializer();
-
                 var FirstinitializerResult = initializer.GetIntArray("Enter the first array");
                 var SecondinitializerResult = initializer.GetIntArray("Enter the second array");
 

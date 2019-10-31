@@ -1,5 +1,7 @@
 ﻿using System;
 using Task7.Sorters;
+using Module.Helper;
+using Sistim.NedoLinq;
 
 namespace Task7
 {
@@ -9,9 +11,20 @@ namespace Task7
 
         static void Main(string[] args)
         {
-            var array = new int[] { 18,12,42,7,6,455,7,3,21,14,47,8,345,1,234};
+            var initializer = new ConsoleDataInitializer();
 
-            array = (int[])array.Sort();
+            do {
+                var result = initializer.GetIntArray();
+                if(isValidInput = result.IsSuccessful)
+                {
+                    var array = result.Value;
+                    array = (int[])array.Sort();
+
+                    Console.WriteLine($"Sorted array(default) : {array.AsString()}");
+
+                    Console.WriteLine($"Sorted array(reversed) : {array.Sort(SortWay.Descending).AsString()}");
+                }
+            } while (!isValidInput);
 
             Console.ReadKey();
         }

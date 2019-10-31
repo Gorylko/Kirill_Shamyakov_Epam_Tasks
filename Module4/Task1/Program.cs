@@ -11,10 +11,10 @@ namespace Task1
 
         static void Main(string[] args)
         {
+            var initializer = new ConsoleDataInitializer();
+
             do
             {
-                var initializer = new ConsoleDataInitializer();
-
                 var dataResult = initializer.GetIntArray();
 
                 if (isValidInput = dataResult.IsSuccessful)
