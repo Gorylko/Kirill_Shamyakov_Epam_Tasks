@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FakePrincess.Logic;
+using FakePrincess.UI.Realizations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +12,17 @@ namespace FakePrincess.UI
     {
         static void Main(string[] args)
         {
+            var settings = new GameSettings
+            {
+                NumberOfTraps = 20,
+                PlayerHP = 5,
+                ZoneHeight = 15,
+                ZoneWidth = 15
+            };
+
+            var game = new Game(new ConsoleController(), new ConsoleDrawer(), settings);
+
+            game.Launch();
         }
     }
 }

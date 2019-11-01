@@ -5,14 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using FakePrincess.General.Interfaces;
+using FakePrincess.General.Entities.Zone;
 
 namespace FakePrincess.UI.Realizations
 {
-    class ConsoleDrawer
+    class ConsoleDrawer : IDisplay
     {
-        public void DisplayEntity(IZoneMember member)
+        public void DisplayAll(Zone displayZone)
         {
-           
+            throw new NotImplementedException();
         }
     }
 }

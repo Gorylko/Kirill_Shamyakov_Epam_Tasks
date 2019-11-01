@@ -14,20 +14,19 @@ namespace FakePrincess.Logic
     public class Game
     {
         private IController _controller;
-        private IDrawer _drawer;
+        private IDisplay _drawer;
         private bool _isGameOn;
 
-        public GameSettings Settings { get; set; }
-        public Player Player { get; set; }
-        public Zone Zone { get; set; }
+        private GameSettings Settings { get; set; }
+        private Player Player { get; set; }
+        private Zone Zone { get; set; }
 
-        public Game(IController controller, IDrawer drawer, GameSettings settings)
+        public Game(IController controller, IDisplay drawer, GameSettings settings)
         {
             this._controller = controller ?? throw new NullReferenceException(nameof(controller));
             this._drawer = drawer ?? throw new NullReferenceException(nameof(drawer));
             this.Settings = settings ?? throw new NullReferenceException(nameof(settings));
 
-            this.Zone = new Zone(settings.ZoneHeight, settings.ZoneWidth);
             this.Player = new Player
             {
                 Position = new Position
@@ -37,11 +36,14 @@ namespace FakePrincess.Logic
                 },
                 HP = settings.PlayerHP  
             };
+
+            this.Zone = new Zone(this.Player, settings.ZoneHeight, settings.ZoneWidth);
         }
 
         public void Launch()
         {
             this._isGameOn = true;
+
 
             while (this._isGameOn)
             {
@@ -54,7 +56,7 @@ namespace FakePrincess.Logic
 
         private BeforeActionResult GetActionResult(ActionType actionType)
         {
-
+            return null;
         }
 
         private void UpdateCurrentPayerHP(BeforeActionResult actionResult)

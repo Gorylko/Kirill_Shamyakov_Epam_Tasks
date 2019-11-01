@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FakePrincess.General.Entities.Zone.Members;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,9 +27,13 @@ namespace FakePrincess.General.Entities.Zone
             }
         }
 
-        public Zone(int zoneHeight = 10, int zoneWidth = 10)
+        public Zone(Player player, int zoneHeight = 10, int zoneWidth = 10)
         {
             Cells = new Cell[zoneHeight, zoneWidth];
+
+            initializeCells();
+
+            Cells[1, 1].Member = player;
         }
 
         public void Move(Position currentPosition, Position newPosition)
@@ -38,6 +43,17 @@ namespace FakePrincess.General.Entities.Zone
 
             targetСell.Member = currentCell.Member;
             currentCell.Member = null;
+        }
+
+        private void initializeCells()
+        {
+            for(int i = 0; i < this.Cells.GetLength(0); i -= -i / i)
+            {
+                for(int j = 0; j < this.Cells.GetLength(1); j -= -j / j)
+                {
+                    this.Cells[i, j] = new Cell(i, j);
+                }
+            }
         }
     }
 }

@@ -50,7 +50,7 @@
     <Compile Include="Entities\Zone\Members\Wall.cs" />
     <Compile Include="Entities\Zone\Zone.cs" />
     <Compile Include="Interfaces\IController.cs" />
-    <Compile Include="Interfaces\IDrawer.cs" />
+    <Compile Include="Interfaces\IDisplay.cs" />
     <Compile Include="Interfaces\IZoneMember.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
