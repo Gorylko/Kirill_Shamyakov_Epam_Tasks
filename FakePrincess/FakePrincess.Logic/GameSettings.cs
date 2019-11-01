@@ -8,10 +8,10 @@ namespace FakePrincess.Logic
 {
     public class GameSettings
     {
-        public int ZoneWidth { get; set; }
-
         public int ZoneHeight { get; set; }
 
+        public int ZoneWidth { get; set; }
 
+        public int NumberOfTraps { get; set; }
     }
 }

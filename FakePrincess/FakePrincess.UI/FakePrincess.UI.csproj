@@ -49,5 +49,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\FakePrincess.General\FakePrincess.General.csproj">
+      <Project>{b82e8e0b-9fb6-4660-bbfb-3927c9ad9b93}</Project>
+      <Name>FakePrincess.General</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\FakePrincess.Logic\FakePrincess.Logic.csproj">
+      <Project>{50375a3f-6f82-4b98-bc91-1964714c6b0c}</Project>
+      <Name>FakePrincess.Logic</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

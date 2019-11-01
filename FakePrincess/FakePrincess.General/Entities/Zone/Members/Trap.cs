@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FakePrincess.General.Interfaces
+namespace FakePrincess.General.Entities.Zone.Members
 {
-    public interface IController
+    class Trap
     {
     }
 }

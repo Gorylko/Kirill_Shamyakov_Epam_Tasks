@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FakePrincess.General.Interfaces
 {
-    public interface IController
+    public interface IZoneMember
     {
     }
 }

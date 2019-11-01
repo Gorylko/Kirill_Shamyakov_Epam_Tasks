@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FakePrincess.General.Interfaces
+namespace FakePrincess.General.Entities.Zone.Members
 {
-    interface IFieldMember
+    public class Player
     {
+        
     }
 }

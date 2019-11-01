@@ -8,6 +8,13 @@ namespace FakePrincess.Logic
 {
     public class GameLauncher
     {
+        private IController
 
+        public GameSettings Settings { get; set; }
+
+        public GameLauncher()
+        {
+
+        }
     }
 }
