@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Entities\Enums\ActionType.cs" />
     <Compile Include="Entities\Position.cs" />
+    <Compile Include="Entities\Results\ActionResult.cs" />
     <Compile Include="Entities\Zone\Cell.cs" />
     <Compile Include="Entities\Zone\Members\Player.cs" />
     <Compile Include="Entities\Zone\Members\Trap.cs" />

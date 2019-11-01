@@ -17,7 +17,7 @@ namespace FakePrincess.General.Entities.Zone
         {
             get
             {
-                return this.Cells;
+                return this._cells;
             }
             set
             {
@@ -29,6 +29,15 @@ namespace FakePrincess.General.Entities.Zone
         public Zone(int zoneHeight = 10, int zoneWidth = 10)
         {
             Cells = new Cell[zoneHeight, zoneWidth];
+        }
+
+        public void Move(Position currentPosition, Position newPosition)
+        {
+            var currentCell = _cells[currentPosition.Row, currentPosition.Column];
+            var targetСell = _cells[currentPosition.Row, currentPosition.Column];
+
+            targetСell.Member = currentCell.Member;
+            currentCell.Member = null;
         }
     }
 }

@@ -13,5 +13,7 @@ namespace FakePrincess.Logic
         public int ZoneWidth { get; set; }
 
         public int NumberOfTraps { get; set; }
+
+        public int PlayerHP { get; set; }
     }
 }
