@@ -52,6 +52,7 @@
     <Compile Include="Interfaces\IZoneMember.cs" />
     <Compile Include="Interfaces\Realizations\Console\ConsoleController.cs" />
     <Compile Include="Interfaces\Realizations\Console\ConsoleDrawer.cs" />
+    <Compile Include="Interfaces\Realizations\Console\DrawerSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

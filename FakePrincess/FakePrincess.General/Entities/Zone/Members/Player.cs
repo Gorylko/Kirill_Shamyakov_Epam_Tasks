@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using FakePrincess.General.Interfaces;
 
 namespace FakePrincess.General.Entities.Zone.Members
 {
-    public class Player
+    public class Player : IZoneMember
     {
-        
+        public Position Position { get; set; }
     }
 }
+ 
