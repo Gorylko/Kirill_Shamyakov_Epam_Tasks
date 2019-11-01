@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace FakePrincess.General.Interfaces.Realizations.Console
+namespace FakePrincess.UI.Realizations
 {
     public static class DrawerSettings
     {

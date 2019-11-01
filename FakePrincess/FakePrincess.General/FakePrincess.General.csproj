@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Enums\ActionType.cs" />
     <Compile Include="Entities\Position.cs" />
     <Compile Include="Entities\Zone\Cell.cs" />
     <Compile Include="Entities\Zone\Members\Player.cs" />
@@ -50,9 +51,6 @@
     <Compile Include="Interfaces\IController.cs" />
     <Compile Include="Interfaces\IDrawer.cs" />
     <Compile Include="Interfaces\IZoneMember.cs" />
-    <Compile Include="Interfaces\Realizations\Console\ConsoleController.cs" />
-    <Compile Include="Interfaces\Realizations\Console\ConsoleDrawer.cs" />
-    <Compile Include="Interfaces\Realizations\Console\DrawerSettings.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

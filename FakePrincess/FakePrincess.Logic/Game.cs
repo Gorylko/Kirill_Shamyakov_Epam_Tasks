@@ -32,17 +32,7 @@ namespace FakePrincess.Logic
 
             while (this._isGameOn)
             {
-                switch (Console.ReadKey().Key)
-                {
-                    case ConsoleKey.W | ConsoleKey.UpArrow:
-                        break;
-                    case ConsoleKey.D | ConsoleKey.RightArrow:
-                        break;
-                    case ConsoleKey.S | ConsoleKey.DownArrow:
-                        break;
-                    case ConsoleKey.A | ConsoleKey.LeftArrow:
-                        break;
-                }
+                
             }
         }
     }
