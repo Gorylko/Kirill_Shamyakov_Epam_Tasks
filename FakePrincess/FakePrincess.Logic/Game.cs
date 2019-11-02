@@ -46,7 +46,7 @@ namespace FakePrincess.Logic
         {
             this._isGameOn = true;
 
-            Settings.PerformInitialSetup();
+            this.Settings.PerformInitialSetup();
 
             while (this._isGameOn)
             {
@@ -55,27 +55,41 @@ namespace FakePrincess.Logic
                 UpdateCurrentPayerHP(actionResult);
                 UpdateCurrentPlayerPosition(actionResult);
             }
+
+            this.Settings.ResetSettings();
         }
 
         private BeforeActionResult GetActionResult(ActionType actionType)
         {
+            int verticalStep = 0;
+            int horizontalStep = 0;
+
             switch (actionType)
             {
                 case ActionType.MoveUp:
-                    return;
-
+                    verticalStep = -1;
+                    break;
                 case ActionType.MoveRight:
-                    return ;
+                    horizontalStep = +1;
+                    break;
 
                 case ActionType.MoveDown:
-                    return ;
+                    verticalStep = +1;
+                    break;
 
                 case ActionType.MoveLeft:
-                    return;
+                    horizontalStep = -1;
+                    break;
 
-                default ActionType.Nothing:
-                    return ;
+                default:
+                    break;
             }
+
+            return this.Zone.GetActionResult(new Position
+            {
+                Row = this.Player.Position.Row + verticalStep,
+                Column = this.Player.Position.Column + horizontalStep
+            });
         }
 
         private void UpdateCurrentPayerHP(BeforeActionResult actionResult)

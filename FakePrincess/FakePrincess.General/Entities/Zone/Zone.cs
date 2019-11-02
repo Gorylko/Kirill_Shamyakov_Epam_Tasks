@@ -40,6 +40,11 @@ namespace FakePrincess.General.Entities.Zone
             Cells[1, 1].Member = player;
         }
 
+        public void SpawnEntities()
+        {
+
+        }
+
         public void Move(Position currentPosition, Position newPosition)
         {
             if(GetMember(currentPosition) is Player player)
@@ -54,12 +59,9 @@ namespace FakePrincess.General.Entities.Zone
             currentCell.Member = null;
         }
 
-        public BeforeActionResult GetActionResult(Position currentPosition, int verticalStep, int horizontalStep)
+        public BeforeActionResult GetActionResult(Position position)
         {
-            var member = GetMember(new Position {
-                Row = currentPosition.Row + verticalStep,
-                Column = currentPosition.Column + horizontalStep
-            });
+            var member = GetMember(position);
 
             return new BeforeActionResult
             {

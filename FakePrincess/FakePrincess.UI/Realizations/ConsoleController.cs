@@ -8,7 +8,7 @@ namespace FakePrincess.UI.Realizations
     {
         public ActionType GetAction()
         {
-            switch (Console.ReadKey().Key)
+            switch (Console.ReadKey(true).Key)
             {
                 case ConsoleKey.W | ConsoleKey.UpArrow:
                     return ActionType.MoveUp;
