@@ -46,6 +46,7 @@ namespace FakePrincess.Logic
         {
             this._isGameOn = true;
 
+            Settings.PerformInitialSetup();
 
             while (this._isGameOn)
             {
@@ -58,7 +59,23 @@ namespace FakePrincess.Logic
 
         private BeforeActionResult GetActionResult(ActionType actionType)
         {
-            return null;
+            switch (actionType)
+            {
+                case ActionType.MoveUp:
+                    return;
+
+                case ActionType.MoveRight:
+                    return ;
+
+                case ActionType.MoveDown:
+                    return ;
+
+                case ActionType.MoveLeft:
+                    return;
+
+                default ActionType.Nothing:
+                    return ;
+            }
         }
 
         private void UpdateCurrentPayerHP(BeforeActionResult actionResult)

@@ -1,4 +1,5 @@
-﻿using FakePrincess.General.Entities.Zone.Members;
+﻿using FakePrincess.General.Entities.Results;
+using FakePrincess.General.Entities.Zone.Members;
 using FakePrincess.General.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -51,6 +52,29 @@ namespace FakePrincess.General.Entities.Zone
 
             targetСell.Member = currentCell.Member;
             currentCell.Member = null;
+        }
+
+        public BeforeActionResult GetActionResult(Position currentPosition, int verticalStep, int horizontalStep)
+        {
+            var member = GetMember(new Position(currentPosition.Row + verticalStep, currentPosition.Column + horizontalStep));
+
+            return new BeforeActionResult
+            {
+
+            };
+        }
+
+        public bool IsCellFree(Position position)
+        {
+            if(position == null)
+            {
+                return false;
+            }
+
+            var member = GetMember(position);
+
+            return member == null
+                || member is Trap;
         }
 
         private void initializeCells()
