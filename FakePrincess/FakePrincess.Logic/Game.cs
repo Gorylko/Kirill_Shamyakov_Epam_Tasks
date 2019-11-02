@@ -16,12 +16,13 @@ namespace FakePrincess.Logic
         private IController _controller;
         private IDisplay _drawer;
         private bool _isGameOn;
+        private bool _isPlayerWon;
 
-        private GameSettings Settings { get; set; }
+        private Settings Settings { get; set; }
         private Player Player { get; set; }
         private Zone Zone { get; set; }
 
-        public Game(IController controller, IDisplay drawer, GameSettings settings)
+        public Game(IController controller, IDisplay drawer, Settings settings)
         {
             this._controller = controller ?? throw new NullReferenceException(nameof(controller));
             this._drawer = drawer ?? throw new NullReferenceException(nameof(drawer));
@@ -36,6 +37,7 @@ namespace FakePrincess.Logic
                 },
                 HP = settings.PlayerHP  
             };
+            this.Settings.PerformInitialSetup();
 
             this.Zone = new Zone(this.Player, settings.ZoneHeight, settings.ZoneWidth);
             this.Zone.SpawnEntities();
@@ -45,18 +47,25 @@ namespace FakePrincess.Logic
         public void Launch()
         {
             this._isGameOn = true;
-
-            this.Settings.PerformInitialSetup();
-
-            while (this._isGameOn)
+            try
             {
-                var actionResult = GetActionResult(_controller.GetAction());
+                while (this._isGameOn)
+                {
+                    var actionResult = GetActionResult(_controller.GetAction());
 
-                UpdateCurrentPayerHP(actionResult);
-                UpdateCurrentPlayerPosition(actionResult);
+                    UpdateCurrentPayerHP(actionResult);
+                    UpdateCurrentPlayerPosition(actionResult);
+                }
+
             }
-
-            this.Settings.ResetSettings();
+            catch(NullReferenceException ex)
+            {
+                this._drawer.DisplayMessageForUser($"The application crashed.\nReason : value of {ex.Message} is null");
+            }
+            catch(Exception ex)
+            {
+                this._drawer.DisplayMessageForUser($"The application crashed.\nReason : {ex.Message}");
+            }
         }
 
         private BeforeActionResult GetActionResult(ActionType actionType)
@@ -101,6 +110,7 @@ namespace FakePrincess.Logic
                 if(Player.HP < 1)
                 {
                     this._isGameOn = false;
+                    this._isPlayerWon = false;
                 }
             }
         }

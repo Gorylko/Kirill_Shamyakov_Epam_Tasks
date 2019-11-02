@@ -7,14 +7,20 @@ using System.Threading.Tasks;
 
 namespace FakePrincess.UI.Realizations
 {
-    class FakePrincessSettings : GameSettings
+    public class FakePrincessSettings : Settings
     {
+        private const int HpBarWidth = 15;
         public FakePrincessSettings()
         {
         }
 
         public override void PerformInitialSetup()
         {
+
+            var changer = new WindowSizeChanger();
+
+            changer.ChangeSize(this.ZoneWidth + HpBarWidth, this.ZoneHeight);
+
             Console.CursorVisible = false;
         }
 

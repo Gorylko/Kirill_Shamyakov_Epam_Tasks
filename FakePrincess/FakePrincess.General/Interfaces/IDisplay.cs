@@ -11,6 +11,8 @@ namespace FakePrincess.General.Interfaces
 {
     public interface IDisplay
     {
+        void DisplayMessageForUser(string message);
+
         void DisplayAll(Zone displayZone, Player player);
 
         void Display(Position position, IZoneMember member);

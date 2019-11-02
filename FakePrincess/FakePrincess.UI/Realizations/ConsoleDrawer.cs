@@ -92,5 +92,11 @@ namespace FakePrincess.UI.Realizations
             Console.Write($"HP : {hpAmount}");
             Console.ResetColor();
         }
+
+        public void DisplayMessageForUser(string message)
+        {
+            Console.Clear();
+            Console.WriteLine(message);
+        }
     }
 }

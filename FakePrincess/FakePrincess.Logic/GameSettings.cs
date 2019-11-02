@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FakePrincess.Logic
 {
-    public abstract class GameSettings
+    public abstract class Settings
     {
         public int ZoneHeight { get; set; }
 

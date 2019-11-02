@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FakePrincess.UI.Realizations;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,9 @@ namespace FakePrincess.UI
 {
     public class WindowSizeChanger
     {
-        public void ChangeSize(int height, int width)
+        public void ChangeSize(int width, int height)
         {
-            if(Console.WindowHeight < height || Console.WindowWidth < width)
+            if (Console.WindowHeight < height || Console.WindowWidth < width)
             {
                 Console.SetWindowSize(width, height);
                 Console.SetBufferSize(width, height);
