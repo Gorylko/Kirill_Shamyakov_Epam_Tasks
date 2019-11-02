@@ -1,4 +1,5 @@
-﻿using FakePrincess.General.Entities.Results;
+﻿using FakePrincess.General.Entities.Enums;
+using FakePrincess.General.Entities.Results;
 using FakePrincess.General.Entities.Zone.Members;
 using FakePrincess.General.Interfaces;
 using System;
@@ -59,7 +60,7 @@ namespace FakePrincess.General.Entities.Zone
             }
         }
 
-        public void Move(Position currentPosition, Position newPosition)
+        public void Move(Position currentPosition, Position newPosition, Action<Position, IZoneMember> displayAfterMove)
         {
             if(GetMember(currentPosition) is Player player)
             {
@@ -67,18 +68,22 @@ namespace FakePrincess.General.Entities.Zone
             }
 
             var currentCell = _cells[currentPosition.Row, currentPosition.Column];
-            var targetСell = _cells[currentPosition.Row, currentPosition.Column];
+            var targetСell = _cells[newPosition.Row, newPosition.Column];
 
             targetСell.Member = currentCell.Member;
             currentCell.Member = null;
+
+            displayAfterMove(currentPosition, currentCell.Member);
+            displayAfterMove(newPosition, targetСell.Member);
         }
 
-        public BeforeActionResult GetActionResult(Position position)
+        public BeforeActionResult GetActionResult(Position position, ActionType actionType)
         {
             var member = GetMember(position);
 
             return new BeforeActionResult
             {
+                Action = actionType,
                 IsCanMove = member == null || member is Trap ? true : false,
                 IsDamaged = member != null && member is Trap ? true : false
             };

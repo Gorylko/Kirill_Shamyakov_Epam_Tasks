@@ -10,16 +10,16 @@ namespace FakePrincess.UI.Realizations
         {
             switch (Console.ReadKey(true).Key)
             {
-                case ConsoleKey.W | ConsoleKey.UpArrow:
+                case ConsoleKey.UpArrow:
                     return ActionType.MoveUp;
 
-                case ConsoleKey.D | ConsoleKey.RightArrow:
+                case ConsoleKey.RightArrow:
                     return ActionType.MoveRight;
 
-                case ConsoleKey.S | ConsoleKey.DownArrow:
+                case ConsoleKey.DownArrow:
                     return ActionType.MoveDown;
 
-                case ConsoleKey.A | ConsoleKey.LeftArrow:
+                case ConsoleKey.LeftArrow:
                     return ActionType.MoveLeft;
 
                 default:

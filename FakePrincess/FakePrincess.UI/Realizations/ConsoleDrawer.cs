@@ -1,12 +1,8 @@
-﻿using FakePrincess.General.Entities.Zone.Members;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FakePrincess.General.Interfaces;
+﻿using FakePrincess.General.Entities;
 using FakePrincess.General.Entities.Zone;
-using FakePrincess.General.Entities;
+using FakePrincess.General.Entities.Zone.Members;
+using FakePrincess.General.Interfaces;
+using System;
 
 namespace FakePrincess.UI.Realizations
 {
@@ -44,6 +40,11 @@ namespace FakePrincess.UI.Realizations
 
         private char GetMemberChar(IZoneMember member)
         {
+            if(member == null)
+            {
+                return '.';
+            }
+
             if (member is Wall)
             {
                 return DrawerSettings.WallChar;
@@ -56,6 +57,7 @@ namespace FakePrincess.UI.Realizations
             {
                 return DrawerSettings.PlayerChar;
             }
+
             return '.';
         }
 
@@ -64,6 +66,24 @@ namespace FakePrincess.UI.Realizations
             Console.ForegroundColor = color;
             Console.SetCursorPosition(position.Column, position.Row);
             Console.Write(sym);
+            Console.ResetColor();
+        }
+
+        public void Display(Position position, IZoneMember member)
+        {
+            if(position == null)
+            {
+                throw new NullReferenceException(nameof(position));
+            }
+
+            DisplayChar(GetMemberChar(member), position, GetMemberColor(member));
+        }
+
+        public void DisplayHP(Position position, int hpAmount)
+        {
+            Console.SetCursorPosition(position.Column, position.Row);
+            Console.ForegroundColor = DrawerSettings.HpColor;
+            Console.Write(hpAmount);
             Console.ResetColor();
         }
     }

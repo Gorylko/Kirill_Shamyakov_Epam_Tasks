@@ -1,4 +1,5 @@
-﻿using FakePrincess.General.Entities.Zone;
+﻿using FakePrincess.General.Entities;
+using FakePrincess.General.Entities.Zone;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,9 @@ namespace FakePrincess.General.Interfaces
     public interface IDisplay
     {
         void DisplayAll(Zone displayZone);
+
+        void Display(Position position, IZoneMember member);
+
+        void DisplayHP(Position position, int hp);
     }
 }

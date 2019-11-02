@@ -89,7 +89,7 @@ namespace FakePrincess.Logic
             {
                 Row = this.Player.Position.Row + verticalStep,
                 Column = this.Player.Position.Column + horizontalStep
-            });
+            }, actionType);
         }
 
         private void UpdateCurrentPayerHP(BeforeActionResult actionResult)
@@ -114,16 +114,42 @@ namespace FakePrincess.Logic
 
             switch (actionResult.Action)
             {
-                case ActionType.MoveUp: 
+                case ActionType.MoveUp:
+                    this.Zone.Move(
+                        this.Player.Position, 
+                        new Position
+                        {
+                            Row = this.Player.Position.Row - 1,
+                            Column = this.Player.Position.Column
+                        },
+                        this._drawer.Display);
                     break;
 
                 case ActionType.MoveRight:
+                    this.Zone.Move(this.Player.Position, new Position
+                    {
+                        Row = this.Player.Position.Row,
+                        Column = this.Player.Position.Column + 1
+                    },
+                        this._drawer.Display);
                     break;
 
                 case ActionType.MoveDown:
+                    this.Zone.Move(this.Player.Position, new Position
+                    {
+                        Row = this.Player.Position.Row + 1,
+                        Column = this.Player.Position.Column
+                    },
+                        this._drawer.Display);
                     break;
 
                 case ActionType.MoveLeft:
+                    this.Zone.Move(this.Player.Position, new Position
+                    {
+                        Row = this.Player.Position.Row,
+                        Column = this.Player.Position.Column - 1
+                    },
+                        this._drawer.Display);
                     break;
             }
         }

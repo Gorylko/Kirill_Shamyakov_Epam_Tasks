@@ -17,5 +17,7 @@ namespace FakePrincess.UI.Realizations
         public static char TrapChar = ' ';
         public static char ActivatedTrapChar = '<';
         public static ConsoleColor TrapColor = ConsoleColor.Red;
+
+        public static ConsoleColor HpColor = ConsoleColor.Red;
     }
 }
