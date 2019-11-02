@@ -56,11 +56,15 @@ namespace FakePrincess.General.Entities.Zone
 
         public BeforeActionResult GetActionResult(Position currentPosition, int verticalStep, int horizontalStep)
         {
-            var member = GetMember(new Position(currentPosition.Row + verticalStep, currentPosition.Column + horizontalStep));
+            var member = GetMember(new Position {
+                Row = currentPosition.Row + verticalStep,
+                Column = currentPosition.Column + horizontalStep
+            });
 
             return new BeforeActionResult
             {
-
+                IsCanMove = member == null || member is Trap ? true : false,
+                IsDamaged = member != null && member is Trap ? true : false
             };
         }
 

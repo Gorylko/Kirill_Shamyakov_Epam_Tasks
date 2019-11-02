@@ -15,6 +15,7 @@ namespace FakePrincess.UI.Realizations
         public static ConsoleColor PayerColor = ConsoleColor.Blue;
 
         public static char TrapChar = ' ';
+        public static char ActivatedTrapChar = '<';
         public static ConsoleColor TrapColor = ConsoleColor.Red;
     }
 }
