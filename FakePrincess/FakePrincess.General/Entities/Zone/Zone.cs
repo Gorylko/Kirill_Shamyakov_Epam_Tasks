@@ -33,16 +33,30 @@ namespace FakePrincess.General.Entities.Zone
         {
             Cells = new Cell[zoneHeight, zoneWidth];
 
-            initializeCells();
-
-
+            InitializeCells();
 
             Cells[1, 1].Member = player;
         }
 
         public void SpawnEntities()
         {
+            var zoneLength = this.Cells.GetLength(0);
+            var zoneWidth = this.Cells.GetLength(1);
+            for (int i = 0; i < zoneLength; i++)
+            {
+                for (int j = 0; j < zoneWidth; j++)
+                {
+                    if (i == 0
+                        || i == zoneLength - 1
+                        || j == 0
+                        || j == zoneWidth - 1)
+                    {
+                        this.Cells[i, j].Member = new Wall();
+                        continue;
+                    }
 
+                }
+            }
         }
 
         public void Move(Position currentPosition, Position newPosition)
@@ -83,7 +97,7 @@ namespace FakePrincess.General.Entities.Zone
                 || member is Trap;
         }
 
-        private void initializeCells()
+        private void InitializeCells()
         {
             for(int i = 0; i < this.Cells.GetLength(0); i++)
             {

@@ -38,8 +38,8 @@ namespace FakePrincess.Logic
             };
 
             this.Zone = new Zone(this.Player, settings.ZoneHeight, settings.ZoneWidth);
-
-            Console.CursorVisible = false;
+            this.Zone.SpawnEntities();
+            this._drawer.DisplayAll(this.Zone);
         }
 
         public void Launch()
