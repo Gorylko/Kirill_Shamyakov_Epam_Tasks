@@ -16,9 +16,12 @@ namespace FakePrincess.UI
             {
                 NumberOfTraps = 20,
                 PlayerHP = 5,
-                ZoneHeight = 15,
-                ZoneWidth = 30
+                ZoneHeight = 30,
+                ZoneWidth = 60
             };
+
+            var changer = new WindowSizeChanger();
+            changer.ChangeSize(settings.ZoneHeight, settings.ZoneWidth + 20);
 
             var game = new Game(new ConsoleController(), new ConsoleDrawer(), settings);
 

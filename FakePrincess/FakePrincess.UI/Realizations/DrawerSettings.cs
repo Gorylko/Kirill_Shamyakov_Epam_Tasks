@@ -19,5 +19,6 @@ namespace FakePrincess.UI.Realizations
         public static ConsoleColor TrapColor = ConsoleColor.Red;
 
         public static ConsoleColor HpColor = ConsoleColor.Red;
+        public static int topIndent = 2;
     }
 }

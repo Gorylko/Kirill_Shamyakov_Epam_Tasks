@@ -8,7 +8,7 @@ namespace FakePrincess.UI.Realizations
 {
     class ConsoleDrawer : IDisplay
     {
-        public void DisplayAll(Zone displayZone)
+        public void DisplayAll(Zone displayZone, Player player)
         {
             if(displayZone == null)
             {
@@ -19,6 +19,12 @@ namespace FakePrincess.UI.Realizations
             {
                 DisplayChar(GetMemberChar(cell.Member), cell.Position, GetMemberColor(cell.Member));
             }
+
+            DisplayHP(new Position
+            {
+                Row = DrawerSettings.topIndent,
+                Column = displayZone.Cells.GetLength(1) + 1
+            }, player.HP);
         }
 
         private ConsoleColor GetMemberColor(IZoneMember member)
@@ -83,7 +89,7 @@ namespace FakePrincess.UI.Realizations
         {
             Console.SetCursorPosition(position.Column, position.Row);
             Console.ForegroundColor = DrawerSettings.HpColor;
-            Console.Write(hpAmount);
+            Console.Write($"HP : {hpAmount}");
             Console.ResetColor();
         }
     }

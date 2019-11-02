@@ -39,7 +39,7 @@ namespace FakePrincess.Logic
 
             this.Zone = new Zone(this.Player, settings.ZoneHeight, settings.ZoneWidth);
             this.Zone.SpawnEntities();
-            this._drawer.DisplayAll(this.Zone);
+            this._drawer.DisplayAll(this.Zone, this.Player);
         }
 
         public void Launch()
