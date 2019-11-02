@@ -12,7 +12,7 @@ namespace FakePrincess.UI
     {
         static void Main(string[] args)
         {
-            var settings = new GameSettings
+            var settings = new FakePrincessSettings
             {
                 NumberOfTraps = 20,
                 PlayerHP = 5,

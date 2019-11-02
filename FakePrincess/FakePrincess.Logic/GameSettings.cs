@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FakePrincess.Logic
 {
-    public class GameSettings
+    public abstract class GameSettings
     {
         public int ZoneHeight { get; set; }
 
@@ -15,5 +15,9 @@ namespace FakePrincess.Logic
         public int NumberOfTraps { get; set; }
 
         public int PlayerHP { get; set; }
+
+        public abstract void ResetSettings();
+
+        public abstract void PerformInitialSetup();
     }
 }

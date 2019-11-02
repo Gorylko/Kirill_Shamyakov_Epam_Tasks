@@ -48,6 +48,7 @@
     <Compile Include="Realizations\ConsoleController.cs" />
     <Compile Include="Realizations\ConsoleDrawer.cs" />
     <Compile Include="Realizations\DrawerSettings.cs" />
+    <Compile Include="Realizations\FakePrincessSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
