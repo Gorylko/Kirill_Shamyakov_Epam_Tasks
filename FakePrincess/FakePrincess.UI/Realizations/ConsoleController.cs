@@ -1,6 +1,7 @@
 ﻿using FakePrincess.General.Entities.Enums;
 using FakePrincess.General.Interfaces;
 using System;
+using System.Threading;
 
 namespace FakePrincess.UI.Realizations
 {
@@ -29,6 +30,7 @@ namespace FakePrincess.UI.Realizations
 
         public bool IsReplay()
         {
+            Thread.Sleep(1000);
             Console.WriteLine("Repeat - press Enter");
 
             if(Console.ReadKey(true).Key == ConsoleKey.Enter)

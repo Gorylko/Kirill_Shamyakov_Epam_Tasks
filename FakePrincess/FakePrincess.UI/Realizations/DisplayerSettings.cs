@@ -8,12 +8,13 @@ namespace FakePrincess.UI.Realizations
     {
         public static Dictionary<string, DisplayEntityParams> EntityParams = new Dictionary<string, DisplayEntityParams>
         {
-            {"wall", new DisplayEntityParams{ Symbol = 'X', Color = ConsoleColor.Gray} },
-            {"player", new DisplayEntityParams{Symbol = '8', Color = ConsoleColor.Blue} },
-            {"default-trap", new DisplayEntityParams{Symbol ='o', Color = ConsoleColor.Red} },
-            {"hp-bar", new DisplayEntityParams{Color = ConsoleColor.Red } }
+            {"wall", new DisplayEntityParams{ Symbol = 'X', Color = ConsoleColor.Gray } },
+            {"player", new DisplayEntityParams{ Symbol = '8', Color = ConsoleColor.Cyan } },
+            {"default-trap", new DisplayEntityParams{ Symbol ='o', Color = ConsoleColor.Red } },
+            {"hp-bar", new DisplayEntityParams{ Color = ConsoleColor.Red } },
+            {"default", new DisplayEntityParams{ Symbol = '.', Color = ConsoleColor.DarkGray } }
         };
 
-        public static int TopIndent = 2;
+        public static int TopIndent = 2; 
     }
 }

@@ -47,14 +47,14 @@ namespace FakePrincess.UI.Realizations
             {
                 return DisplayerSettings.EntityParams["player"].Color;
             }
-            return ConsoleColor.Green;
+            return DisplayerSettings.EntityParams["default"].Color;
         }
 
         private char GetMemberChar(IZoneMember member)
         {
             if(member == null)
             {
-                return '.';
+                return DisplayerSettings.EntityParams["default"].Symbol;
             }
 
             if (member is Wall)
@@ -104,7 +104,6 @@ namespace FakePrincess.UI.Realizations
         {
             Console.Clear();
             Console.WriteLine(message);
-            Thread.Sleep(500);
         }
     }
 }
