@@ -1,20 +1,17 @@
 ﻿using FakePrincess.General.Entities;
 using FakePrincess.General.Entities.Enums;
+using FakePrincess.General.Entities.Results;
 using FakePrincess.General.Entities.Zone;
 using FakePrincess.General.Entities.Zone.Members;
 using FakePrincess.General.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using FakePrincess.General.Entities.Results;
-using System.Threading.Tasks;
 
 namespace FakePrincess.Logic
 {
     public class Game
     {
         private IController _controller;
-        private IDisplay _drawer;
+        private IDisplay _displayer;
         private bool _isGameOn;
         private bool _isPlayerWon;
 
@@ -25,7 +22,7 @@ namespace FakePrincess.Logic
         public Game(IController controller, IDisplay drawer, Settings settings)
         {
             this._controller = controller ?? throw new NullReferenceException(nameof(controller));
-            this._drawer = drawer ?? throw new NullReferenceException(nameof(drawer));
+            this._displayer = drawer ?? throw new NullReferenceException(nameof(drawer));
             this.Settings = settings ?? throw new NullReferenceException(nameof(settings));
 
             this.Player = new Player
@@ -40,8 +37,7 @@ namespace FakePrincess.Logic
             this.Settings.PerformInitialSetup();
 
             this.Zone = new Zone(this.Player, settings.ZoneHeight, settings.ZoneWidth);
-            this.Zone.SpawnEntities();
-            this._drawer.DisplayAll(this.Zone, this.Player);
+            this._displayer.DisplayAll(this.Zone, this.Player);
         }
 
         public void Launch()
@@ -60,11 +56,11 @@ namespace FakePrincess.Logic
             }
             catch(NullReferenceException ex)
             {
-                this._drawer.DisplayMessageForUser($"The application crashed.\nReason : value of {ex.Message} is null");
+                this._displayer.DisplayMessageForUser($"The application crashed.\nReason : value of {ex.Message} is null");
             }
             catch(Exception ex)
             {
-                this._drawer.DisplayMessageForUser($"The application crashed.\nReason : {ex.Message}");
+                this._displayer.DisplayMessageForUser($"The application crashed.\nReason : {ex.Message}");
             }
         }
 
@@ -125,41 +121,41 @@ namespace FakePrincess.Logic
             switch (actionResult.Action)
             {
                 case ActionType.MoveUp:
-                    this.Zone.Move(
+                    this.Zone.RegisterMovement(
                         this.Player.Position, 
                         new Position
                         {
                             Row = this.Player.Position.Row - 1,
                             Column = this.Player.Position.Column
                         },
-                        this._drawer.Display);
+                        this._displayer.Display);
                     break;
 
                 case ActionType.MoveRight:
-                    this.Zone.Move(this.Player.Position, new Position
+                    this.Zone.RegisterMovement(this.Player.Position, new Position
                     {
                         Row = this.Player.Position.Row,
                         Column = this.Player.Position.Column + 1
                     },
-                        this._drawer.Display);
+                        this._displayer.Display);
                     break;
 
                 case ActionType.MoveDown:
-                    this.Zone.Move(this.Player.Position, new Position
+                    this.Zone.RegisterMovement(this.Player.Position, new Position
                     {
                         Row = this.Player.Position.Row + 1,
                         Column = this.Player.Position.Column
                     },
-                        this._drawer.Display);
+                        this._displayer.Display);
                     break;
 
                 case ActionType.MoveLeft:
-                    this.Zone.Move(this.Player.Position, new Position
+                    this.Zone.RegisterMovement(this.Player.Position, new Position
                     {
                         Row = this.Player.Position.Row,
                         Column = this.Player.Position.Column - 1
                     },
-                        this._drawer.Display);
+                        this._displayer.Display);
                     break;
             }
         }

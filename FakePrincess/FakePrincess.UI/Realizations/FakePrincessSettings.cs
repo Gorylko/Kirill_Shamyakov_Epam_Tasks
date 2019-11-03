@@ -1,22 +1,22 @@
-﻿using FakePrincess.Logic;
+﻿using FakePrincess.General.Entities;
+using FakePrincess.Logic;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FakePrincess.UI.Realizations
 {
     public class FakePrincessSettings : Settings
     {
         private const int HpBarWidth = 15;
+
         public FakePrincessSettings()
         {
+            this.NumberOfTraps = 60;
         }
+
+        public Position StartPlayerPosition = new Position { Row = 1, Column = 1 };
 
         public override void PerformInitialSetup()
         {
-
             var changer = new WindowSizeChanger();
 
             changer.ChangeSize(this.ZoneWidth + HpBarWidth, this.ZoneHeight);

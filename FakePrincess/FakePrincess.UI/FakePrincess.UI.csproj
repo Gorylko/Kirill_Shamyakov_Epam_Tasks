@@ -49,6 +49,7 @@
     <Compile Include="Realizations\ConsoleDrawer.cs" />
     <Compile Include="Realizations\DrawerSettings.cs" />
     <Compile Include="Realizations\FakePrincessSettings.cs" />
+    <Compile Include="Realizations\Params\DisplayParams.cs" />
     <Compile Include="WindowSizeChanger.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -1,24 +1,17 @@
-﻿using System;
+﻿using FakePrincess.UI.Realizations.Params;
+using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FakePrincess.UI.Realizations
 {
-    public static class DrawerSettings
+    public static class DisplayerSettings
     {
-        public static char WallChar = 'X';
-        public static ConsoleColor WallColor = ConsoleColor.Gray;
-
-        public static char PlayerChar = '8';
-        public static ConsoleColor PayerColor = ConsoleColor.Blue;
-
-        public static char TrapChar = ' ';
-        public static char ActivatedTrapChar = '<';
-        public static ConsoleColor TrapColor = ConsoleColor.Red;
-
-        public static ConsoleColor HpColor = ConsoleColor.Red;
-        public static int topIndent = 2;
+        public static Dictionary<string, DisplayParams> SettingsContainer = new Dictionary<string, DisplayParams>
+        {
+            {"wall", new DisplayParams{ Symbol = 'X', Color = ConsoleColor.Gray} },
+            {"player", new DisplayParams{Symbol = '8', Color = ConsoleColor.Blue} },
+            {"default-trap", new DisplayParams{Symbol =' ', Color = ConsoleColor.Red} },
+            {"hp-bar", new DisplayParams{Color = ConsoleColor.Red } }
+        };
     }
 }

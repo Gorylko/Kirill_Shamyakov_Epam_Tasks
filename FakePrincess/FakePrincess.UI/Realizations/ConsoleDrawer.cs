@@ -22,7 +22,7 @@ namespace FakePrincess.UI.Realizations
 
             DisplayHP(new Position
             {
-                Row = DrawerSettings.topIndent,
+                Row = DisplayerSettings.topIndent,
                 Column = displayZone.Cells.GetLength(1) + 1
             }, player.HP);
         }
@@ -31,15 +31,15 @@ namespace FakePrincess.UI.Realizations
         {
             if(member is Wall)
             {
-                return DrawerSettings.WallColor;
+                return DisplayerSettings.WallColor;
             }
             else if (member is Trap)
             {
-                return DrawerSettings.TrapColor;
+                return DisplayerSettings.TrapColor;
             }
             else if(member is Player)
             {
-                return DrawerSettings.PayerColor;
+                return DisplayerSettings.PayerColor;
             }
             return ConsoleColor.Green;
         }
@@ -53,15 +53,15 @@ namespace FakePrincess.UI.Realizations
 
             if (member is Wall)
             {
-                return DrawerSettings.WallChar;
+                return DisplayerSettings.WallChar;
             }
             else if (member is Trap)
             {
-                return DrawerSettings.TrapChar;
+                return DisplayerSettings.TrapChar;
             }
             else if (member is Player)
             {
-                return DrawerSettings.PlayerChar;
+                return DisplayerSettings.PlayerChar;
             }
 
             return '.';
@@ -88,7 +88,7 @@ namespace FakePrincess.UI.Realizations
         public void DisplayHP(Position position, int hpAmount)
         {
             Console.SetCursorPosition(position.Column, position.Row);
-            Console.ForegroundColor = DrawerSettings.HpColor;
+            Console.ForegroundColor = DisplayerSettings.HpColor;
             Console.Write($"HP : {hpAmount}");
             Console.ResetColor();
         }

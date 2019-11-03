@@ -3,10 +3,6 @@ using FakePrincess.General.Entities.Results;
 using FakePrincess.General.Entities.Zone.Members;
 using FakePrincess.General.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace FakePrincess.General.Entities.Zone
 {
@@ -35,11 +31,16 @@ namespace FakePrincess.General.Entities.Zone
             Cells = new Cell[zoneHeight, zoneWidth];
 
             InitializeCells();
-
-            Cells[1, 1].Member = player;
+            SpawnEntities();
+            SpawnPlayer(player);
         }
 
-        public void SpawnEntities()
+        private void SpawnPlayer(Player player)
+        {
+            Cells[player.Position.Row, player.Position.Column].Member = player;
+        }
+
+        private void SpawnEntities()
         {
             var zoneLength = this.Cells.GetLength(0);
             var zoneWidth = this.Cells.GetLength(1);
@@ -60,7 +61,7 @@ namespace FakePrincess.General.Entities.Zone
             }
         }
 
-        public void Move(Position currentPosition, Position newPosition, Action<Position, IZoneMember> displayAfterMove)
+        public void RegisterMovement(Position currentPosition, Position newPosition, Action<Position, IZoneMember> displayAfterMove)
         {
             if(GetMember(currentPosition) is Player player)
             {

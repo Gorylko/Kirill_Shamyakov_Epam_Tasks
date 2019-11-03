@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FakePrincess.General.Entities
+﻿namespace FakePrincess.General.Entities
 {
     public class Position
     {
