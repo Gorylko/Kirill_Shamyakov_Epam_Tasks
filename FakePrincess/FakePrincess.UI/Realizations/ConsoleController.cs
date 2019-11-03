@@ -26,5 +26,17 @@ namespace FakePrincess.UI.Realizations
                     return ActionType.Nothing;
             }
         }
+
+        public bool IsReplay()
+        {
+            Console.WriteLine("Repeat - press Enter");
+
+            if(Console.ReadKey(true).Key == ConsoleKey.Enter)
+            {
+                return true;
+            }
+
+            return false;
+        }
     }
 }

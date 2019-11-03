@@ -24,20 +24,6 @@ namespace FakePrincess.Logic
             this._controller = controller ?? throw new NullReferenceException(nameof(controller));
             this._displayer = drawer ?? throw new NullReferenceException(nameof(drawer));
             this.Settings = settings ?? throw new NullReferenceException(nameof(settings));
-
-            this.Player = new Player
-            {
-                Position = new Position
-                {
-                    Column = 1,
-                    Row = 1
-                },
-                HP = settings.PlayerHP  
-            };
-            this.Settings.PerformInitialSetup();
-
-            this.Zone = new Zone(this.Player, settings.ZoneHeight, settings.ZoneWidth);
-            this._displayer.DisplayAll(this.Zone, this.Player);
         }
 
         public void Launch()
@@ -45,14 +31,25 @@ namespace FakePrincess.Logic
             this._isGameOn = true;
             try
             {
+                InitializeGame();
                 while (this._isGameOn)
                 {
                     var actionResult = GetActionResult(_controller.GetAction());
 
                     UpdateCurrentPayerHP(actionResult);
                     UpdateCurrentPlayerPosition(actionResult);
+                    CheckIsWon(actionResult);
                 }
 
+                if (this._isPlayerWon)
+                {
+                    this._displayer.DisplayMessageForUser("Congratulations on the victory!!!");
+                }
+                else
+                {
+                    this._displayer.DisplayMessageForUser("Losing :-( Lucky another time");
+                }
+                ShowGameEndMenu();
             }
             catch(NullReferenceException ex)
             {
@@ -61,6 +58,32 @@ namespace FakePrincess.Logic
             catch(Exception ex)
             {
                 this._displayer.DisplayMessageForUser($"The application crashed.\nReason : {ex.Message}");
+            }
+        }
+
+        private void InitializeGame()
+        {
+            this.Player = new Player
+            {
+                Position = new Position
+                {
+                    Column = 1,
+                    Row = 1
+                },
+                HP = this.Settings.PlayerHP
+            };
+            this.Settings.PerformInitialSetup();
+
+            this.Zone = new Zone(this.Player, this.Settings.ZoneHeight, this.Settings.ZoneWidth);
+            this._displayer.DisplayAll(this.Zone, this.Player);
+        }
+
+        private void CheckIsWon(BeforeActionResult actionResult)
+        {
+            if (actionResult.IsGameWone)
+            {
+                this._isGameOn = false;
+                this._isPlayerWon = true;
             }
         }
 
@@ -158,6 +181,14 @@ namespace FakePrincess.Logic
                     },
                         this._displayer.Display);
                     break;
+            }
+        }
+
+        private void ShowGameEndMenu()
+        {
+            if (this._controller.IsReplay())
+            {
+                Launch();
             }
         }
     }

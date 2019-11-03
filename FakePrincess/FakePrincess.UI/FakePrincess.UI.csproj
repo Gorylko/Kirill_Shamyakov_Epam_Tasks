@@ -46,7 +46,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Realizations\ConsoleController.cs" />
-    <Compile Include="Realizations\ConsoleDrawer.cs" />
+    <Compile Include="Realizations\ConsoleDisplayer.cs" />
     <Compile Include="Realizations\DisplayerSettings.cs" />
     <Compile Include="Realizations\FakePrincessSettings.cs" />
     <Compile Include="Realizations\Params\DisplayEntityParams.cs" />

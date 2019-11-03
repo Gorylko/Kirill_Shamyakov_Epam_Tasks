@@ -3,15 +3,16 @@ using FakePrincess.General.Entities.Zone;
 using FakePrincess.General.Entities.Zone.Members;
 using FakePrincess.General.Interfaces;
 using System;
+using System.Threading;
 
 namespace FakePrincess.UI.Realizations
 {
-    class ConsoleDrawer : IDisplay
+    class ConsoleDisplayer : IDisplay
     {
         private int _gameZoneHeight;
         private int _gameZoneWidth;
 
-        public ConsoleDrawer(int zoneHeight, int zoneWidth)
+        public ConsoleDisplayer(int zoneHeight, int zoneWidth)
         {
             this._gameZoneHeight = zoneHeight;
             this._gameZoneWidth = zoneWidth;
@@ -69,7 +70,7 @@ namespace FakePrincess.UI.Realizations
                 return DisplayerSettings.EntityParams["player"].Symbol;
             }
 
-            return '.';
+            return '?';
         }
 
         private void DisplayChar(char sym, Position position, ConsoleColor color = ConsoleColor.Green)
@@ -103,6 +104,7 @@ namespace FakePrincess.UI.Realizations
         {
             Console.Clear();
             Console.WriteLine(message);
+            Thread.Sleep(500);
         }
     }
 }

@@ -5,5 +5,7 @@ namespace FakePrincess.General.Interfaces
     public interface IController
     {
         ActionType GetAction();
+
+        bool IsReplay();
     }
 }
