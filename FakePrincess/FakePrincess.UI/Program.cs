@@ -15,7 +15,7 @@ namespace FakePrincess.UI
                 ZoneWidth = 60
             };
 
-            var game = new Game(new ConsoleController(), new ConsoleDrawer(), settings);
+            var game = new Game(new ConsoleController(), new ConsoleDrawer(settings.ZoneHeight, settings.ZoneWidth), settings);
 
             game.Launch();
         }

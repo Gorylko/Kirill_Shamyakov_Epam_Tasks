@@ -12,6 +12,6 @@ namespace FakePrincess.General.Interfaces
 
         void Display(Position position, IZoneMember member);
 
-        void DisplayHP(Position position, int hp);
+        void DisplayHP(int hp);
     }
 }

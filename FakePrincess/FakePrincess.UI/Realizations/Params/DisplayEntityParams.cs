@@ -2,7 +2,7 @@
 
 namespace FakePrincess.UI.Realizations.Params
 {
-    public class DisplayParams
+    public class DisplayEntityParams
     {
         public char Symbol { get; set; }
 

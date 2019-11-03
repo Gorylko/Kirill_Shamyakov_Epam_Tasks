@@ -8,6 +8,15 @@ namespace FakePrincess.UI.Realizations
 {
     class ConsoleDrawer : IDisplay
     {
+        private int _gameZoneHeight;
+        private int _gameZoneWidth;
+
+        public ConsoleDrawer(int zoneHeight, int zoneWidth)
+        {
+            this._gameZoneHeight = zoneHeight;
+            this._gameZoneWidth = zoneWidth;
+        }
+
         public void DisplayAll(Zone displayZone, Player player)
         {
             if(displayZone == null)
@@ -20,26 +29,22 @@ namespace FakePrincess.UI.Realizations
                 DisplayChar(GetMemberChar(cell.Member), cell.Position, GetMemberColor(cell.Member));
             }
 
-            DisplayHP(new Position
-            {
-                Row = DisplayerSettings.topIndent,
-                Column = displayZone.Cells.GetLength(1) + 1
-            }, player.HP);
+            DisplayHP(player.HP);
         }
 
         private ConsoleColor GetMemberColor(IZoneMember member)
         {
-            if(member is Wall)
+            if (member is Wall)
             {
-                return DisplayerSettings.WallColor;
+                return DisplayerSettings.EntityParams["wall"].Color;
             }
             else if (member is Trap)
             {
-                return DisplayerSettings.TrapColor;
+                return DisplayerSettings.EntityParams["default-trap"].Color;
             }
-            else if(member is Player)
+            else if (member is Player)
             {
-                return DisplayerSettings.PayerColor;
+                return DisplayerSettings.EntityParams["player"].Color;
             }
             return ConsoleColor.Green;
         }
@@ -53,15 +58,15 @@ namespace FakePrincess.UI.Realizations
 
             if (member is Wall)
             {
-                return DisplayerSettings.WallChar;
+                return DisplayerSettings.EntityParams["wall"].Symbol;
             }
             else if (member is Trap)
             {
-                return DisplayerSettings.TrapChar;
+                return DisplayerSettings.EntityParams["default-trap"].Symbol;
             }
             else if (member is Player)
             {
-                return DisplayerSettings.PlayerChar;
+                return DisplayerSettings.EntityParams["player"].Symbol;
             }
 
             return '.';
@@ -85,10 +90,11 @@ namespace FakePrincess.UI.Realizations
             DisplayChar(GetMemberChar(member), position, GetMemberColor(member));
         }
 
-        public void DisplayHP(Position position, int hpAmount)
+        public void DisplayHP(int hpAmount)
         {
+            var position = new Position() { Row = DisplayerSettings.TopIndent, Column = this._gameZoneWidth + 2 };
             Console.SetCursorPosition(position.Column, position.Row);
-            Console.ForegroundColor = DisplayerSettings.HpColor;
+            Console.ForegroundColor = DisplayerSettings.EntityParams["hp-bar"].Color;
             Console.Write($"HP : {hpAmount}");
             Console.ResetColor();
         }

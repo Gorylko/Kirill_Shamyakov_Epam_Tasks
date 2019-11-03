@@ -11,6 +11,7 @@ namespace FakePrincess.General.Entities.Zone
         private const int MinWidth = 10;
         private const int MinHeight = 10;
 
+        private ISpawner _spawner;
         private Cell[,] _cells;
 
         public Cell[,] Cells
@@ -30,35 +31,13 @@ namespace FakePrincess.General.Entities.Zone
         {
             Cells = new Cell[zoneHeight, zoneWidth];
 
+            this._spawner = new EntitySpawner(this.Cells);
+
             InitializeCells();
-            SpawnEntities();
-            SpawnPlayer(player);
-        }
 
-        private void SpawnPlayer(Player player)
-        {
-            Cells[player.Position.Row, player.Position.Column].Member = player;
-        }
-
-        private void SpawnEntities()
-        {
-            var zoneLength = this.Cells.GetLength(0);
-            var zoneWidth = this.Cells.GetLength(1);
-            for (int i = 0; i < zoneLength; i++)
-            {
-                for (int j = 0; j < zoneWidth; j++)
-                {
-                    if (i == 0
-                        || i == zoneLength - 1
-                        || j == 0
-                        || j == zoneWidth - 1)
-                    {
-                        this.Cells[i, j].Member = new Wall();
-                        continue;
-                    }
-
-                }
-            }
+            _spawner.SpawnTerritory();
+            _spawner.SpawnTraps(new Trap[] { new Trap(), new Trap(), new Trap(), new Trap(), new Trap(), new Trap() });
+            _spawner.SpawnPlayer(player);
         }
 
         public void RegisterMovement(Position currentPosition, Position newPosition, Action<Position, IZoneMember> displayAfterMove)

@@ -45,12 +45,15 @@
     <Compile Include="Entities\Position.cs" />
     <Compile Include="Entities\Results\ActionResult.cs" />
     <Compile Include="Entities\Zone\Cell.cs" />
+    <Compile Include="Entities\Zone\EntitySpawner.cs" />
     <Compile Include="Entities\Zone\Members\Player.cs" />
+    <Compile Include="Entities\Zone\Members\Princess.cs" />
     <Compile Include="Entities\Zone\Members\Trap.cs" />
     <Compile Include="Entities\Zone\Members\Wall.cs" />
     <Compile Include="Entities\Zone\Zone.cs" />
     <Compile Include="Interfaces\IController.cs" />
     <Compile Include="Interfaces\IDisplay.cs" />
+    <Compile Include="Interfaces\ISpawner.cs" />
     <Compile Include="Interfaces\IZoneMember.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

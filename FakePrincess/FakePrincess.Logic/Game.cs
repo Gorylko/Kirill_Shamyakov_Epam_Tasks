@@ -108,6 +108,7 @@ namespace FakePrincess.Logic
                     this._isGameOn = false;
                     this._isPlayerWon = false;
                 }
+                this._displayer.DisplayHP(this.Player.HP);
             }
         }
 
