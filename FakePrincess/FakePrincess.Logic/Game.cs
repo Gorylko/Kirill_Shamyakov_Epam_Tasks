@@ -42,14 +42,6 @@ namespace FakePrincess.Logic
                     CheckIsWon(actionResult);
                 }
 
-                if (this._isPlayerWon)
-                {
-                    this._displayer.DisplayMessageForUser("Congratulations on the victory!!!");
-                }
-                else
-                {
-                    this._displayer.DisplayMessageForUser("Losing :-( Lucky another time");
-                }
                 ShowGameEndMenu();
             }
             catch(NullReferenceException ex)
@@ -193,6 +185,7 @@ namespace FakePrincess.Logic
 
         private void ShowGameEndMenu()
         {
+            this._displayer.DisplayMessageForUser((this._isPlayerWon ? "Congratulations on the victory!!!" : "Losing :-( Lucky another time") + "\nRepeat - press Enter \nExit - press Esc");
             if (this._controller.IsReplay())
             {
                 Launch();

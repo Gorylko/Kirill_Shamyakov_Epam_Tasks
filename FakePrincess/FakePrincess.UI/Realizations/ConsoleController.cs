@@ -31,14 +31,19 @@ namespace FakePrincess.UI.Realizations
         public bool IsReplay()
         {
             Thread.Sleep(1000);
-            Console.WriteLine("Repeat - press Enter");
 
-            if(Console.ReadKey(true).Key == ConsoleKey.Enter)
+            while (true)
             {
-                return true;
+                switch (Console.ReadKey(true).Key)
+                {
+                    case ConsoleKey.Enter:
+                        return true;
+                    case ConsoleKey.Escape:
+                        return false;
+                    default:
+                        continue;
+                }
             }
-
-            return false;
         }
     }
 }
