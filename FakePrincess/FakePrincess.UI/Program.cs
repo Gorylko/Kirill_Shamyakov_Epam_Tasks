@@ -1,7 +1,6 @@
-﻿using FakePrincess.Logic;
+﻿using FakePrincess.General.Entities;
+using FakePrincess.Logic;
 using FakePrincess.UI.Realizations;
-using System;
-using FakePrincess.General.Entities;
 
 namespace FakePrincess.UI
 {

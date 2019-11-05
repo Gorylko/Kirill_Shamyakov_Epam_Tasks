@@ -127,17 +127,19 @@ namespace FakePrincess.Logic
 
         private void UpdateCurrentPayerHP(BeforeActionResult actionResult)
         {
-            if (actionResult.IsDamaged)
+            if (!actionResult.IsDamaged)
             {
-                this.Player.HP--;
-                
-                if(Player.HP < 1)
-                {
-                    this._isGameOn = false;
-                    this._isPlayerWon = false;
-                }
-                this._displayer.DisplayHP(this.Player.HP);
+                return;
             }
+
+            this.Player.HP--;
+                
+            if(Player.HP < 1)
+            {
+                this._isGameOn = false;
+                this._isPlayerWon = false;
+            }
+            this._displayer.DisplayHP(this.Player.HP);
         }
 
         private void UpdateCurrentPlayerPosition(BeforeActionResult actionResult)
