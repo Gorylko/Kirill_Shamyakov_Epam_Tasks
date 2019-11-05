@@ -30,7 +30,17 @@ namespace FakePrincess.UI.Realizations
                 DisplayChar(GetMemberChar(cell.Member), cell.Position, GetMemberColor(cell.Member));
             }
 
+            DisplayTitle();
             DisplayHP(player.HP);
+        }
+
+        private void DisplayTitle()
+        {
+            var position = new Position() { Row = 0, Column = this._gameZoneWidth + 2 };
+            Console.ForegroundColor = ConsoleColor.Green;
+            Console.SetCursorPosition(position.Column, position.Row);
+            Console.Write("FakePrincess");
+            Console.ResetColor();
         }
 
         private ConsoleColor GetMemberColor(IZoneMember member)
@@ -46,6 +56,10 @@ namespace FakePrincess.UI.Realizations
             else if (member is Player)
             {
                 return DisplayerSettings.EntityParams["player"].Color;
+            }
+            else if (member is Princess)
+            {
+                return DisplayerSettings.EntityParams["princess"].Color;
             }
             return DisplayerSettings.EntityParams["default"].Color;
         }
@@ -69,11 +83,15 @@ namespace FakePrincess.UI.Realizations
             {
                 return DisplayerSettings.EntityParams["player"].Symbol;
             }
+            else if (member is Princess)
+            {
+                return DisplayerSettings.EntityParams["princess"].Symbol;
+            }
 
             return '?';
         }
 
-        private void DisplayChar(char sym, Position position, ConsoleColor color = ConsoleColor.Green)
+        private void DisplayChar(char sym, Position position, ConsoleColor color)
         {
             Console.ForegroundColor = color;
             Console.SetCursorPosition(position.Column, position.Row);

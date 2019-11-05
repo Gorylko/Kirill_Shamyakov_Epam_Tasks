@@ -12,7 +12,7 @@ namespace FakePrincess.General.Interfaces
     {
         void SpawnTerritory();
 
-        Princess SpawnPrincess();
+        void SpawnPrincess(Princess princess);
 
         void SpawnPlayer(Player player);
 

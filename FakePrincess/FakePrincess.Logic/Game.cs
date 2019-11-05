@@ -17,6 +17,7 @@ namespace FakePrincess.Logic
 
         private Settings Settings { get; set; }
         private Player Player { get; set; }
+        private Princess Princess { get; set; }
         private Zone Zone { get; set; }
 
         public Game(IController controller, IDisplay drawer, Settings settings)
@@ -72,9 +73,13 @@ namespace FakePrincess.Logic
                 },
                 HP = this.Settings.PlayerHP
             };
+            this.Princess = new Princess
+            {
+                Position = Settings.PrincessPosition
+            };
             this.Settings.PerformInitialSetup();
 
-            this.Zone = new Zone(this.Player, this.Settings.ZoneHeight, this.Settings.ZoneWidth);
+            this.Zone = new Zone(this.Player, this.Princess, this.Settings.ZoneHeight, this.Settings.ZoneWidth);
             this._displayer.DisplayAll(this.Zone, this.Player);
         }
 

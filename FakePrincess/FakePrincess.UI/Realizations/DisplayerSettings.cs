@@ -12,7 +12,8 @@ namespace FakePrincess.UI.Realizations
             {"player", new DisplayEntityParams{ Symbol = '8', Color = ConsoleColor.Cyan } },
             {"default-trap", new DisplayEntityParams{ Symbol ='o', Color = ConsoleColor.Red } },
             {"hp-bar", new DisplayEntityParams{ Color = ConsoleColor.Red } },
-            {"default", new DisplayEntityParams{ Symbol = '.', Color = ConsoleColor.DarkGray } }
+            {"default", new DisplayEntityParams{ Symbol = '.', Color = ConsoleColor.DarkGray } },
+            {"princess", new DisplayEntityParams{ Symbol = 'P', Color = ConsoleColor.Magenta } }
         };
 
         public static int TopIndent = 2; 

@@ -54,12 +54,22 @@ namespace FakePrincess.General.Entities.Zone
 
         public void SpawnPlayer(Player player)
         {
+            if (player == null || player.Position == null)
+            {
+                return;
+            }
+
             this._targetCells[player.Position.Row, player.Position.Column].Member = player;
         }
 
-        public Princess SpawnPrincess()
+        public void SpawnPrincess(Princess princess)
         {
-            throw new NotImplementedException();
+            if(princess == null || princess.Position == null)
+            {
+                return;
+            }
+
+            this._targetCells[princess.Position.Row, princess.Position.Column].Member = princess;
         }
     }
 }

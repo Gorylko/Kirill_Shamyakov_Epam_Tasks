@@ -4,5 +4,6 @@ namespace FakePrincess.General.Entities.Zone.Members
 {
     public class Wall : IZoneMember
     {
+        //wall characteristics
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace FakePrincess.Logic
+﻿using FakePrincess.General.Entities;
+
+namespace FakePrincess.Logic
 {
     public abstract class Settings
     {
@@ -10,8 +12,11 @@
 
         public int PlayerHP { get; set; }
 
+        public Position PrincessPosition { get; set; }
+
         public abstract void ResetSettings();
 
         public abstract void PerformInitialSetup();
+
     }
 }

@@ -10,6 +10,8 @@ namespace FakePrincess.General.Entities.Results
 
         public bool IsDamaged { get; set; }
 
+        public bool Damage { get; set; }
+
         public bool IsGameOver { get; set; }
 
         public bool IsGameWone { get; set; }
