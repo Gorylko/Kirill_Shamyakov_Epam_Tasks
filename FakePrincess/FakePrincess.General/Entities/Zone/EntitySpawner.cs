@@ -38,7 +38,7 @@ namespace FakePrincess.General.Entities.Zone
             }
         }
 
-        public void SpawnTraps(IReadOnlyCollection<Trap> traps)
+        public void PlaceTraps(IReadOnlyCollection<Trap> traps)
         {
             int row, column;
 
@@ -52,7 +52,22 @@ namespace FakePrincess.General.Entities.Zone
             }
         }
 
-        public void SpawnPlayer(Player player)
+        public void SpawnTraps(int estimatedTrapsNumber)
+        {
+            int row, column;
+
+            for(int i = 0; i < estimatedTrapsNumber; i++)
+            {
+                row = this._randomTool.Next(1, this._targetCells.GetLength(0) - 1);
+                column = this._randomTool.Next(1, this._targetCells.GetLength(1) - 1);
+                if (!(this._targetCells[row, column].Member is Player || this._targetCells[row, column].Member is Trap))
+                {
+                    this._targetCells[row, column].Member = new Trap();
+                }
+            }
+        }
+
+        public void PlacePlayer(Player player)
         {
             if (player == null || player.Position == null)
             {
@@ -62,7 +77,7 @@ namespace FakePrincess.General.Entities.Zone
             this._targetCells[player.Position.Row, player.Position.Column].Member = player;
         }
 
-        public void SpawnPrincess(Princess princess)
+        public void PlacePrincess(Princess princess)
         {
             if(princess == null || princess.Position == null)
             {

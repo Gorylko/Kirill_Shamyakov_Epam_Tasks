@@ -7,10 +7,12 @@ namespace FakePrincess.General.Interfaces
     {
         void SpawnTerritory();
 
-        void SpawnPrincess(Princess princess);
+        void PlacePrincess(Princess princess);
 
-        void SpawnPlayer(Player player);
+        void PlacePlayer(Player player);
 
-        void SpawnTraps(IReadOnlyCollection<Trap> traps);
+        void PlaceTraps(IReadOnlyCollection<Trap> traps);
+
+        void SpawnTraps(int estimatedTrapsNumber);
     }
 }

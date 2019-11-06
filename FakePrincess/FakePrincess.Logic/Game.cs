@@ -69,6 +69,7 @@ namespace FakePrincess.Logic
             {
                 Position = Settings.PrincessPosition
             };
+
             this.Settings.PerformInitialSetup();
 
             this.Zone = new Zone(this.Player, this.Princess, this.Settings.ZoneHeight, this.Settings.ZoneWidth);
@@ -185,7 +186,8 @@ namespace FakePrincess.Logic
 
         private void ShowGameEndMenu()
         {
-            this._displayer.DisplayMessageForUser((this._isPlayerWon ? "Congratulations on the victory!!!" : "Losing :-( Lucky another time") + "\nRepeat - press Enter \nExit - press Esc");
+            this._displayer.DisplayMessageForUser((this._isPlayerWon ? "Congratulations on the victory!!!" : "Losing :-( Lucky another time")
+                + "\nRepeat - press Enter \nExit - press Esc");
             if (this._controller.IsReplay())
             {
                 Launch();

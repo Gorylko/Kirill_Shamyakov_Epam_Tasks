@@ -60,14 +60,14 @@ namespace FakePrincess.UI.Realizations
             {
                 return DisplayerSettings.EntityParams["princess"].Color;
             }
-            return DisplayerSettings.EntityParams["default"].Color;
+            return DisplayerSettings.EntityParams["floor"].Color;
         }
 
         private char GetMemberChar(IZoneMember member)
         {
             if(member == null)
             {
-                return DisplayerSettings.EntityParams["default"].Symbol;
+                return DisplayerSettings.EntityParams["floor"].Symbol;
             }
 
             if (member is Wall)
