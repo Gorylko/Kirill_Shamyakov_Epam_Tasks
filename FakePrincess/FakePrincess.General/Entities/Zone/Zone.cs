@@ -37,8 +37,8 @@ namespace FakePrincess.General.Entities.Zone
 
             this._spawner.SpawnTerritory();
             this._spawner.SpawnTraps(settings.NumberOfTraps, settings.MaxTrapDamage);
-            this._spawner.PlacePlayer(player);
-            this._spawner.PlacePrincess(princess);
+            this._spawner.SpawnPlayer(player);
+            this._spawner.SpawnPrincess(princess);
         }
 
         public void RegisterMovement(Position currentPosition, Position newPosition, Action<Position, IZoneMember> displayAfterMove)

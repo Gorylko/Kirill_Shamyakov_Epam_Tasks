@@ -9,10 +9,10 @@ namespace FakePrincess.General.Interfaces
 
         void SpawnTraps(int estimatedTrapsNumber, int maxTrapDamage);
 
-        void PlacePrincess(Princess princess);
+        void SpawnPrincess(Princess princess);
 
-        void PlacePlayer(Player player);
+        void SpawnPlayer(Player player);
 
-        void PlaceTraps(IReadOnlyCollection<Trap> traps);
+        void SpawnTraps(IReadOnlyCollection<Trap> traps);
     }
 }

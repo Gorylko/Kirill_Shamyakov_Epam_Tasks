@@ -10,8 +10,8 @@ namespace FakePrincess.UI
         {
             var settings = new FakePrincessSettings //Change if desired
             {
-                NumberOfTraps = 200,
-                MaxTrapDamage = 31,
+                NumberOfTraps = 200, //so hard !!!
+                MaxTrapDamage = 31, 
                 PlayerHP = 100,
                 ZoneHeight = 30,
                 ZoneWidth = 60,

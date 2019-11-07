@@ -38,7 +38,7 @@ namespace FakePrincess.General.Entities.Zone
             }
         }
 
-        public void PlaceTraps(IReadOnlyCollection<Trap> traps)
+        public void SpawnTraps(IReadOnlyCollection<Trap> traps)
         {
             foreach(var trap in traps)
             {
@@ -65,7 +65,7 @@ namespace FakePrincess.General.Entities.Zone
             }
         }
 
-        public void PlacePlayer(Player player)
+        public void SpawnPlayer(Player player)
         {
             if (player == null || player.Position == null)
             {
@@ -75,7 +75,7 @@ namespace FakePrincess.General.Entities.Zone
             this._targetCells[player.Position.Row, player.Position.Column].Member = player;
         }
 
-        public void PlacePrincess(Princess princess)
+        public void SpawnPrincess(Princess princess)
         {
             if(princess == null || princess.Position == null)
             {
