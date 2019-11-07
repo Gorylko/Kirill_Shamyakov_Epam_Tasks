@@ -14,7 +14,7 @@ namespace FakePrincess.UI
                 MaxTrapDamage = 31,
                 PlayerHP = 100,
                 ZoneHeight = 30,
-                ZoneWidth = 100,
+                ZoneWidth = 60,
                 PrincessPosition = new Position() { Row = 28, Column = 58}
             };
 
