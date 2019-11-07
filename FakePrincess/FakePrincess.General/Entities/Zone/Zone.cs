@@ -23,7 +23,8 @@ namespace FakePrincess.General.Entities.Zone
             set
             {
                 this._cells = value.GetLength(0) >= MinHeight && value.GetLength(1) >= MinWidth
-                    ? value : new Cell[MinHeight, MinWidth];
+                    ? value
+                    : new Cell[MinHeight, MinWidth];
             }
         }
 
@@ -60,6 +61,11 @@ namespace FakePrincess.General.Entities.Zone
 
         public BeforeActionResult GetActionResult(Position position, ActionType actionType)
         {
+            if(position == null)
+            {
+                return new BeforeActionResult();
+            }
+
             var member = GetMember(position);
 
             return new BeforeActionResult

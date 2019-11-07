@@ -23,10 +23,15 @@ namespace FakePrincess.UI.Realizations
         {
             if(displayZone == null)
             {
-                return;
+                throw new NullReferenceException(nameof(displayZone));
             }
 
-            foreach(var cell in displayZone.Cells)
+            if (player == null)
+            {
+                throw new NullReferenceException(nameof(player));
+            }
+
+            foreach (var cell in displayZone.Cells)
             {
                 DisplayChar(GetMemberChar(cell.Member), cell.Position, GetMemberColor(cell.Member));
             }
@@ -62,6 +67,7 @@ namespace FakePrincess.UI.Realizations
             {
                 return DisplayerSettings.EntityParams["princess"].Color;
             }
+
             return DisplayerSettings.EntityParams["floor"].Color;
         }
 
@@ -94,6 +100,11 @@ namespace FakePrincess.UI.Realizations
 
         private void DisplayChar(char sym, Position position, ConsoleColor color)
         {
+            if(position == null)
+            {
+                throw new NullReferenceException(nameof(position));
+            }
+
             Console.ForegroundColor = color;
             Console.SetCursorPosition(position.Column, position.Row);
             Console.Write(sym);

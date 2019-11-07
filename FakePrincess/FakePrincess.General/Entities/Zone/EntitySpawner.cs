@@ -40,6 +40,11 @@ namespace FakePrincess.General.Entities.Zone
 
         public void SpawnTraps(IReadOnlyCollection<Trap> traps)
         {
+            if(traps == null)
+            {
+                return;
+            }
+
             foreach(var trap in traps)
             {
                 var row = this._randomTool.Next(1, this._targetCells.GetLength(0) - 1);
