@@ -124,5 +124,12 @@ namespace FakePrincess.UI.Realizations
             Console.Clear();
             Console.WriteLine(message);
         }
+
+        public void DisplayErrorLog(string message)
+        {
+            Console.Clear();
+            Console.WriteLine(message);
+            Console.ReadKey();
+        }
     }
 }

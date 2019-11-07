@@ -8,7 +8,7 @@ namespace FakePrincess.UI
     {
         static void Main(string[] args)
         {
-            var settings = new FakePrincessSettings
+            var settings = new FakePrincessSettings //Change if desired
             {
                 NumberOfTraps = 200,
                 MaxTrapDamage = 31,
@@ -18,7 +18,10 @@ namespace FakePrincess.UI
                 PrincessPosition = new Position() { Row = 28, Column = 58}
             };
 
-            var game = new Game(new ConsoleController(), new ConsoleDisplayer(settings.ZoneHeight, settings.ZoneWidth), settings);
+            var game = new Game(
+                new ConsoleController(), 
+                new ConsoleDisplayer(settings.ZoneHeight, settings.ZoneWidth), 
+                settings);
 
             game.Launch();
         }

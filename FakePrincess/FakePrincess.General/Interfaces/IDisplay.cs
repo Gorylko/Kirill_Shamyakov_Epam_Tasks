@@ -12,6 +12,8 @@ namespace FakePrincess.General.Interfaces
 
         void DisplayMessageForUser(string message);
 
+        void DisplayErrorLog(string message);
+
         void DisplayHP(int hp);
     }
 }

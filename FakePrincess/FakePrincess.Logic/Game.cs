@@ -47,11 +47,11 @@ namespace FakePrincess.Logic
             }
             catch(NullReferenceException ex)
             {
-                this._displayer.DisplayMessageForUser($"The application crashed.\nReason : value of {ex.Message} is null");
+                this._displayer.DisplayErrorLog($"The application crashed.\nReason : value of {ex.Message} is null");
             }
             catch(Exception ex)
             {
-                this._displayer.DisplayMessageForUser($"The application crashed.\nReason : {ex.Message}");
+                this._displayer.DisplayErrorLog($"The application crashed.\nReason : {ex.Message}");
             }
         }
 
