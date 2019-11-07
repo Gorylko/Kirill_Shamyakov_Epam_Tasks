@@ -4,6 +4,6 @@ namespace FakePrincess.General.Entities.Zone.Members
 {
     public class Trap : IZoneMember
     {
-        public int Damage { get; set; } = 1;
+        public int Damage { get; set; }
     }
 }

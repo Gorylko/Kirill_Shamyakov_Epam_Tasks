@@ -43,7 +43,8 @@
   <ItemGroup>
     <Compile Include="Entities\Enums\ActionType.cs" />
     <Compile Include="Entities\Position.cs" />
-    <Compile Include="Entities\Results\ActionResult.cs" />
+    <Compile Include="Entities\Results\BeforeActionResult.cs" />
+    <Compile Include="Entities\Settings.cs" />
     <Compile Include="Entities\Zone\Cell.cs" />
     <Compile Include="Entities\Zone\EntitySpawner.cs" />
     <Compile Include="Entities\Zone\Members\Player.cs" />

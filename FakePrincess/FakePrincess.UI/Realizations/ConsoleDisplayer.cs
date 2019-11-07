@@ -8,6 +8,8 @@ namespace FakePrincess.UI.Realizations
 {
     class ConsoleDisplayer : IDisplay
     {
+        private const string CleanerString = "   ";
+
         private int _gameZoneHeight;
         private int _gameZoneWidth;
 
@@ -113,7 +115,7 @@ namespace FakePrincess.UI.Realizations
             var position = new Position() { Row = DisplayerSettings.TopIndent, Column = this._gameZoneWidth + 2 };
             Console.SetCursorPosition(position.Column, position.Row);
             Console.ForegroundColor = DisplayerSettings.EntityParams["hp-bar"].Color;
-            Console.Write($"HP : {hpAmount}");
+            Console.Write($"HP : {hpAmount}{CleanerString}");
             Console.ResetColor();
         }
 

@@ -40,29 +40,27 @@ namespace FakePrincess.General.Entities.Zone
 
         public void PlaceTraps(IReadOnlyCollection<Trap> traps)
         {
-            int row, column;
-
             foreach(var trap in traps)
             {
-                row = this._randomTool.Next(1, this._targetCells.GetLength(0) - 1);
-                column = this._randomTool.Next(1, this._targetCells.GetLength(1) - 1);
+                var row = this._randomTool.Next(1, this._targetCells.GetLength(0) - 1);
+                var column = this._randomTool.Next(1, this._targetCells.GetLength(1) - 1);
+
                 if (!(this._targetCells[row, column].Member is Player || this._targetCells[row, column].Member is Trap)){
                     this._targetCells[row, column].Member = trap;
                 }
             }
         }
 
-        public void SpawnTraps(int estimatedTrapsNumber)
+        public void SpawnTraps(int estimatedTrapsNumber, int maxTrapDamage = 26)
         {
-            int row, column;
-
             for(int i = 0; i < estimatedTrapsNumber; i++)
             {
-                row = this._randomTool.Next(1, this._targetCells.GetLength(0) - 1);
-                column = this._randomTool.Next(1, this._targetCells.GetLength(1) - 1);
+                var row = this._randomTool.Next(1, this._targetCells.GetLength(0) - 1);
+                var column = this._randomTool.Next(1, this._targetCells.GetLength(1) - 1);
+
                 if (!(this._targetCells[row, column].Member is Player || this._targetCells[row, column].Member is Trap))
                 {
-                    this._targetCells[row, column].Member = new Trap();
+                    this._targetCells[row, column].Member = new Trap() { Damage = this._randomTool.Next(1, maxTrapDamage + 1) };
                 }
             }
         }
@@ -71,7 +69,7 @@ namespace FakePrincess.General.Entities.Zone
         {
             if (player == null || player.Position == null)
             {
-                return;
+                throw new NullReferenceException(nameof(player));
             }
 
             this._targetCells[player.Position.Row, player.Position.Column].Member = player;
@@ -81,7 +79,7 @@ namespace FakePrincess.General.Entities.Zone
         {
             if(princess == null || princess.Position == null)
             {
-                return;
+                throw new NullReferenceException(nameof(princess));
             }
 
             this._targetCells[princess.Position.Row, princess.Position.Column].Member = princess;

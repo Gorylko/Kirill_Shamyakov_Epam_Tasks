@@ -1,4 +1,5 @@
-﻿using FakePrincess.General.Entities;
+﻿using FakePrincess.General;
+using FakePrincess.General.Entities;
 using FakePrincess.General.Entities.Enums;
 using FakePrincess.General.Entities.Results;
 using FakePrincess.General.Entities.Zone;
@@ -65,6 +66,7 @@ namespace FakePrincess.Logic
                 },
                 HP = this.Settings.PlayerHP
             };
+
             this.Princess = new Princess
             {
                 Position = Settings.PrincessPosition
@@ -72,7 +74,7 @@ namespace FakePrincess.Logic
 
             this.Settings.PerformInitialSetup();
 
-            this.Zone = new Zone(this.Player, this.Princess, this.Settings.ZoneHeight, this.Settings.ZoneWidth);
+            this.Zone = new Zone(this.Settings, this.Player, this.Princess);
             this._displayer.DisplayAll(this.Zone, this.Player);
         }
 
@@ -125,7 +127,7 @@ namespace FakePrincess.Logic
                 return;
             }
 
-            this.Player.HP--;
+            this.Player.HP -= actionResult.Damage;
                 
             if(Player.HP < 1)
             {

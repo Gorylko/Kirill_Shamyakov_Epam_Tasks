@@ -10,7 +10,7 @@ namespace FakePrincess.UI.Realizations
         {
             {"wall", new DisplayEntityParams{ Symbol = 'X', Color = ConsoleColor.Gray } },
             {"player", new DisplayEntityParams{ Symbol = '8', Color = ConsoleColor.Cyan } },
-            {"default-trap", new DisplayEntityParams{ Symbol ='.', Color = ConsoleColor.DarkGray } },
+            {"default-trap", new DisplayEntityParams{ Symbol ='.', Color = ConsoleColor.Red } },
             {"hp-bar", new DisplayEntityParams{ Color = ConsoleColor.Red } },
             {"floor", new DisplayEntityParams{ Symbol = '.', Color = ConsoleColor.DarkGray } },
             {"princess", new DisplayEntityParams{ Symbol = 'P', Color = ConsoleColor.Magenta } }

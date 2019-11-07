@@ -6,11 +6,11 @@ namespace FakePrincess.General.Entities.Results
     {
         public ActionType Action { get; set; }
 
+        public int Damage { get; set; }
+
         public bool IsCanMove { get; set; }
 
         public bool IsDamaged { get; set; }
-
-        public bool Damage { get; set; }
 
         public bool IsGameOver { get; set; }
 

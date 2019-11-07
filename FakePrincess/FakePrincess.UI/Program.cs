@@ -10,10 +10,11 @@ namespace FakePrincess.UI
         {
             var settings = new FakePrincessSettings
             {
-                NumberOfTraps = 20,
-                PlayerHP = 1,
+                NumberOfTraps = 200,
+                MaxTrapDamage = 31,
+                PlayerHP = 100,
                 ZoneHeight = 30,
-                ZoneWidth = 60,
+                ZoneWidth = 100,
                 PrincessPosition = new Position() { Row = 28, Column = 58}
             };
 

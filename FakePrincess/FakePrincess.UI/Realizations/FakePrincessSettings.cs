@@ -1,4 +1,5 @@
-﻿using FakePrincess.General.Entities;
+﻿using FakePrincess.General;
+using FakePrincess.General.Entities;
 using FakePrincess.Logic;
 using System;
 
@@ -12,8 +13,6 @@ namespace FakePrincess.UI.Realizations
         {
             this.NumberOfTraps = 60;
         }
-
-        public Position StartPlayerPosition = new Position { Row = 1, Column = 1 };
 
         public override void PerformInitialSetup()
         {

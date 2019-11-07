@@ -27,16 +27,16 @@ namespace FakePrincess.General.Entities.Zone
             }
         }
 
-        public Zone(Player player, Princess princess, int zoneHeight = 10, int zoneWidth = 10)
+        public Zone(Settings settings, Player player, Princess princess)
         {
-            Cells = new Cell[zoneHeight, zoneWidth];
+            Cells = new Cell[settings.ZoneHeight, settings.ZoneWidth];
 
             this._spawner = new EntitySpawner(this.Cells);
 
             InitializeCells();
 
             this._spawner.SpawnTerritory();
-            this._spawner.SpawnTraps(20);
+            this._spawner.SpawnTraps(settings.NumberOfTraps, settings.MaxTrapDamage);
             this._spawner.PlacePlayer(player);
             this._spawner.PlacePrincess(princess);
         }
@@ -67,7 +67,8 @@ namespace FakePrincess.General.Entities.Zone
                 Action = actionType,
                 IsCanMove = member == null || member is Trap ? true : false,
                 IsDamaged = member != null && member is Trap ? true : false,
-                IsGameWone = member != null && member is Princess ? true : false
+                IsGameWone = member != null && member is Princess ? true : false,
+                Damage = (member != null && member is Trap trap) ? trap.Damage : default
             };
         }
 
