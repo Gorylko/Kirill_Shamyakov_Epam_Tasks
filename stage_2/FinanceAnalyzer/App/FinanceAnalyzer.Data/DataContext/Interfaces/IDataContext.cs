@@ -4,12 +4,12 @@ using System.Text;
 
 namespace FinanceAnalyzer.Data.DataContext.Interfaces
 {
-    public interface IDataContext<T>
+    public interface IDataContext<TResult, TValue>
     {
-        T GetByUserId(int userId);
+        TResult GetByUserId(int userId);
 
-        void Save(T obj);
+        void Save(TValue obj);
 
-        void Delete(T obj);
+        void Delete(TValue obj);
     }
 }

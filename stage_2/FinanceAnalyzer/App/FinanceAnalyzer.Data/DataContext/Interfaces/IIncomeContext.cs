@@ -1,10 +1,11 @@
-﻿using System;
+﻿using FinanceAnalyzer.Shared.Results;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace FinanceAnalyzer.Data.DataContext.Interfaces
 {
-    public interface IIncomeContext
+    public interface IIncomeContext<T> : IDataContext<DataResult<T>, T>
     {
     }
 }
