@@ -68,6 +68,8 @@ namespace FinanceAnalyzer.Business.Services.Realizations
                 case ActionType.Exit:
                     this._isAppOn = false;
                     break;
+                default:
+                    break;
             }
         }
 
