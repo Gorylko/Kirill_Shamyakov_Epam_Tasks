@@ -7,14 +7,26 @@ namespace FinanceAnalyzer.Business.Services.Realizations
 {
     public class FinanceService : IFinanceService
     {
-        IIncomeService _incomeService; //работает с контекстами данных
-        IExpensesService _expensesService; //работает с контекстами данных
-        //IDataDisplayer _dataDisplayer; //отображение инфы
-        //IDataAdder _dataAdder; //добавление новых записей пользователем
+        IIncomeService<double> _incomeService; 
+        IExpensesService<double> _expensesService; 
+        IDisplayer _displayer;
+        IDataReceiver _dataReceiver;
 
-        public FinanceService(IIncomeService incomeService)
+        public FinanceService(
+            IIncomeService<double> incomeService, 
+            IExpensesService<double> expensesService, 
+            IDisplayer displayer, 
+            IDataReceiver dataReceiver)
         {
             this._incomeService = incomeService;
+            this._expensesService = expensesService;
+            this._displayer = displayer;
+            this._dataReceiver = dataReceiver;
+        }
+
+        public void Launch()
+        {
+
         }
     }
 }

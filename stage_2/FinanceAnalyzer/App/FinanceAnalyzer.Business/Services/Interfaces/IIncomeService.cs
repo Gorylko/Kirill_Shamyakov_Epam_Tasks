@@ -1,10 +1,11 @@
-﻿using System;
+﻿using FinanceAnalyzer.Shared.Results;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace FinanceAnalyzer.Business.Services.Interfaces
 {
-    public interface IIncomeService
+    public interface IIncomeService<T> : IService<DataResult<T>, T>
     {
     }
 }

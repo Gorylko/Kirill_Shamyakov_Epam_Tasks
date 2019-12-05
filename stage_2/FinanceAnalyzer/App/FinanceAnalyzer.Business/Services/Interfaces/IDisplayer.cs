@@ -4,8 +4,7 @@ using System.Text;
 
 namespace FinanceAnalyzer.Business.Services.Interfaces
 {
-    public interface IFinanceService
+    public interface IDisplayer
     {
-        void Launch();
     }
 }

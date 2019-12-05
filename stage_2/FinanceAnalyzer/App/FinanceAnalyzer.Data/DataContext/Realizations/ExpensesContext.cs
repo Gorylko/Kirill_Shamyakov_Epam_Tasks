@@ -1,12 +1,12 @@
-﻿using FinanceAnalyzer.Business.Services.Interfaces;
+﻿using FinanceAnalyzer.Data.DataContext.Interfaces;
 using FinanceAnalyzer.Shared.Results;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace FinanceAnalyzer.Business.Services.Realizations
+namespace FinanceAnalyzer.Data.DataContext.Realizations
 {
-    public class ExpensesService : IExpensesService<double>
+    public class ExpensesContext : IExpensesContext<double>
     {
         public void Delete(double obj)
         {
