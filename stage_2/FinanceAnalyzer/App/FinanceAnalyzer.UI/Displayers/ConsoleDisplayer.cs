@@ -33,6 +33,7 @@ namespace FinanceAnalyzer.UI.Displayers
 
         public void DisplayMessage(string message)
         {
+            Console.Clear();
             Console.WriteLine(message);
         }
 
@@ -56,5 +57,5 @@ namespace FinanceAnalyzer.UI.Displayers
                          );
         }
     }
-    }
+   
 }
