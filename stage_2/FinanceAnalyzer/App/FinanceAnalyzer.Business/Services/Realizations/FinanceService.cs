@@ -42,7 +42,7 @@ namespace FinanceAnalyzer.Business.Services.Realizations
             switch (action)
             {
                 case ActionType.DisplayIncome:
-                    this._displayer.
+                    this._displayer.DisplayIncome(this._incomeService.);
                     break;
                 case ActionType.DisplayExpenses:
                     break;

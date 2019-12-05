@@ -8,12 +8,12 @@ namespace FinanceAnalyzer.Data.DataContext.Realizations
 {
     public class IncomeContext : IIncomeContext<double>
     {
-        public void Delete(double obj)
+        public void ClearAll()
         {
             throw new NotImplementedException();
         }
 
-        public DataResult<double> GetAll()
+        public DataResult<IReadOnlyCollection<double>> GetAll()
         {
             throw new NotImplementedException();
         }

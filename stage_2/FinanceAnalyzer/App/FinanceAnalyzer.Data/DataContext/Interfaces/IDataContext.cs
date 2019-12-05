@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FinanceAnalyzer.Shared.Results;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -10,6 +11,6 @@ namespace FinanceAnalyzer.Data.DataContext.Interfaces
 
         void Save(TValue obj);
 
-        void Delete(TValue obj);
+        void ClearAll();
     }
 }

@@ -1,4 +1,5 @@
 ﻿using FinanceAnalyzer.Business.Services.Interfaces;
+using FinanceAnalyzer.Shared.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -34,5 +35,26 @@ namespace FinanceAnalyzer.UI.Displayers
         {
             Console.WriteLine(message);
         }
+
+        public void DisplayIncome<T>(IReadOnlyCollection<T> collection)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DisplayExpenses<T>(IReadOnlyCollection<T> collection)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void DisplayFullInformation(FinanceInfo financeInfo)
+        {
+            Console.Clear();
+            Console.WriteLine(
+                         $"Total income : {financeInfo.TotalIncome}" + "\n" +
+                         $"Total Expenses : {financeInfo.TotalExpenses}" + "\n" +
+                         $"Profit : {financeInfo.Profit}" + "\n"
+                         );
+        }
+    }
     }
 }

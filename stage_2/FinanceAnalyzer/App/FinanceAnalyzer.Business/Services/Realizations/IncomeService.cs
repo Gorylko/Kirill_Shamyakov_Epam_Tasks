@@ -1,4 +1,5 @@
 ﻿using FinanceAnalyzer.Business.Services.Interfaces;
+using FinanceAnalyzer.Data.DataContext.Interfaces;
 using FinanceAnalyzer.Shared.Results;
 using System;
 using System.Collections.Generic;
@@ -8,19 +9,26 @@ namespace FinanceAnalyzer.Business.Services.Realizations
 {
     public class IncomeService : IIncomeService<double>
     {
-        public void Delete(double obj)
+        private IIncomeContext<double> _incomeContext;
+
+        public IncomeService(IIncomeContext<double> incomeContext)
         {
-            throw new NotImplementedException();
+            this._incomeContext = incomeContext ?? throw new NullReferenceException(nameof(incomeContext));
         }
 
-        public DataResult<double> GetByUserId(int userId)
+        public void ClearAll()
         {
-            throw new NotImplementedException();
+            this._incomeContext.ClearAll();
+        }
+
+        public DataResult<IReadOnlyCollection<double>> GetAll()
+        {
+            return this._incomeContext.GetAll();
         }
 
         public void Save(double obj)
         {
-            throw new NotImplementedException();
+            this.Save(obj);
         }
     }
 }

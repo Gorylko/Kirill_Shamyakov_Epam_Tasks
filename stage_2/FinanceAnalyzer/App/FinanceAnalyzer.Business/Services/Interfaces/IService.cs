@@ -1,15 +1,16 @@
-﻿using System;
+﻿using FinanceAnalyzer.Shared.Results;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace FinanceAnalyzer.Business.Services.Interfaces
 {
-    public interface IService<TResult, TValue>
+    public interface IService<TValue, TResult>
     {
-        TResult GetByUserId(int userId);
+        TResult GetAll();
 
         void Save(TValue obj);
 
-        void Delete(TValue obj);
+        void ClearAll();
     }
 }

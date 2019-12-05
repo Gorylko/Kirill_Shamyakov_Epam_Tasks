@@ -5,7 +5,7 @@ using System.Text;
 
 namespace FinanceAnalyzer.Business.Services.Interfaces
 {
-    public interface IExpensesService<T> : IService<DataResult<T>, T>
+    public interface IExpensesService<T> : IService<T, DataResult<IReadOnlyCollection<T>>>
     {
     }
 }
