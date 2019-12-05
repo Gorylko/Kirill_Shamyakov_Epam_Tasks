@@ -29,7 +29,7 @@ namespace FinanceAnalyzer.Data.DataContext.Realizations
                     string line;
                     while ((line = streamReader.ReadLine()) != null)
                     {
-                        if (double.TryParse(line.Replace(',','.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double number))
+                        if (double.TryParse(line, NumberStyles.Any, CultureInfo.CurrentCulture, out double number))
                         {
                             collection.Add(number);
                         }
@@ -46,9 +46,9 @@ namespace FinanceAnalyzer.Data.DataContext.Realizations
 
         public void Save(double obj)
         {
-            using (StreamWriter sw = new StreamWriter(FilePath, true, Encoding.Default))
+            using (var streamWriter = new StreamWriter(FilePath, true, Encoding.Default))
             {
-                sw.WriteLine(obj.ToString());
+                streamWriter.WriteLine(obj);
             }
         }
     }

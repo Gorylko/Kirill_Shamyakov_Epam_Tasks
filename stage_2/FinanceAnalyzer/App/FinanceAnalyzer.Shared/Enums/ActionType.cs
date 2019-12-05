@@ -7,6 +7,7 @@
         AddNewIncome = 3,
         AddNewExpense = 4,
         DisplayFullInformation = 5,
-        Exit = 6
+        ClearHistory = 6,
+        Exit = 7
     }
 }

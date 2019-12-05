@@ -61,6 +61,10 @@ namespace FinanceAnalyzer.Business.Services.Realizations
                 case ActionType.AddNewExpense:
                     this.AddNewExpense();
                     break;
+                case ActionType.ClearHistory:
+                    this._expensesService.ClearAll();
+                    this._incomeService.ClearAll();
+                    break;
                 case ActionType.Exit:
                     this._isAppOn = false;
                     break;

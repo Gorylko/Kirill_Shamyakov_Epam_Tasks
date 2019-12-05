@@ -16,7 +16,8 @@ namespace FinanceAnalyzer.UI.Displayers
                 "3. Add New Income" + "\n" +
                 "4. Add new expense" + "\n" +
                 "5. Display full information" + "\n" + 
-                "6. Exit"
+                "6. Clear history" + "\n" +
+                "7. Exit"
                 );
         }
 

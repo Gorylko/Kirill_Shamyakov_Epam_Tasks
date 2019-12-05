@@ -10,7 +10,7 @@ namespace FinanceAnalyzer.UI.DataReceivers
     {
         public DataResult<double> GetDouble()
         {
-            if(double.TryParse(Console.ReadLine(), NumberStyles.Any, CultureInfo.InvariantCulture, out double number))
+            if(double.TryParse(Console.ReadLine(), NumberStyles.Any, CultureInfo.CurrentCulture, out double number))
             {
                 return new DataResult<double>
                 {
