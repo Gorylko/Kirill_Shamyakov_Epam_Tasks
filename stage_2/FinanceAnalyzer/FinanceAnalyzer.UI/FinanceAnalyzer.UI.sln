@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29230.47
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceAnalyzer.UI", "FinanceAnalyzer.UI\FinanceAnalyzer.UI.csproj", "{3890A208-D6B3-4308-BE13-97E80F2A221D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3890A208-D6B3-4308-BE13-97E80F2A221D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3890A208-D6B3-4308-BE13-97E80F2A221D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3890A208-D6B3-4308-BE13-97E80F2A221D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3890A208-D6B3-4308-BE13-97E80F2A221D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1CA90A46-53C5-4570-BC7E-FFFC917EE9C9}
+	EndGlobalSection
+EndGlobal
