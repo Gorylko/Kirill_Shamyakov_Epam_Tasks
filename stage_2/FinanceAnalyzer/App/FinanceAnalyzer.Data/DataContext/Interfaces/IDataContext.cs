@@ -6,7 +6,7 @@ namespace FinanceAnalyzer.Data.DataContext.Interfaces
 {
     public interface IDataContext<TResult, TValue>
     {
-        TResult GetByUserId(int userId);
+        TResult GetAll();
 
         void Save(TValue obj);
 

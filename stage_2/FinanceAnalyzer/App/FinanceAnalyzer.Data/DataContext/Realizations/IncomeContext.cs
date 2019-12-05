@@ -13,7 +13,7 @@ namespace FinanceAnalyzer.Data.DataContext.Realizations
             throw new NotImplementedException();
         }
 
-        public DataResult<double> GetByUserId(int userId)
+        public DataResult<double> GetAll()
         {
             throw new NotImplementedException();
         }

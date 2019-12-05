@@ -2,7 +2,7 @@
 using FinanceAnalyzer.Shared.Results;
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Globalization;
 
 namespace FinanceAnalyzer.UI.DataReceivers
 {
@@ -10,14 +10,23 @@ namespace FinanceAnalyzer.UI.DataReceivers
     {
         public DataResult<double> GetDouble()
         {
-            throw new NotImplementedException();
+            if(double.TryParse(Console.ReadLine(), NumberStyles.Any, CultureInfo.InvariantCulture, out double number))
+            {
+                return new DataResult<double>
+                {
+                    Value = number,
+                    IsSuccessful = true
+                };
+            }
+
+            return GetErrorResult<double>("Invalid value of user input");
         }
 
         public DataResult<int> GetInt()
         {
             if (int.TryParse(Console.ReadLine(), out int number))
             {
-                return new UserInputResult<int>
+                return new DataResult<int>
                 {
                     Value = number,
                     IsSuccessful = true
@@ -29,7 +38,11 @@ namespace FinanceAnalyzer.UI.DataReceivers
 
         private DataResult<T> GetErrorResult<T>(string errorMessage)
         {
-
+            return new DataResult<T>
+            {
+                IsSuccessful = false,
+                ErrorMessage = errorMessage
+            };
         }
     }
 }

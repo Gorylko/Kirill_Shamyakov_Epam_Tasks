@@ -1,12 +1,7 @@
 ﻿using FinanceAnalyzer.Business.Services.Interfaces;
+using FinanceAnalyzer.Data.DataContext.Interfaces;
 using StructureMap;
 using StructureMap.Graph;
-using FinanceAnalyzer.Data.DataContext.Interfaces;
-using FinanceAnalyzer.Data.DataContext.Realizations;
-using FinanceAnalyzer
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FinanceAnalyzer.IoC
 {

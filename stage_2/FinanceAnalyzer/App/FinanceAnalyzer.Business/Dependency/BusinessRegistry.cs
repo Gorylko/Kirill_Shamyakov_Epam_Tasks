@@ -11,9 +11,9 @@ namespace FinanceAnalyzer.Business.Dependency
     {
         public BusinessRegistry()
         {
-            For<IIncomeService>().Use<IncomeService>();
+            For<IIncomeService<double>>().Use<IncomeService>();
             For<IFinanceService>().Use<FinanceService>();
-            For<IExpensesService>().Use<ExpensesService>();
+            For<IExpensesService<double>>().Use<ExpensesService>();
         }
     }
 }

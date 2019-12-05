@@ -26,7 +26,7 @@ namespace FinanceAnalyzer.Business.Services.Realizations
 
         public void Launch()
         {
-
+            this._displayer.DisplayStartMenu();
         }
     }
 }
