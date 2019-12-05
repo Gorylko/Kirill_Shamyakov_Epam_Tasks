@@ -1,4 +1,9 @@
-﻿using System;
+﻿using FinanceAnalyzer.Business;
+using System;
+using StructureMap;
+using StructureMap.Graph;
+using FinanceAnalyzer.IoC;
+using FinanceAnalyzer.Business.Services.Interfaces;
 
 namespace FinanceAnalyzer.UI
 {
@@ -6,7 +11,11 @@ namespace FinanceAnalyzer.UI
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            CustomContainer.Initialize();
+            var conteiner = CustomContainer.Container;
+            var a = conteiner.GetInstance<IFinanceService>();
+
+            Console.ReadKey();
         }
     }
 }

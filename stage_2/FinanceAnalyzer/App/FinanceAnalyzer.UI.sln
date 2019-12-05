@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceAnalyzer.Data", "Fin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceAnalyzer.Shared", "FinanceAnalyzer.Shared\FinanceAnalyzer.Shared.csproj", "{AA253BB7-0369-4BDE-9FF4-B1C153052D41}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceAnalyzer.IoC", "FinanceAnalyzer.IoC\FinanceAnalyzer.IoC.csproj", "{5EFE8CA7-630B-4056-A060-0A5F34B8B99C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{AA253BB7-0369-4BDE-9FF4-B1C153052D41}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AA253BB7-0369-4BDE-9FF4-B1C153052D41}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AA253BB7-0369-4BDE-9FF4-B1C153052D41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EFE8CA7-630B-4056-A060-0A5F34B8B99C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EFE8CA7-630B-4056-A060-0A5F34B8B99C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EFE8CA7-630B-4056-A060-0A5F34B8B99C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EFE8CA7-630B-4056-A060-0A5F34B8B99C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
