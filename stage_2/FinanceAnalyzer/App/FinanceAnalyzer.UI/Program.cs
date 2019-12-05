@@ -10,6 +10,7 @@ namespace FinanceAnalyzer.UI
         static void Main(string[] args)
         {
             CustomContainer.Initialize();
+
             var conteiner = CustomContainer.Container;
             conteiner.Configure(c => c.AddRegistry<UIRegistry>());
             var financeService = conteiner.GetInstance<IFinanceService>();
@@ -23,8 +24,6 @@ namespace FinanceAnalyzer.UI
                 Console.Clear();
                 Console.WriteLine(ex);
             }
-
-            Console.ReadKey();
         }
     }
 }

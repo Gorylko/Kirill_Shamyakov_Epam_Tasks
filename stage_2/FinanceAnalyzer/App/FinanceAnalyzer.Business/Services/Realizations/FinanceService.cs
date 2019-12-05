@@ -29,17 +29,17 @@ namespace FinanceAnalyzer.Business.Services.Realizations
 
         public void Launch()
         {
-            do
+            while (this._isAppOn)
             {
                 this._displayer.DisplayStartMenu();
+
                 var actionResult = this._dataReceiver.GetAction();
 
                 if (actionResult.IsSuccessful)
                 {
                     PerformAction(actionResult.Value);
                 }
-
-            } while (this._isAppOn);
+            }
         }
 
         private void PerformAction(ActionType action)

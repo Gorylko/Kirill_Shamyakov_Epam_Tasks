@@ -39,6 +39,7 @@ namespace FinanceAnalyzer.UI.DataReceivers
         public DataResult<ActionType> GetAction()
         {
             var intResult = this.GetInt();
+
             if (intResult.IsSuccessful)
             {
                 return new DataResult<ActionType>
@@ -47,6 +48,7 @@ namespace FinanceAnalyzer.UI.DataReceivers
                     IsSuccessful = true
                 };
             }
+
             return GetErrorResult<ActionType>();
         }
 
