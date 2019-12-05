@@ -12,6 +12,7 @@ namespace FinanceAnalyzer.Data.DataContext.Realizations
                                                             //просто создавая отдельный класс, для универсального выполнения хранимок, сделал с файлами для примера))
     {
         private const string FilePath = "expenses.txt";
+
         public void ClearAll()
         {
             File.WriteAllText(FilePath, string.Empty);
@@ -20,6 +21,7 @@ namespace FinanceAnalyzer.Data.DataContext.Realizations
         public DataResult<IReadOnlyCollection<double>> GetAll()
         {
             var collection = new List<double>();
+
             using (var fileStream = new FileStream(FilePath, FileMode.OpenOrCreate))
             {
                 using (var streamReader = new StreamReader(fileStream))

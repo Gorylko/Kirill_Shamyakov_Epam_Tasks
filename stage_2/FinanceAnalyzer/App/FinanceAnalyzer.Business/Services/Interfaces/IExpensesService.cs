@@ -3,7 +3,5 @@ using System.Collections.Generic;
 
 namespace FinanceAnalyzer.Business.Services.Interfaces
 {
-    public interface IExpensesService<T> : IService<T, DataResult<IReadOnlyCollection<T>>>
-    {
-    }
+    public interface IExpensesService<T> : IService<T, DataResult<IReadOnlyCollection<T>>> { }
 }

@@ -21,6 +21,7 @@ namespace FinanceAnalyzer.Data.DataContext.Realizations
         public DataResult<IReadOnlyCollection<double>> GetAll()
         {
             var collection = new List<double>();
+
             using (var fileStream = new FileStream(FilePath, FileMode.OpenOrCreate))
             {
                 using (var streamReader = new StreamReader(fileStream))

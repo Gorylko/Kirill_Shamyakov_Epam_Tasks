@@ -24,6 +24,11 @@ namespace FinanceAnalyzer.UI.Displayers
 
         public void DisplayCollection<T>(IReadOnlyCollection<T> collection)
         {
+            if(collection == null)
+            {
+                return;
+            }
+
             foreach (var el in collection)
             {
                 Console.WriteLine(el);
