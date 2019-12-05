@@ -2,12 +2,17 @@
 using FinanceAnalyzer.Shared.Results;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using System.Text;
 
 namespace FinanceAnalyzer.Data.DataContext.Realizations
 {
-    public class IncomeContext : IIncomeContext<double> //Методы те же, что и в контексте расходов, но при работе с бд эта проблема решается, сделал с файлами для примера))
+    public class IncomeContext : IIncomeContext<double> //Методы те же, что и в контексте расходов(лишний код, да, знаю), но при работе с бд эта проблема решается
+        //просто создавая отдельный класс, для универсального выполнения хранимок, сделал с файлами для примера))
     {
+        private const string FilePath = "income.txt";
+
         public void ClearAll()
         {
             throw new NotImplementedException();
@@ -40,7 +45,10 @@ namespace FinanceAnalyzer.Data.DataContext.Realizations
 
         public void Save(double obj)
         {
-            throw new NotImplementedException();
+            using (StreamWriter sw = new StreamWriter(FilePath, true, Encoding.Default))
+            {
+                sw.WriteLine(obj.ToString());
+            }
         }
     }
 }

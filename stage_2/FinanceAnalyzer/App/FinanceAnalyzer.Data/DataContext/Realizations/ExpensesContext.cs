@@ -8,7 +8,8 @@ using System.Globalization;
 
 namespace FinanceAnalyzer.Data.DataContext.Realizations
 {
-    public class ExpensesContext : IExpensesContext<double> //Методы те же, что и в контексте доходов, но при работе с бд эта проблема решается, сделал с файлами для примера))
+    public class ExpensesContext : IExpensesContext<double> //Методы те же, что и в контексте доходов(лишний код, да, знаю), но при работе с бд эта проблема решается
+                                                            //просто создавая отдельный класс, для универсального выполнения хранимок, сделал с файлами для примера))
     {
         private const string FilePath = "expenses.txt";
         public void ClearAll()

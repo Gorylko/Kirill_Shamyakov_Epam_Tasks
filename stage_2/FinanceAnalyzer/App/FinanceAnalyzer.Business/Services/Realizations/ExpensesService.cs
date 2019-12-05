@@ -18,7 +18,7 @@ namespace FinanceAnalyzer.Business.Services.Realizations
 
         public void ClearAll()
         {
-            throw new NotImplementedException();
+            this._expensesContext.ClearAll();
         }
 
         public DataResult<IReadOnlyCollection<double>> GetAll()

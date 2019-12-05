@@ -16,7 +16,16 @@ namespace FinanceAnalyzer.UI
             var conteiner = CustomContainer.Container;
             conteiner.Configure(c => c.AddRegistry<UIRegistry>());
             var financeService = conteiner.GetInstance<IFinanceService>();
-            financeService.Launch();
+
+            try
+            {
+                financeService.Launch();
+            }
+            catch(Exception ex)
+            {
+                Console.Clear();
+                Console.WriteLine(ex);
+            }
 
             Console.ReadKey();
         }
