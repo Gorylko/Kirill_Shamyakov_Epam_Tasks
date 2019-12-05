@@ -1,4 +1,5 @@
 ﻿using FinanceAnalyzer.Business.Services.Interfaces;
+using FinanceAnalyzer.Shared.Enums;
 using FinanceAnalyzer.Shared.Results;
 using System;
 using System.Collections.Generic;
@@ -19,7 +20,7 @@ namespace FinanceAnalyzer.UI.DataReceivers
                 };
             }
 
-            return GetErrorResult<double>("Invalid value of user input");
+            return GetErrorResult<double>();
         }
 
         public DataResult<int> GetInt()
@@ -33,10 +34,24 @@ namespace FinanceAnalyzer.UI.DataReceivers
                 };
             }
 
-            return GetErrorResult<int>("Invalid value of user input");
+            return GetErrorResult<int>();
         }
 
-        private DataResult<T> GetErrorResult<T>(string errorMessage)
+        public DataResult<ActionType> GetAction()
+        {
+            var intResult = this.GetInt();
+            if (intResult.IsSuccessful)
+            {
+                return new DataResult<ActionType>
+                {
+                    Value = (ActionType)intResult.Value,
+                    IsSuccessful = true
+                };
+            }
+            return GetErrorResult<ActionType>();
+        }
+
+        private DataResult<T> GetErrorResult<T>(string errorMessage = "Invalid value of user input")
         {
             return new DataResult<T>
             {

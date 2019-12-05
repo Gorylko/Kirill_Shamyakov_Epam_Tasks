@@ -20,6 +20,8 @@ namespace FinanceAnalyzer.UI.Displayers
                 );
         }
 
+        
+
         public void DisplayCollection<T>(IReadOnlyCollection<T> collection)
         {
             foreach (var el in collection)

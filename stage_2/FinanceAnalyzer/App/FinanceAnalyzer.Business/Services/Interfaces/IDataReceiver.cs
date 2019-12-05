@@ -1,4 +1,5 @@
-﻿using FinanceAnalyzer.Shared.Results;
+﻿using FinanceAnalyzer.Shared.Enums;
+using FinanceAnalyzer.Shared.Results;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,5 +11,7 @@ namespace FinanceAnalyzer.Business.Services.Interfaces
         DataResult<int> GetInt();
 
         DataResult<double> GetDouble();
+
+        DataResult<ActionType> GetAction();
     }
 }

@@ -1,7 +1,5 @@
 ﻿using FinanceAnalyzer.Business.Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Text;
+using FinanceAnalyzer.Shared.Enums;
 
 namespace FinanceAnalyzer.Business.Services.Realizations
 {
@@ -26,7 +24,37 @@ namespace FinanceAnalyzer.Business.Services.Realizations
 
         public void Launch()
         {
-            this._displayer.DisplayStartMenu();
+            do
+            {
+                this._displayer.DisplayStartMenu();
+                var actionResult = this._dataReceiver.GetAction();
+
+                if (actionResult.IsSuccessful)
+                {
+                    PerformAction(actionResult.Value);
+                }
+
+            } while (true);
+        }
+
+        private void PerformAction(ActionType action)
+        {
+            switch (action)
+            {
+                case ActionType.DisplayIncome:
+                    this._displayer.
+                    break;
+                case ActionType.DisplayExpenses:
+                    break;
+                case ActionType.DisplayFullInformation:
+                    break;
+                case ActionType.AddNewIncome:
+                    break;
+                case ActionType.AddNewExpense:
+                    break;
+                case ActionType.Exit:
+                    return;
+            }
         }
     }
 }
