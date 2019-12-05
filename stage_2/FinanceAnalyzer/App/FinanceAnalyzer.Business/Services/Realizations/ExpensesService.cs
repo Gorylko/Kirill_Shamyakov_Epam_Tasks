@@ -23,12 +23,12 @@ namespace FinanceAnalyzer.Business.Services.Realizations
 
         public DataResult<IReadOnlyCollection<double>> GetAll()
         {
-            throw new NotImplementedException();
+            return this._expensesContext.GetAll();
         }
 
         public void Save(double obj)
         {
-            throw new NotImplementedException();
+            this._expensesContext.Save(obj);
         }
     }
 }

@@ -44,7 +44,20 @@ namespace FinanceAnalyzer.UI.Displayers
 
         public void DisplayExpenses<T>(IReadOnlyCollection<T> collection)
         {
-            throw new NotImplementedException();
+            this.DisplayMessage("Expenses : ");
+
+            if(collection.Count == 0 || collection == null)
+            {
+                Console.WriteLine("The history is empty");
+            }
+            else
+            {
+                this.DisplayCollection(collection);
+            }
+
+            Console.WriteLine("Any key to return...");
+
+            Console.ReadKey();
         }
 
         public void DisplayFullInformation(FinanceInfo financeInfo)

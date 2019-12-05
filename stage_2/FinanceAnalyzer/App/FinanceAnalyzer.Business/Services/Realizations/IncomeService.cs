@@ -28,7 +28,7 @@ namespace FinanceAnalyzer.Business.Services.Realizations
 
         public void Save(double obj)
         {
-            this.Save(obj);
+            this._incomeContext.Save(obj);
         }
     }
 }

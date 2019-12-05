@@ -11,6 +11,7 @@ namespace FinanceAnalyzer.Business.Services.Realizations
         IExpensesService<double> _expensesService;
         IDisplayer _displayer;
         IDataReceiver _dataReceiver;
+        private bool _isAppOn;
 
         public FinanceService(
             IIncomeService<double> incomeService,
@@ -18,10 +19,12 @@ namespace FinanceAnalyzer.Business.Services.Realizations
             IDisplayer displayer,
             IDataReceiver dataReceiver)
         {
-            this._incomeService = incomeService;
-            this._expensesService = expensesService;
-            this._displayer = displayer;
-            this._dataReceiver = dataReceiver;
+            this._incomeService = incomeService ?? throw new NullReferenceException(nameof(incomeService));
+            this._expensesService = expensesService ?? throw new NullReferenceException(nameof(expensesService));
+            this._displayer = displayer ?? throw new NullReferenceException(nameof(displayer));
+            this._dataReceiver = dataReceiver ?? throw new NullReferenceException(nameof(dataReceiver));
+
+            this._isAppOn = true;
         }
 
         public void Launch()
@@ -36,7 +39,7 @@ namespace FinanceAnalyzer.Business.Services.Realizations
                     PerformAction(actionResult.Value);
                 }
 
-            } while (true);
+            } while (this._isAppOn);
         }
 
         private void PerformAction(ActionType action)
@@ -53,12 +56,14 @@ namespace FinanceAnalyzer.Business.Services.Realizations
                     this._displayer.DisplayFullInformation(GetFullInformation());
                     break;
                 case ActionType.AddNewIncome:
-
+                    this.AddNewIncome();
                     break;
                 case ActionType.AddNewExpense:
+                    this.AddNewExpense();
                     break;
                 case ActionType.Exit:
-                    return;
+                    this._isAppOn = false;
+                    break;
             }
         }
 
@@ -95,7 +100,7 @@ namespace FinanceAnalyzer.Business.Services.Realizations
 
                 if (doubleResult.IsSuccessful)
                 {
-                    this._incomeService.Save(doubleResult.Value);
+                    this._expensesService.Save(doubleResult.Value);
                     return;
                 }
             }

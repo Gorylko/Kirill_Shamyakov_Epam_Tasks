@@ -3,6 +3,7 @@ using System;
 using StructureMap;
 using StructureMap.Graph;
 using FinanceAnalyzer.IoC;
+using FinanceAnalyzer.UI.Dependency;
 using FinanceAnalyzer.Business.Services.Interfaces;
 
 namespace FinanceAnalyzer.UI
@@ -13,8 +14,8 @@ namespace FinanceAnalyzer.UI
         {
             CustomContainer.Initialize();
             var conteiner = CustomContainer.Container;
+            conteiner.Configure(c => c.AddRegistry<UIRegistry>());
             var financeService = conteiner.GetInstance<IFinanceService>();
-
             financeService.Launch();
 
             Console.ReadKey();
