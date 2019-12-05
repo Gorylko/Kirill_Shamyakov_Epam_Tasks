@@ -1,7 +1,7 @@
-﻿using System;
-using FinanceAnalyzer.Business.Services.Interfaces;
+﻿using FinanceAnalyzer.Business.Services.Interfaces;
 using FinanceAnalyzer.Shared.Entities;
 using FinanceAnalyzer.Shared.Enums;
+using System;
 
 namespace FinanceAnalyzer.Business.Services.Realizations
 {

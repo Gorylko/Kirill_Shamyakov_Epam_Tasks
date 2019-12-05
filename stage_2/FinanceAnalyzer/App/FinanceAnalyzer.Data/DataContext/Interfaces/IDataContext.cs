@@ -1,9 +1,4 @@
-﻿using FinanceAnalyzer.Shared.Results;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FinanceAnalyzer.Data.DataContext.Interfaces
+﻿namespace FinanceAnalyzer.Data.DataContext.Interfaces
 {
     public interface IDataContext<TResult, TValue>
     {

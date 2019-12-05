@@ -2,7 +2,6 @@
 using FinanceAnalyzer.Shared.Enums;
 using FinanceAnalyzer.Shared.Results;
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 
 namespace FinanceAnalyzer.UI.DataReceivers

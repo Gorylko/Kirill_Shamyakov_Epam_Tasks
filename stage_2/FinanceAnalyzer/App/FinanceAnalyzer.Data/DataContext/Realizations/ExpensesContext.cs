@@ -14,7 +14,7 @@ namespace FinanceAnalyzer.Data.DataContext.Realizations
         private const string FilePath = "expenses.txt";
         public void ClearAll()
         {
-            throw new NotImplementedException();
+            File.WriteAllText(FilePath, string.Empty);
         }
 
         public DataResult<IReadOnlyCollection<double>> GetAll()
@@ -27,7 +27,7 @@ namespace FinanceAnalyzer.Data.DataContext.Realizations
                     string line;
                     while ((line = streamReader.ReadLine()) != null)
                     {
-                        if (double.TryParse(line, NumberStyles.Any, CultureInfo.InvariantCulture, out double number))
+                        if (double.TryParse(line.Replace(',','.'), NumberStyles.Any, CultureInfo.InvariantCulture, out double number))
                         {
                             collection.Add(number);
                         }

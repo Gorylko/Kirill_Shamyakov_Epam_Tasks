@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FinanceAnalyzer.Shared.Results
+﻿namespace FinanceAnalyzer.Shared.Results
 {
     public class DataResult<TValue>
     {

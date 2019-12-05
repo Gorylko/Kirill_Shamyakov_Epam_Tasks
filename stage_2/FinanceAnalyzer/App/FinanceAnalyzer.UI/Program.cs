@@ -1,10 +1,7 @@
-﻿using FinanceAnalyzer.Business;
-using System;
-using StructureMap;
-using StructureMap.Graph;
+﻿using FinanceAnalyzer.Business.Services.Interfaces;
 using FinanceAnalyzer.IoC;
 using FinanceAnalyzer.UI.Dependency;
-using FinanceAnalyzer.Business.Services.Interfaces;
+using System;
 
 namespace FinanceAnalyzer.UI
 {

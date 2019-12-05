@@ -5,7 +5,5 @@ using System.Text;
 
 namespace FinanceAnalyzer.Data.DataContext.Interfaces
 {
-    public interface IIncomeContext<T> : IDataContext<DataResult<IReadOnlyCollection<T>>, T>
-    {
-    }
+    public interface IIncomeContext<T> : IDataContext<DataResult<IReadOnlyCollection<T>>, T> { }
 }
