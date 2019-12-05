@@ -1,6 +1,9 @@
 ﻿using FinanceAnalyzer.Business.Services.Interfaces;
 using StructureMap;
 using StructureMap.Graph;
+using FinanceAnalyzer.Data.DataContext.Interfaces;
+using FinanceAnalyzer.Data.DataContext.Realizations;
+using FinanceAnalyzer
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -19,6 +22,7 @@ namespace FinanceAnalyzer.IoC
                            scan =>
                            {
                                AddBusinessDependency(scan);
+                               AddDataDependency(scan);
                                scan.LookForRegistries();
                            }
                        )
@@ -27,8 +31,15 @@ namespace FinanceAnalyzer.IoC
 
         private static void AddBusinessDependency(IAssemblyScanner scan)
         {
-            scan.AssemblyContainingType<IIncomeService>();
+            scan.AssemblyContainingType<IIncomeService<double>>();
+            scan.AssemblyContainingType<IExpensesService<double>>();
             scan.AssemblyContainingType<IFinanceService>();
+        }
+
+        private static void AddDataDependency(IAssemblyScanner scan)
+        {
+            scan.AssemblyContainingType<IExpensesContext<double>>();
+            scan.AssemblyContainingType<IIncomeContext<double>>();
         }
 
         public static IContainer Container

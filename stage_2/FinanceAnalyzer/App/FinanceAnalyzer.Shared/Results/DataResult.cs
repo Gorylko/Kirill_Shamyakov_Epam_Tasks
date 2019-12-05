@@ -8,6 +8,8 @@ namespace FinanceAnalyzer.Shared.Results
     {
         public TValue Value { get; set; }
 
+        public string ErrorMessage { get; set; }
+
         public bool IsSuccessful { get; set; }
     }
 }
