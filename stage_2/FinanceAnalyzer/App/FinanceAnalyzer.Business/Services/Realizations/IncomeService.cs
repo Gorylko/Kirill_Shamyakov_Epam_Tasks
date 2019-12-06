@@ -22,7 +22,23 @@ namespace FinanceAnalyzer.Business.Services.Realizations
 
         public DataResult<IReadOnlyCollection<double>> GetAll()
         {
-            return this._incomeContext.GetAll();
+
+            //return returnCollection == null
+            //    ? new DataResult<IReadOnlyCollection<double>>
+            //    {
+            //        IsSuccessful = false,
+            //        ErrorMessage = "Value of collection is null"
+            //    }
+            //    : new DataResult<IReadOnlyCollection<double>>
+            //    {
+            //        Value = returnCollection,
+            //        IsSuccessful = true
+            //    };
+            return new DataResult<IReadOnlyCollection<double>>
+            {
+                Value = this._incomeContext.GetAll(),
+                IsSuccessful = true
+            };
         }
 
         public void Save(double obj)

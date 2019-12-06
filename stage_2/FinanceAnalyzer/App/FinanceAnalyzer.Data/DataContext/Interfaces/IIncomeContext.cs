@@ -5,5 +5,5 @@ using System.Text;
 
 namespace FinanceAnalyzer.Data.DataContext.Interfaces
 {
-    public interface IIncomeContext<T> : IDataContext<DataResult<IReadOnlyCollection<T>>, T> { } //can be expanded
+    public interface IIncomeContext<T> : IDataContext<IReadOnlyCollection<T>, T> { } //can be expanded
 }

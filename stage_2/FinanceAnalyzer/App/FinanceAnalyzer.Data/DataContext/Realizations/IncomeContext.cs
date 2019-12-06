@@ -1,15 +1,12 @@
 ﻿using FinanceAnalyzer.Data.DataContext.Interfaces;
-using FinanceAnalyzer.Shared.Results;
-using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.IO;
 using System.Text;
+using MapStrategies = FinanceAnalyzer.Data.Mappers.DoubleCollectionMapStrategies;
 
 namespace FinanceAnalyzer.Data.DataContext.Realizations
 {
-    public class IncomeContext : IIncomeContext<double> //Методы те же, что и в контексте расходов(лишний код, да, знаю), но при работе с бд эта проблема решается
-        //просто создавая отдельный класс, для универсального выполнения хранимок, сделал с файлами для примера))
+    public class IncomeContext : IIncomeContext<double>
     {
         private const string FilePath = "income.txt";
 
@@ -18,28 +15,13 @@ namespace FinanceAnalyzer.Data.DataContext.Realizations
             File.WriteAllText(FilePath, string.Empty);
         }
 
-        public DataResult<IReadOnlyCollection<double>> GetAll()
+        public IReadOnlyCollection<double> GetAll()
         {
-            var collection = new List<double>();
-
             using (var fileStream = new FileStream(FilePath, FileMode.OpenOrCreate))
             {
                 using (var streamReader = new StreamReader(fileStream))
                 {
-                    string line;
-                    while ((line = streamReader.ReadLine()) != null)
-                    {
-                        if (double.TryParse(line, NumberStyles.Any, CultureInfo.CurrentCulture, out double number))
-                        {
-                            collection.Add(number);
-                        }
-                    }
-
-                    return new DataResult<IReadOnlyCollection<double>>
-                    {
-                        IsSuccessful = true,
-                        Value = collection
-                    };
+                    return MapStrategies.MapDoubles(streamReader.ReadToEnd());
                 }
             }
         }

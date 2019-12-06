@@ -22,7 +22,11 @@ namespace FinanceAnalyzer.Business.Services.Realizations
 
         public DataResult<IReadOnlyCollection<double>> GetAll()
         {
-            return this._expensesContext.GetAll();
+            return new DataResult<IReadOnlyCollection<double>>
+            {
+                Value = this._expensesContext.GetAll(),
+                IsSuccessful = true
+            };
         }
 
         public void Save(double obj)
