@@ -7,22 +7,22 @@ namespace FinanceAnalyzer.Business.Services.Realizations
 {
     public class FinanceService : IFinanceService
     {
-        IIncomeService<double> _incomeService;
-        IExpensesService<double> _expensesService;
-        IDisplayer _displayer;
-        IDataReceiver _dataReceiver;
+        private IIncomeService<double> _incomeService;
+        private IExpensesService<double> _expensesService;
+        private IDataReceiver _dataReceiver;
+        private IDisplayer _displayer;
         private bool _isAppOn;
 
         public FinanceService(
-            IIncomeService<double> incomeService,
             IExpensesService<double> expensesService,
-            IDisplayer displayer,
-            IDataReceiver dataReceiver)
+            IIncomeService<double> incomeService,
+            IDataReceiver dataReceiver,
+            IDisplayer displayer)
         {
-            this._incomeService = incomeService ?? throw new NullReferenceException(nameof(incomeService));
             this._expensesService = expensesService ?? throw new NullReferenceException(nameof(expensesService));
-            this._displayer = displayer ?? throw new NullReferenceException(nameof(displayer));
+            this._incomeService = incomeService ?? throw new NullReferenceException(nameof(incomeService));
             this._dataReceiver = dataReceiver ?? throw new NullReferenceException(nameof(dataReceiver));
+            this._displayer = displayer ?? throw new NullReferenceException(nameof(displayer));
 
             this._isAppOn = true;
         }
