@@ -1,5 +1,4 @@
-﻿using FinanceAnalyzer.Shared.Results;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace FinanceAnalyzer.Data.DataContext.Interfaces
 {

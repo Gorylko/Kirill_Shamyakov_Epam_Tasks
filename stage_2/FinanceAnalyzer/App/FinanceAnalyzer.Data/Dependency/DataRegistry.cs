@@ -1,9 +1,6 @@
-﻿using StructureMap;
-using System;
-using System.Collections.Generic;
-using System.Text;
-using FinanceAnalyzer.Data.DataContext.Interfaces;
+﻿using FinanceAnalyzer.Data.DataContext.Interfaces;
 using FinanceAnalyzer.Data.DataContext.Realizations;
+using StructureMap;
 
 namespace FinanceAnalyzer.Data.Dependency
 {
