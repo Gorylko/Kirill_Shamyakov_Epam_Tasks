@@ -7,8 +7,8 @@ namespace FinanceAnalyzer.Business.Services.Realizations
 {
     public class FinanceService : IFinanceService
     {
-        private IIncomeService<double> _incomeService;
         private IExpensesService<double> _expensesService;
+        private IIncomeService<double> _incomeService;
         private IDataReceiver _dataReceiver;
         private IDisplayer _displayer;
         private bool _isAppOn;
