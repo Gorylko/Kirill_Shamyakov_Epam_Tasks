@@ -15,7 +15,7 @@ namespace FinanceAnalyzer.Data.Mappers
 
             return sourse
                 .Split('\n')
-                .Where(el => double.TryParse(el, NumberStyles.Any, CultureInfo.CurrentCulture, out double number))
+                .Where(el => double.TryParse(el, NumberStyles.Any, CultureInfo.InvariantCulture, out double number))
                 .Select(sortedEl => double.Parse(sortedEl))
                 .ToArray();
                 

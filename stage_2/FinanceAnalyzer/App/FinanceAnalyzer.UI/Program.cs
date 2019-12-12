@@ -1,6 +1,7 @@
 ﻿using FinanceAnalyzer.Business.Services.Interfaces;
 using FinanceAnalyzer.IoC;
 using FinanceAnalyzer.UI.Dependency;
+using FinanceAnalyzer.UI.Interfaces;
 using StructureMap;
 using System;
 
@@ -10,12 +11,11 @@ namespace FinanceAnalyzer.UI
     {
         static void Main(string[] args)
         {
-            
-            var financeService = GetContainer().GetInstance<IFinanceService>();
+            var launcher = GetContainer().GetInstance<ILauncher>();
 
             try
             {
-                financeService.Launch();
+                launcher.Launch();
             }
             catch(Exception ex)
             {

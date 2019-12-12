@@ -12,7 +12,7 @@ namespace FinanceAnalyzer.Business.Services.Realizations
 
         public IncomeService(IIncomeContext<double> incomeContext)
         {
-            _incomeContext = incomeContext ?? throw new NullReferenceException(nameof(incomeContext));
+            _incomeContext = incomeContext ?? throw new ArgumentNullException(nameof(incomeContext));
         }
 
         public void ClearAll()

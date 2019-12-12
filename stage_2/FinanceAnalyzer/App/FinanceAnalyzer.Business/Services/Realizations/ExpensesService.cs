@@ -12,7 +12,7 @@ namespace FinanceAnalyzer.Business.Services.Realizations
 
         public ExpensesService(IExpensesContext<double> expensesContext)
         {
-            _expensesContext = expensesContext ?? throw new NullReferenceException(nameof(expensesContext));
+            _expensesContext = expensesContext ?? throw new ArgumentNullException(nameof(expensesContext));
         }
 
         public void ClearAll()

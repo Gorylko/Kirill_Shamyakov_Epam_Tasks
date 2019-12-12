@@ -1,7 +1,9 @@
 ﻿using FinanceAnalyzer.Business.Services.Interfaces;
 using FinanceAnalyzer.Shared.Entities;
 using FinanceAnalyzer.Shared.Enums;
+using FinanceAnalyzer.Shared.Results;
 using System;
+using System.Collections.Generic;
 
 namespace FinanceAnalyzer.Business.Services.Realizations
 {
@@ -9,76 +11,16 @@ namespace FinanceAnalyzer.Business.Services.Realizations
     {
         private IExpensesService<double> _expensesService;
         private IIncomeService<double> _incomeService;
-        private IDataReceiver _dataReceiver;
-        private IDisplayer _displayer;
-        private bool _isAppOn;
 
         public FinanceService(
             IExpensesService<double> expensesService,
-            IIncomeService<double> incomeService,
-            IDataReceiver dataReceiver,
-            IDisplayer displayer)
+            IIncomeService<double> incomeService)
         {
-            _expensesService = expensesService ?? throw new NullReferenceException(nameof(expensesService));
-            _incomeService = incomeService ?? throw new NullReferenceException(nameof(incomeService));
-            _dataReceiver = dataReceiver ?? throw new NullReferenceException(nameof(dataReceiver));
-            _displayer = displayer ?? throw new NullReferenceException(nameof(displayer));
-
-            _isAppOn = true;
+            _expensesService = expensesService ?? throw new ArgumentNullException(nameof(expensesService));
+            _incomeService = incomeService ?? throw new ArgumentNullException(nameof(incomeService));
         }
 
-        public void Launch()
-        {
-            while (_isAppOn)
-            {
-                _displayer.DisplayStartMenu();
-
-                var actionResult = _dataReceiver.GetAction();
-
-                if (actionResult.IsSuccessful)
-                {
-                    PerformAction(actionResult.Value);
-                }
-            }
-        }
-
-        private void PerformAction(ActionType action)
-        {
-            switch (action)
-            {
-                case ActionType.DisplayIncome:
-                    _displayer.DisplayIncome(_incomeService.GetAll().Value);
-                    break;
-                case ActionType.DisplayExpenses:
-                    _displayer.DisplayExpenses(_expensesService.GetAll().Value);
-                    break;
-                case ActionType.DisplayFullInformation:
-                    _displayer.DisplayFullInformation(GetFullInformation());
-                    break;
-                case ActionType.AddNewIncome:
-                    AddNewIncome();
-                    break;
-                case ActionType.AddNewExpense:
-                    AddNewExpense();
-                    break;
-                case ActionType.ClearHistory:
-                    _expensesService.ClearAll();
-                    _incomeService.ClearAll();
-                    break;
-                case ActionType.Exit:
-                    NewMethod();
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        private void NewMethod()
-        {
-            _isAppOn = false;
-        }
-
-        private FinanceInfo GetFullInformation()
+        public FinanceInfo GetFullInformation()
         {
             return new FinanceInfo
             {
@@ -87,34 +29,30 @@ namespace FinanceAnalyzer.Business.Services.Realizations
             };
         }
 
-        private void AddNewIncome()
+        public DataResult<IReadOnlyCollection<double>> GetIncomeHistory()
         {
-            while (true)
-            {
-                _displayer.DisplayMessage("Enter new income");
-                var doubleResult = _dataReceiver.GetDouble();
-
-                if (doubleResult.IsSuccessful)
-                {
-                    _incomeService.Save(doubleResult.Value);
-                    return;
-                }
-            }
+            return _incomeService.GetAll();
         }
 
-        private void AddNewExpense()
+        public DataResult<IReadOnlyCollection<double>> GetExpenseHistory()
         {
-            while (true)
-            {
-                _displayer.DisplayMessage("Enter new expense");
-                var doubleResult = _dataReceiver.GetDouble();
+            return _expensesService.GetAll();
+        }
 
-                if (doubleResult.IsSuccessful)
-                {
-                    _expensesService.Save(doubleResult.Value);
-                    return;
-                }
-            }
+        public void AddNewIncome(double value)
+        {
+            _incomeService.Save(value);
+        }
+
+        public void AddNewExpense(double value)
+        {
+            _expensesService.Save(value);
+        }
+
+        public void ClearHistory()
+        {
+            _expensesService.ClearAll();
+            _incomeService.ClearAll();
         }
     }
 }
