@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace FinanceAnalyzer.Business.Services.Realizations
 {
-    public class IncomeService : IIncomeService<double>
+    internal class IncomeService : IIncomeService<double>
     {
         private IIncomeContext<double> _incomeContext;
 

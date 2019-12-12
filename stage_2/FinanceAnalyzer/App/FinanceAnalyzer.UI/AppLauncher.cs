@@ -2,6 +2,9 @@
 using FinanceAnalyzer.Shared.Entities;
 using FinanceAnalyzer.Shared.Enums;
 using FinanceAnalyzer.UI.Interfaces;
+using Polly;
+using Polly.Retry;
+using System;
 
 namespace FinanceAnalyzer.UI
 {
@@ -70,17 +73,19 @@ namespace FinanceAnalyzer.UI
 
         private void AddNewIncome()
         {
-            while (true)
-            {
-                _displayer.DisplayMessage("Enter new income");
-                var doubleResult = _dataReceiver.GetDouble();
-
-                if (doubleResult.IsSuccessful)
+            Policy
+                .Handle<Exception>()
+                .Retry(3, onRetry: (exception, retryCount, context) =>
                 {
-                    _financeService.AddNewIncome(doubleResult.Value);
-                    return;
-                }
-            }
+                    _displayer.DisplayMessage("Enter new income");
+                    var doubleResult = _dataReceiver.GetDouble();
+
+                    if (doubleResult.IsSuccessful)
+                    {
+                        _financeService.AddNewIncome(doubleResult.Value);
+                    }
+                    context
+                });
         }
 
         private void AddNewExpense()

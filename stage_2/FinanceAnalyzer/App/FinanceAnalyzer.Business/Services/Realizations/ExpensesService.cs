@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace FinanceAnalyzer.Business.Services.Realizations
 {
-    public class ExpensesService : IExpensesService<double>
+    internal class ExpensesService : IExpensesService<double>
     {
         private IExpensesContext<double> _expensesContext;
 
