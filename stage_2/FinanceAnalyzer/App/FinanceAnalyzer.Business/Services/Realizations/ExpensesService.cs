@@ -12,17 +12,17 @@ namespace FinanceAnalyzer.Business.Services.Realizations
 
         public ExpensesService(IExpensesContext<double> expensesContext)
         {
-            this._expensesContext = expensesContext ?? throw new NullReferenceException(nameof(expensesContext));
+            _expensesContext = expensesContext ?? throw new NullReferenceException(nameof(expensesContext));
         }
 
         public void ClearAll()
         {
-            this._expensesContext.ClearAll();
+            _expensesContext.ClearAll();
         }
 
         public DataResult<IReadOnlyCollection<double>> GetAll()
         {
-            var returnCollection = this._expensesContext.GetAll();
+            var returnCollection = _expensesContext.GetAll();
 
             return returnCollection == null
                 ? new DataResult<IReadOnlyCollection<double>>
@@ -39,7 +39,7 @@ namespace FinanceAnalyzer.Business.Services.Realizations
 
         public void Save(double obj)
         {
-            this._expensesContext.Save(obj);
+            _expensesContext.Save(obj); 
         }
     }
 }

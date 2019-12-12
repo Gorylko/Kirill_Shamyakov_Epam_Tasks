@@ -9,10 +9,10 @@ namespace FinanceAnalyzer.Shared.Entities
 
         public IReadOnlyCollection<double> ExpensesHistoryCollection { get; set; }
 
-        public double TotalIncome => this.IncomeHistoryCollection.Sum();
+        public double TotalIncome => IncomeHistoryCollection.Sum();
 
-        public double TotalExpenses => this.ExpensesHistoryCollection.Sum();
+        public double TotalExpenses => ExpensesHistoryCollection.Sum();
 
-        public double Profit => this.TotalIncome - this.TotalExpenses;
+        public double Profit => TotalIncome - TotalExpenses;
     }
 }

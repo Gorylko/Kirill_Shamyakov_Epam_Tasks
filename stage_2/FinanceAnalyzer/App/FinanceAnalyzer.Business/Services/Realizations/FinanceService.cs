@@ -19,21 +19,21 @@ namespace FinanceAnalyzer.Business.Services.Realizations
             IDataReceiver dataReceiver,
             IDisplayer displayer)
         {
-            this._expensesService = expensesService ?? throw new NullReferenceException(nameof(expensesService));
-            this._incomeService = incomeService ?? throw new NullReferenceException(nameof(incomeService));
-            this._dataReceiver = dataReceiver ?? throw new NullReferenceException(nameof(dataReceiver));
-            this._displayer = displayer ?? throw new NullReferenceException(nameof(displayer));
+            _expensesService = expensesService ?? throw new NullReferenceException(nameof(expensesService));
+            _incomeService = incomeService ?? throw new NullReferenceException(nameof(incomeService));
+            _dataReceiver = dataReceiver ?? throw new NullReferenceException(nameof(dataReceiver));
+            _displayer = displayer ?? throw new NullReferenceException(nameof(displayer));
 
-            this._isAppOn = true;
+            _isAppOn = true;
         }
 
         public void Launch()
         {
-            while (this._isAppOn)
+            while (_isAppOn)
             {
-                this._displayer.DisplayStartMenu();
+                _displayer.DisplayStartMenu();
 
-                var actionResult = this._dataReceiver.GetAction();
+                var actionResult = _dataReceiver.GetAction();
 
                 if (actionResult.IsSuccessful)
                 {
@@ -47,38 +47,43 @@ namespace FinanceAnalyzer.Business.Services.Realizations
             switch (action)
             {
                 case ActionType.DisplayIncome:
-                    this._displayer.DisplayIncome(this._incomeService.GetAll().Value);
+                    _displayer.DisplayIncome(_incomeService.GetAll().Value);
                     break;
                 case ActionType.DisplayExpenses:
-                    this._displayer.DisplayExpenses(this._expensesService.GetAll().Value);
+                    _displayer.DisplayExpenses(_expensesService.GetAll().Value);
                     break;
                 case ActionType.DisplayFullInformation:
-                    this._displayer.DisplayFullInformation(GetFullInformation());
+                    _displayer.DisplayFullInformation(GetFullInformation());
                     break;
                 case ActionType.AddNewIncome:
-                    this.AddNewIncome();
+                    AddNewIncome();
                     break;
                 case ActionType.AddNewExpense:
-                    this.AddNewExpense();
+                    AddNewExpense();
                     break;
                 case ActionType.ClearHistory:
-                    this._expensesService.ClearAll();
-                    this._incomeService.ClearAll();
+                    _expensesService.ClearAll();
+                    _incomeService.ClearAll();
                     break;
                 case ActionType.Exit:
-                    this._isAppOn = false;
+                    NewMethod();
                     break;
                 default:
                     break;
             }
         }
 
+        private void NewMethod()
+        {
+            _isAppOn = false;
+        }
+
         private FinanceInfo GetFullInformation()
         {
             return new FinanceInfo
             {
-                IncomeHistoryCollection = this._incomeService.GetAll().Value,
-                ExpensesHistoryCollection = this._expensesService.GetAll().Value
+                IncomeHistoryCollection = _incomeService.GetAll().Value,
+                ExpensesHistoryCollection = _expensesService.GetAll().Value
             };
         }
 
@@ -86,12 +91,12 @@ namespace FinanceAnalyzer.Business.Services.Realizations
         {
             while (true)
             {
-                this._displayer.DisplayMessage("Enter new income");
-                var doubleResult = this._dataReceiver.GetDouble();
+                _displayer.DisplayMessage("Enter new income");
+                var doubleResult = _dataReceiver.GetDouble();
 
                 if (doubleResult.IsSuccessful)
                 {
-                    this._incomeService.Save(doubleResult.Value);
+                    _incomeService.Save(doubleResult.Value);
                     return;
                 }
             }
@@ -101,12 +106,12 @@ namespace FinanceAnalyzer.Business.Services.Realizations
         {
             while (true)
             {
-                this._displayer.DisplayMessage("Enter new expense");
-                var doubleResult = this._dataReceiver.GetDouble();
+                _displayer.DisplayMessage("Enter new expense");
+                var doubleResult = _dataReceiver.GetDouble();
 
                 if (doubleResult.IsSuccessful)
                 {
-                    this._expensesService.Save(doubleResult.Value);
+                    _expensesService.Save(doubleResult.Value);
                     return;
                 }
             }

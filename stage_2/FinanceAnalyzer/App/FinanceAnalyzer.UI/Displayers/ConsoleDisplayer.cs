@@ -11,21 +11,20 @@ namespace FinanceAnalyzer.UI.Displayers
         {
             Console.Clear();
             Console.WriteLine(
-                "1. Display income" + "\n" +
-                "2. Display expenses" + "\n" +
-                "3. Add New Income" + "\n" +
-                "4. Add new expense" + "\n" +
-                "5. Display full information" + "\n" + 
-                "6. Clear history" + "\n" +
-                "7. Exit"
-                );
+@"1. Display income
+2. Display expenses
+3. Add New Income
+4. Add new expense
+5. Display full information
+6. Clear history
+7. Exit");
         }
 
-        
+
 
         public void DisplayCollection<T>(IReadOnlyCollection<T> collection)
         {
-            if(collection == null)
+            if (collection == null)
             {
                 return;
             }
@@ -44,7 +43,7 @@ namespace FinanceAnalyzer.UI.Displayers
 
         public void DisplayIncome<T>(IReadOnlyCollection<T> collection)
         {
-            this.DisplayMessage("Income : ");
+            DisplayMessage("Income : ");
 
             if (collection.Count == 0)
             {
@@ -52,7 +51,7 @@ namespace FinanceAnalyzer.UI.Displayers
             }
             else
             {
-                this.DisplayCollection(collection);
+                DisplayCollection(collection);
             }
 
             Console.WriteLine("Any key to return...");
@@ -62,15 +61,15 @@ namespace FinanceAnalyzer.UI.Displayers
 
         public void DisplayExpenses<T>(IReadOnlyCollection<T> collection)
         {
-            this.DisplayMessage("Expenses : ");
+            DisplayMessage("Expenses : ");
 
-            if(collection.Count == 0)
+            if (collection.Count == 0)
             {
                 Console.WriteLine("The history is empty");
             }
             else
             {
-                this.DisplayCollection(collection);
+                DisplayCollection(collection);
             }
 
             Console.WriteLine("Any key to return...");
@@ -82,13 +81,12 @@ namespace FinanceAnalyzer.UI.Displayers
         {
             Console.Clear();
             Console.WriteLine(
-                         $"Total income : {financeInfo.TotalIncome}" + "\n" +
-                         $"Total Expenses : {financeInfo.TotalExpenses}" + "\n" +
-                         $"Profit : {financeInfo.Profit}" + "\n"
-                         );
+ $@" Total income : {financeInfo.TotalIncome}
+ Total Expenses : {financeInfo.TotalExpenses}
+ Profit : {financeInfo.Profit}");
 
             Console.ReadKey();
         }
     }
-   
+
 }
