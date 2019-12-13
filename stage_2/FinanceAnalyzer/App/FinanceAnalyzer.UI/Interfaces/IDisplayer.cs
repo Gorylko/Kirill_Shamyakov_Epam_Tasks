@@ -1,5 +1,6 @@
 ﻿using FinanceAnalyzer.Shared.Entities;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FinanceAnalyzer.UI.Interfaces
 {

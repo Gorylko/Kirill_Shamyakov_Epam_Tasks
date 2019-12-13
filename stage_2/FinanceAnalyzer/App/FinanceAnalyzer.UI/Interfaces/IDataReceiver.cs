@@ -1,5 +1,6 @@
 ﻿using FinanceAnalyzer.Shared.Enums;
 using FinanceAnalyzer.Shared.Results;
+using System.Threading.Tasks;
 
 namespace FinanceAnalyzer.UI.Interfaces
 {

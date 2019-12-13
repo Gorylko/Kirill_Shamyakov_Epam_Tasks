@@ -3,6 +3,7 @@ using FinanceAnalyzer.Shared.Results;
 using FinanceAnalyzer.UI.Interfaces;
 using System;
 using System.Globalization;
+using System.Threading.Tasks;
 
 namespace FinanceAnalyzer.UI.DataReceivers
 {

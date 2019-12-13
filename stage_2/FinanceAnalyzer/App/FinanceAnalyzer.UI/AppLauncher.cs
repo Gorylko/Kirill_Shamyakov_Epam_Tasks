@@ -72,61 +72,40 @@ namespace FinanceAnalyzer.UI
 
         private async Task AddNewIncome()
         {
-            Policy
+            await Policy
                 .Handle<Exception>()
-                .RetryAsync(3, onRetry: (exception, retryCount) =>
+                .RetryAsync(3)
+                .ExecuteAsync(async () =>
                 {
                     _displayer.DisplayMessage("Enter new income");
                     var doubleResult = _dataReceiver.GetDouble();
 
                     if (!doubleResult.IsSuccessful)
                     {
-                        throw new Exception();
+                        throw new Exception(doubleResult.ErrorMessage);
                     }
 
-                    _financeService.AddNewIncome(doubleResult.Value);
+                    await _financeService.AddNewIncome(doubleResult.Value);
                 });
-
-            //while (true)
-            //{
-            //    _displayer.DisplayMessage("Enter new income");
-            //    var doubleResult = _dataReceiver.GetDouble();
-
-            //    if (doubleResult.IsSuccessful)
-            //    {
-            //        await _financeService.AddNewIncome(doubleResult.Value);
-            //        return;
-            //    }
-
-            //}
         }
 
         private async Task AddNewExpense()
         {
-            //Policy
-            //   .Handle<Exception>()
-            //   .Retry(3, onRetry: (exception, retryCount) =>
-            //   {
-            //       _displayer.DisplayMessage("Enter new expense");
-            //       var doubleResult = _dataReceiver.GetDouble();
+            await Policy
+               .Handle<Exception>()
+               .RetryAsync(3)
+               .ExecuteAsync(async () =>
+               {
+                   _displayer.DisplayMessage("Enter new expense");
+                   var doubleResult = _dataReceiver.GetDouble();
 
-            //       if (!doubleResult.IsSuccessful)
-            //       {
-            //           throw new Exception();
-            //       }
+                   if (!doubleResult.IsSuccessful)
+                   {
+                       throw new Exception(doubleResult.ErrorMessage);
+                   }
 
-            //       _financeService.AddNewExpense(doubleResult.Value);
-            //   });
-
-            _displayer.DisplayMessage("Enter new expense");
-            var doubleResult = _dataReceiver.GetDouble();
-
-            if (doubleResult.IsSuccessful)
-            {
-                await _financeService.AddNewExpense(doubleResult.Value);
-                return;
-            }
-
+                   await _financeService.AddNewExpense(doubleResult.Value);
+               });
         }
 
 
