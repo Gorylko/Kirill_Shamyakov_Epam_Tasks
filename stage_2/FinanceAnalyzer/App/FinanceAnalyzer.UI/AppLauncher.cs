@@ -37,7 +37,7 @@ namespace FinanceAnalyzer.UI
 
                 if (actionResult.IsSuccessful)
                 {
-                    PerformAction(actionResult.Value);
+                    await PerformAction(actionResult.Value);
                 }
             }
         }
