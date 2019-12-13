@@ -1,10 +1,6 @@
 ﻿using FinanceAnalyzer.Business.Services.Interfaces;
-using FinanceAnalyzer.Shared.Entities;
 using FinanceAnalyzer.Shared.Enums;
 using FinanceAnalyzer.UI.Interfaces;
-using Polly;
-using Polly.Retry;
-using System;
 using System.Threading.Tasks;
 
 namespace FinanceAnalyzer.UI
@@ -12,9 +8,9 @@ namespace FinanceAnalyzer.UI
     internal class AppLauncher : ILauncher
     {
         private bool _isAppOn;
-        private IFinanceService _financeService;
-        private IDataReceiver _dataReceiver;
-        private IDisplayer _displayer;
+        private readonly IFinanceService _financeService;
+        private readonly IDataReceiver _dataReceiver;
+        private readonly IDisplayer _displayer;
 
         public AppLauncher(
             IFinanceService financeService,

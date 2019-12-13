@@ -1,5 +1,4 @@
-﻿using FinanceAnalyzer.Business.Services.Interfaces;
-using FinanceAnalyzer.IoC;
+﻿using FinanceAnalyzer.IoC;
 using FinanceAnalyzer.UI.Dependency;
 using FinanceAnalyzer.UI.Interfaces;
 using StructureMap;

@@ -9,8 +9,8 @@ namespace FinanceAnalyzer.Business.Services.Realizations
 {
     public class FinanceService : IFinanceService
     {
-        private IExpensesService<double> _expensesService;
-        private IIncomeService<double> _incomeService;
+        private readonly IExpensesService<double> _expensesService;
+        private readonly IIncomeService<double> _incomeService;
 
         public FinanceService(
             IExpensesService<double> expensesService,

@@ -1,5 +1,4 @@
 ﻿using FinanceAnalyzer.Shared.Entities;
-using FinanceAnalyzer.Shared.Results;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 

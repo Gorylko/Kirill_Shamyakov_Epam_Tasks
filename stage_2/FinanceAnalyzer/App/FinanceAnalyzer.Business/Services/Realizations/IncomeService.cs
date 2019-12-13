@@ -8,7 +8,7 @@ namespace FinanceAnalyzer.Business.Services.Realizations
 {
     internal class IncomeService : IIncomeService<double>
     {
-        private IIncomeContext<double> _incomeContext;
+        private readonly IIncomeContext<double> _incomeContext;
 
         public IncomeService(IIncomeContext<double> incomeContext)
         {
