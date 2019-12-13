@@ -1,11 +1,13 @@
-﻿namespace FinanceAnalyzer.Data.DataContext.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace FinanceAnalyzer.Data.DataContext.Interfaces
 {
     public interface IDataContext<TResult, TValue>
     {
-        TResult GetAll();
+        Task<TResult> GetAll();
 
-        void Save(TValue obj);
+        Task Save(TValue obj);
 
-        void ClearAll();
+        Task ClearAll();
     }
 }

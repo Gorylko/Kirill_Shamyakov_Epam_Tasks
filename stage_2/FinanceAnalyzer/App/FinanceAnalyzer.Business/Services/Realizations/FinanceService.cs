@@ -3,6 +3,7 @@ using FinanceAnalyzer.Shared.Entities;
 using FinanceAnalyzer.Shared.Results;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FinanceAnalyzer.Business.Services.Realizations
 {
@@ -19,39 +20,39 @@ namespace FinanceAnalyzer.Business.Services.Realizations
             _incomeService = incomeService ?? throw new ArgumentNullException(nameof(incomeService));
         }
 
-        public FinanceInfo GetFullInformation()
+        public async Task<FinanceInfo> GetFullInformation()
         {
             return new FinanceInfo
             {
-                IncomeHistoryCollection = _incomeService.GetAll().Value,
-                ExpensesHistoryCollection = _expensesService.GetAll().Value
+                IncomeHistoryCollection = await _incomeService.GetAll(),
+                ExpensesHistoryCollection = await _expensesService.GetAll()
             };
         }
 
-        public DataResult<IReadOnlyCollection<double>> GetIncomeHistory()
+        public async Task<IReadOnlyCollection<double>> GetIncomeHistory()
         {
-            return _incomeService.GetAll();
+            return await _incomeService.GetAll();
         }
 
-        public DataResult<IReadOnlyCollection<double>> GetExpenseHistory()
+        public async Task<IReadOnlyCollection<double>> GetExpenseHistory()
         {
-            return _expensesService.GetAll();
+            return await _expensesService.GetAll();
         }
 
-        public void AddNewIncome(double value)
+        public async Task AddNewIncome(double value)
         {
-            _incomeService.Save(value);
+            await _incomeService.Save(value);
         }
 
-        public void AddNewExpense(double value)
+        public async Task AddNewExpense(double value)
         {
-            _expensesService.Save(value);
+            await _expensesService.Save(value);
         }
 
-        public void ClearHistory()
+        public async Task ClearHistory()
         {
-            _expensesService.ClearAll();
-            _incomeService.ClearAll();
+            await _expensesService.ClearAll();
+            await _incomeService.ClearAll();
         }
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using System.Threading.Tasks;
 using MapStrategies = FinanceAnalyzer.Data.Mappers.DoubleCollectionMapStrategies;
 
 namespace FinanceAnalyzer.Data.DataContext.Realizations
@@ -10,27 +11,28 @@ namespace FinanceAnalyzer.Data.DataContext.Realizations
     {
         private const string FilePath = "expenses.txt";
 
-        public void ClearAll()
+        public async Task ClearAll()
         {
-            File.WriteAllText(FilePath, string.Empty);
+            await File.WriteAllTextAsync(FilePath, string.Empty);
         }
 
-        public IReadOnlyCollection<double> GetAll()
+        public async Task<IReadOnlyCollection<double>> GetAll()
         {
             using (var fileStream = new FileStream(FilePath, FileMode.OpenOrCreate))
             {
                 using (var streamReader = new StreamReader(fileStream))
                 {
-                    return MapStrategies.MapDoubles(streamReader.ReadToEnd());
+                    var data = await streamReader.ReadToEndAsync();
+                    return MapStrategies.MapDoubles(data);
                 }
             }
         }
 
-        public void Save(double obj)
+        public async Task Save(double obj)
         {
             using (var streamWriter = new StreamWriter(FilePath, true, Encoding.Default))
             {
-                streamWriter.WriteLine(obj);
+                await streamWriter.WriteLineAsync(obj.ToString());
             }
         }
     }

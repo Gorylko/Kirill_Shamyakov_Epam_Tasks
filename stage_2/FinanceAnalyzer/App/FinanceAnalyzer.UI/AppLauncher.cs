@@ -5,6 +5,7 @@ using FinanceAnalyzer.UI.Interfaces;
 using Polly;
 using Polly.Retry;
 using System;
+using System.Threading.Tasks;
 
 namespace FinanceAnalyzer.UI
 {
@@ -26,7 +27,7 @@ namespace FinanceAnalyzer.UI
             _isAppOn = true;
         }
 
-        public void Launch()
+        public async Task Launch()
         {
             while (_isAppOn)
             {
@@ -41,27 +42,27 @@ namespace FinanceAnalyzer.UI
             }
         }
 
-        private void PerformAction(ActionType action)
+        private async Task PerformAction(ActionType action)
         {
             switch (action)
             {
                 case ActionType.DisplayIncome:
-                    _displayer.DisplayIncome(_financeService.GetIncomeHistory().Value);
+                    _displayer.DisplayIncome(await _financeService.GetIncomeHistory());
                     break;
                 case ActionType.DisplayExpenses:
-                    _displayer.DisplayExpenses(_financeService.GetExpenseHistory().Value);
+                    _displayer.DisplayExpenses(await _financeService.GetExpenseHistory());
                     break;
                 case ActionType.DisplayFullInformation:
-                    _displayer.DisplayFullInformation(_financeService.GetFullInformation());
+                    _displayer.DisplayFullInformation(await _financeService.GetFullInformation());
                     break;
                 case ActionType.AddNewIncome:
-                    AddNewIncome();
+                    await AddNewIncome();
                     break;
                 case ActionType.AddNewExpense:
-                    AddNewExpense();
+                    await AddNewExpense();
                     break;
                 case ActionType.ClearHistory:
-                    _financeService.ClearHistory();
+                    await _financeService.ClearHistory();
                     break;
                 case ActionType.Exit:
                     TurnOffApp();
@@ -71,7 +72,7 @@ namespace FinanceAnalyzer.UI
             }
         }
 
-        private void AddNewIncome()
+        private async Task AddNewIncome()
         {
             //Policy
             //    .Handle<Exception>()
@@ -95,14 +96,14 @@ namespace FinanceAnalyzer.UI
 
                 if (doubleResult.IsSuccessful)
                 {
-                    _financeService.AddNewIncome(doubleResult.Value);
+                    await _financeService.AddNewIncome(doubleResult.Value);
                     return;
                 }
 
             }
         }
 
-        private void AddNewExpense()
+        private async Task AddNewExpense()
         {
             //Policy
             //   .Handle<Exception>()
@@ -124,7 +125,7 @@ namespace FinanceAnalyzer.UI
 
             if (doubleResult.IsSuccessful)
             {
-                _financeService.AddNewExpense(doubleResult.Value);
+                await _financeService.AddNewExpense(doubleResult.Value);
                 return;
             }
 

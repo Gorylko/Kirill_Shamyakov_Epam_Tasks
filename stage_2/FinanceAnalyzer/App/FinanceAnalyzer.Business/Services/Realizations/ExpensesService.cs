@@ -3,6 +3,7 @@ using FinanceAnalyzer.Data.DataContext.Interfaces;
 using FinanceAnalyzer.Shared.Results;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FinanceAnalyzer.Business.Services.Realizations
 {
@@ -15,31 +16,19 @@ namespace FinanceAnalyzer.Business.Services.Realizations
             _expensesContext = expensesContext ?? throw new ArgumentNullException(nameof(expensesContext));
         }
 
-        public void ClearAll()
+        public async Task ClearAll()
         {
-            _expensesContext.ClearAll();
+            await _expensesContext.ClearAll();
         }
 
-        public DataResult<IReadOnlyCollection<double>> GetAll()
+        public async Task<IReadOnlyCollection<double>> GetAll()
         {
-            var returnCollection = _expensesContext.GetAll();
-
-            return returnCollection == null
-                ? new DataResult<IReadOnlyCollection<double>>
-                {
-                    IsSuccessful = false,
-                    ErrorMessage = "Value of collection is null"
-                }
-                : new DataResult<IReadOnlyCollection<double>>
-                {
-                    Value = returnCollection,
-                    IsSuccessful = true
-                };
+            return await _expensesContext.GetAll();
         }
 
-        public void Save(double obj)
+        public async Task Save(double obj)
         {
-            _expensesContext.Save(obj); 
+            await _expensesContext.Save(obj); 
         }
     }
 }

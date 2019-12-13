@@ -1,11 +1,13 @@
-﻿namespace FinanceAnalyzer.Business.Services.Interfaces
+﻿using System.Threading.Tasks;
+
+namespace FinanceAnalyzer.Business.Services.Interfaces
 {
     public interface IService<TValue, TResult>
     {
-        TResult GetAll();
+        Task<TResult> GetAll();
 
-        void Save(TValue obj);
+        Task Save(TValue obj);
 
-        void ClearAll();
+        Task ClearAll();
     }
 }

@@ -1,21 +1,22 @@
 ﻿using FinanceAnalyzer.Shared.Entities;
 using FinanceAnalyzer.Shared.Results;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace FinanceAnalyzer.Business.Services.Interfaces
 {
     public interface IFinanceService
     {
-        FinanceInfo GetFullInformation();
+        Task<FinanceInfo> GetFullInformation();
 
-        void AddNewExpense(double value);
+        Task AddNewExpense(double value);
 
-        void AddNewIncome(double value);
+        Task AddNewIncome(double value);
 
-        void ClearHistory();
+        Task ClearHistory();
 
-        DataResult<IReadOnlyCollection<double>> GetIncomeHistory();
+        Task<IReadOnlyCollection<double>> GetIncomeHistory();
 
-        DataResult<IReadOnlyCollection<double>> GetExpenseHistory();
+        Task<IReadOnlyCollection<double>> GetExpenseHistory();
     }
 }
