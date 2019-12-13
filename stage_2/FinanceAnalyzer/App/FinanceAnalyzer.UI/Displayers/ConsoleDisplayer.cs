@@ -1,5 +1,5 @@
-﻿using FinanceAnalyzer.Business.Services.Interfaces;
-using FinanceAnalyzer.Shared.Entities;
+﻿using FinanceAnalyzer.Shared.Entities;
+using FinanceAnalyzer.UI.Interfaces;
 using System;
 using System.Collections.Generic;
 

@@ -1,9 +1,9 @@
 ﻿using FinanceAnalyzer.Shared.Enums;
 using FinanceAnalyzer.Shared.Results;
 
-namespace FinanceAnalyzer.Business.Services.Interfaces
+namespace FinanceAnalyzer.UI.Interfaces
 {
-    public interface IDataReceiver
+    internal interface IDataReceiver
     {
         DataResult<int> GetInt();
 

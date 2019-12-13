@@ -1,6 +1,8 @@
 ﻿using FinanceAnalyzer.Business.Services.Interfaces;
 using FinanceAnalyzer.Shared.Enums;
 using FinanceAnalyzer.UI.Interfaces;
+using Polly;
+using System;
 using System.Threading.Tasks;
 
 namespace FinanceAnalyzer.UI
@@ -70,33 +72,33 @@ namespace FinanceAnalyzer.UI
 
         private async Task AddNewIncome()
         {
-            //Policy
-            //    .Handle<Exception>()
-            //    .Retry(3, onRetry: (exception, retryCount) =>
-            //    {
-            //        _displayer.DisplayMessage("Enter new income");
-            //        var doubleResult = _dataReceiver.GetDouble();
-
-            //        if (!doubleResult.IsSuccessful)
-            //        {
-            //            throw new Exception();
-            //        }
-
-            //        _financeService.AddNewIncome(doubleResult.Value);
-            //    });
-
-            while (true)
-            {
-                _displayer.DisplayMessage("Enter new income");
-                var doubleResult = _dataReceiver.GetDouble();
-
-                if (doubleResult.IsSuccessful)
+            Policy
+                .Handle<Exception>()
+                .RetryAsync(3, onRetry: (exception, retryCount) =>
                 {
-                    await _financeService.AddNewIncome(doubleResult.Value);
-                    return;
-                }
+                    _displayer.DisplayMessage("Enter new income");
+                    var doubleResult = _dataReceiver.GetDouble();
 
-            }
+                    if (!doubleResult.IsSuccessful)
+                    {
+                        throw new Exception();
+                    }
+
+                    _financeService.AddNewIncome(doubleResult.Value);
+                });
+
+            //while (true)
+            //{
+            //    _displayer.DisplayMessage("Enter new income");
+            //    var doubleResult = _dataReceiver.GetDouble();
+
+            //    if (doubleResult.IsSuccessful)
+            //    {
+            //        await _financeService.AddNewIncome(doubleResult.Value);
+            //        return;
+            //    }
+
+            //}
         }
 
         private async Task AddNewExpense()

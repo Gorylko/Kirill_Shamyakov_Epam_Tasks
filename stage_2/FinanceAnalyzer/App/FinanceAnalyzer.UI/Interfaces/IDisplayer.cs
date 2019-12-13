@@ -1,9 +1,9 @@
 ﻿using FinanceAnalyzer.Shared.Entities;
 using System.Collections.Generic;
 
-namespace FinanceAnalyzer.Business.Services.Interfaces
+namespace FinanceAnalyzer.UI.Interfaces
 {
-    public interface IDisplayer
+    internal interface IDisplayer
     {
         void DisplayCollection<T>(IReadOnlyCollection<T> collection);
 

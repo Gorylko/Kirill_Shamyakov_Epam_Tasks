@@ -1,6 +1,6 @@
-﻿using FinanceAnalyzer.Business.Services.Interfaces;
-using FinanceAnalyzer.Shared.Enums;
+﻿using FinanceAnalyzer.Shared.Enums;
 using FinanceAnalyzer.Shared.Results;
+using FinanceAnalyzer.UI.Interfaces;
 using System;
 using System.Globalization;
 
