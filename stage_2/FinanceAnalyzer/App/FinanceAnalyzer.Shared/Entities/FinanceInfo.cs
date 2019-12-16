@@ -5,14 +5,14 @@ namespace FinanceAnalyzer.Shared.Entities
 {
     public class FinanceInfo
     {
-        public IReadOnlyCollection<double> IncomeHistoryCollection { get; set; }
+        public IReadOnlyCollection<decimal> IncomeHistoryCollection { get; set; }
 
-        public IReadOnlyCollection<double> ExpensesHistoryCollection { get; set; }
+        public IReadOnlyCollection<decimal> ExpensesHistoryCollection { get; set; }
 
-        public double TotalIncome => IncomeHistoryCollection.Sum();
+        public decimal TotalIncome => IncomeHistoryCollection.Sum();
 
-        public double TotalExpenses => ExpensesHistoryCollection.Sum();
+        public decimal TotalExpenses => ExpensesHistoryCollection.Sum();
 
-        public double Profit => TotalIncome - TotalExpenses;
+        public decimal Profit => TotalIncome - TotalExpenses;
     }
 }

@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace FinanceAnalyzer.Business.Services.Realizations
 {
-    public class FinanceService : IFinanceService
+    public class FinanceService : IFinanceService<decimal>
     {
-        private readonly IExpensesService<double> _expensesService;
-        private readonly IIncomeService<double> _incomeService;
+        private readonly IExpensesService<decimal> _expensesService;
+        private readonly IIncomeService<decimal> _incomeService;
 
         public FinanceService(
-            IExpensesService<double> expensesService,
-            IIncomeService<double> incomeService)
+            IExpensesService<decimal> expensesService,
+            IIncomeService<decimal> incomeService)
         {
             _expensesService = expensesService ?? throw new ArgumentNullException(nameof(expensesService));
             _incomeService = incomeService ?? throw new ArgumentNullException(nameof(incomeService));
@@ -29,22 +29,22 @@ namespace FinanceAnalyzer.Business.Services.Realizations
             };
         }
 
-        public async Task<IReadOnlyCollection<double>> GetIncomeHistory()
+        public async Task<IReadOnlyCollection<decimal>> GetIncomeHistory()
         {
             return await _incomeService.GetAll();
         }
 
-        public async Task<IReadOnlyCollection<double>> GetExpenseHistory()
+        public async Task<IReadOnlyCollection<decimal>> GetExpenseHistory()
         {
             return await _expensesService.GetAll();
         }
 
-        public async Task AddNewIncome(double value)
+        public async Task AddNewIncome(decimal value)
         {
             await _incomeService.Save(value);
         }
 
-        public async Task AddNewExpense(double value)
+        public async Task AddNewExpense(decimal value)
         {
             await _expensesService.Save(value);
         }

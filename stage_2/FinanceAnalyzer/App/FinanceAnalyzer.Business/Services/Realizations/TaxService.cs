@@ -3,19 +3,24 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-//namespace FinanceAnalyzer.Business.Services.Realizations
-//{
-//    internal class TaxService
-//    {
-//        private ITaxContext _taxContext;
-//        public TaxService(ITaxContext taxContext)
-//        {
-//            _taxContext = taxContext ?? throw new ArgumentNullException(nameof(taxContext));
-//        }
+namespace FinanceAnalyzer.Business.Services.Realizations
+{
+    internal class TaxService
+    {
+        private const decimal TaxPercentage = 13;
+        private ITaxContext<decimal> _taxContext;
+        public TaxService(ITaxContext<decimal> taxContext)
+        {
+            _taxContext = taxContext ?? throw new ArgumentNullException(nameof(taxContext));
+        }
 
-//        public double TakeTax(double income)
-//        {
+        public decimal TakeTax(decimal income)
+        {
+            var newIncome = income - (income * TaxPercentage / 100);
 
-//        }
-//    }
-//}
+            _taxContext.Save(income - newIncome);
+
+            return newIncome;
+        }
+    }
+}

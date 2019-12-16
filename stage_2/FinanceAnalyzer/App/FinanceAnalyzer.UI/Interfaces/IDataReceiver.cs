@@ -8,7 +8,7 @@ namespace FinanceAnalyzer.UI.Interfaces
     {
         DataResult<int> GetInt();
 
-        DataResult<double> GetDouble();
+        DataResult<decimal> GetDecimal();
 
         DataResult<ActionType> GetAction();
     }

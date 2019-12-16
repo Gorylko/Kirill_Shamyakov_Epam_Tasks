@@ -9,18 +9,18 @@ namespace FinanceAnalyzer.UI.DataReceivers
 {
     public class ConsoleDataReceiver : IDataReceiver
     {
-        public DataResult<double> GetDouble()
+        public DataResult<decimal> GetDecimal()
         {
-            if(double.TryParse(Console.ReadLine(), NumberStyles.Any, CultureInfo.InvariantCulture, out double number))
+            if (decimal.TryParse(Console.ReadLine(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal number))
             {
-                return new DataResult<double>
+                return new DataResult<decimal>
                 {
                     Value = number,
                     IsSuccessful = true
                 };
             }
 
-            return GetErrorResult<double>();
+            return GetErrorResult<decimal>();
         }
 
         public DataResult<int> GetInt()

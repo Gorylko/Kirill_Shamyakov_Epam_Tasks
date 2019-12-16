@@ -11,12 +11,12 @@ namespace FinanceAnalyzer.UI
     {
         private bool _isAppOn;
         private const int MaxAttemptsNumber = 3;
-        private readonly IFinanceService _financeService;
+        private readonly IFinanceService<decimal> _financeService;
         private readonly IDataReceiver _dataReceiver;
         private readonly IDisplayer _displayer;
 
         public AppLauncher(
-            IFinanceService financeService,
+            IFinanceService<decimal> financeService,
             IDataReceiver dataReceiver,
             IDisplayer displayer)
         {
@@ -76,16 +76,16 @@ namespace FinanceAnalyzer.UI
             for (int currentAttempt = 1; currentAttempt <= MaxAttemptsNumber; currentAttempt++)
             {
                 _displayer.DisplayMessage("Enter new income");
-                var doubleResult = _dataReceiver.GetDouble();
+                var inputResult = _dataReceiver.GetDecimal();
 
-                if (doubleResult.IsSuccessful)
+                if (inputResult.IsSuccessful)
                 {
-                    await _financeService.AddNewIncome(doubleResult.Value);
+                    await _financeService.AddNewIncome(inputResult.Value);
                     return;
                 }
-                else if(currentAttempt == MaxAttemptsNumber)
+                else if (currentAttempt == MaxAttemptsNumber)
                 {
-                    _displayer.DisplayNotification(doubleResult.ErrorMessage);
+                    _displayer.DisplayNotification(inputResult.ErrorMessage);
                 }
             }
         }
@@ -95,16 +95,16 @@ namespace FinanceAnalyzer.UI
             for (int currentAttempt = 1; currentAttempt <= MaxAttemptsNumber; currentAttempt++)
             {
                 _displayer.DisplayMessage("Enter new expense");
-                var doubleResult = _dataReceiver.GetDouble();
+                var inputResult = _dataReceiver.GetDecimal();
 
-                if (doubleResult.IsSuccessful)
+                if (inputResult.IsSuccessful)
                 {
-                    await _financeService.AddNewExpense(doubleResult.Value);
+                    await _financeService.AddNewExpense(inputResult.Value);
                     return;
                 }
                 else if (currentAttempt == MaxAttemptsNumber)
                 {
-                    _displayer.DisplayNotification(doubleResult.ErrorMessage);
+                    _displayer.DisplayNotification(inputResult.ErrorMessage);
                 }
             }
         }

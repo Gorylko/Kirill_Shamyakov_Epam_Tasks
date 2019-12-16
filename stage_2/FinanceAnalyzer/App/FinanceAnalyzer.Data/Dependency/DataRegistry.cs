@@ -8,8 +8,8 @@ namespace FinanceAnalyzer.Data.Dependency
     {
         public DataRegistry()
         {
-            For<IExpensesContext<double>>().Use<ExpensesContext>();
-            For<IIncomeContext<double>>().Use<IncomeContext>();
+            For<IExpensesContext<decimal>>().Use<ExpensesContext>();
+            For<IIncomeContext<decimal>>().Use<IncomeContext>();
         }
     }
 }

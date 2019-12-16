@@ -4,18 +4,18 @@ using System.Threading.Tasks;
 
 namespace FinanceAnalyzer.Business.Services.Interfaces
 {
-    public interface IFinanceService
+    public interface IFinanceService<T>
     {
         Task<FinanceInfo> GetFullInformation();
 
-        Task AddNewExpense(double value);
+        Task AddNewExpense(T value);
 
-        Task AddNewIncome(double value);
+        Task AddNewIncome(T value);
 
         Task ClearHistory();
 
-        Task<IReadOnlyCollection<double>> GetIncomeHistory();
+        Task<IReadOnlyCollection<T>> GetIncomeHistory();
 
-        Task<IReadOnlyCollection<double>> GetExpenseHistory();
+        Task<IReadOnlyCollection<T>> GetExpenseHistory();
     }
 }

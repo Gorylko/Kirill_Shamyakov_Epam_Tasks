@@ -26,15 +26,15 @@ namespace FinanceAnalyzer.IoC
 
         private static void AddBusinessDependency(IAssemblyScanner scan)
         {
-            scan.AssemblyContainingType<IIncomeService<double>>();
-            scan.AssemblyContainingType<IExpensesService<double>>();
-            scan.AssemblyContainingType<IFinanceService>();
+            scan.AssemblyContainingType<IIncomeService<decimal>>();
+            scan.AssemblyContainingType<IExpensesService<decimal>>();
+            scan.AssemblyContainingType<IFinanceService<decimal>>();
         }
 
         private static void AddDataDependency(IAssemblyScanner scan)
         {
-            scan.AssemblyContainingType<IExpensesContext<double>>();
-            scan.AssemblyContainingType<IIncomeContext<double>>();
+            scan.AssemblyContainingType<IExpensesContext<decimal>>();
+            scan.AssemblyContainingType<IIncomeContext<decimal>>();
         }
 
         public static IContainer Container

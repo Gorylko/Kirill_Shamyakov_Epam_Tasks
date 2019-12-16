@@ -7,7 +7,7 @@ using MapStrategies = FinanceAnalyzer.Data.Mappers.DoubleCollectionMapStrategies
 
 namespace FinanceAnalyzer.Data.DataContext.Realizations
 {
-    public class IncomeContext : IIncomeContext<double>
+    public class IncomeContext : IIncomeContext<decimal>
     {
         private const string FilePath = "income.txt";
 
@@ -16,19 +16,19 @@ namespace FinanceAnalyzer.Data.DataContext.Realizations
             await File.WriteAllTextAsync(FilePath, string.Empty);
         }
 
-        public async Task<IReadOnlyCollection<double>> GetAll()
+        public async Task<IReadOnlyCollection<decimal>> GetAll()
         {
             using (var fileStream = new FileStream(FilePath, FileMode.OpenOrCreate))
             {
                 using (var streamReader = new StreamReader(fileStream))
                 {
                     var data = await streamReader.ReadToEndAsync();
-                    return MapStrategies.MapDoubles(data);
+                    return MapStrategies.MapDecimalCollection(data);
                 }
             }
         }
 
-        public async Task Save(double obj)
+        public async Task Save(decimal obj)
         {
             using (var streamWriter = new StreamWriter(FilePath, true, Encoding.Default))
             {

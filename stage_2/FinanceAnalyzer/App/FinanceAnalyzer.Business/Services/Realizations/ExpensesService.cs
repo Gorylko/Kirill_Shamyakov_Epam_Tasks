@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace FinanceAnalyzer.Business.Services.Realizations
 {
-    internal class ExpensesService : IExpensesService<double>
+    internal class ExpensesService : IExpensesService<decimal>
     {
-        private IExpensesContext<double> _expensesContext;
+        private IExpensesContext<decimal> _expensesContext;
 
-        public ExpensesService(IExpensesContext<double> expensesContext)
+        public ExpensesService(IExpensesContext<decimal> expensesContext)
         {
             _expensesContext = expensesContext ?? throw new ArgumentNullException(nameof(expensesContext));
         }
@@ -20,12 +20,12 @@ namespace FinanceAnalyzer.Business.Services.Realizations
             await _expensesContext.ClearAll();
         }
 
-        public async Task<IReadOnlyCollection<double>> GetAll()
+        public async Task<IReadOnlyCollection<decimal>> GetAll()
         {
             return await _expensesContext.GetAll();
         }
 
-        public async Task Save(double obj)
+        public async Task Save(decimal obj)
         {
             await _expensesContext.Save(obj); 
         }
