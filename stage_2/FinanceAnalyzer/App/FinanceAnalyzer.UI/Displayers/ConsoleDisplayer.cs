@@ -21,7 +21,11 @@ namespace FinanceAnalyzer.UI.Displayers
 7. Exit");
         }
 
-
+        public void DisplayNotification(string message)
+        {
+            DisplayMessage(message);
+            Console.ReadKey();
+        }
 
         public void DisplayCollection<T>(IReadOnlyCollection<T> collection)
         {

@@ -1,10 +1,12 @@
-﻿using System;
+﻿using FinanceAnalyzer.Data.DataContext.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace FinanceAnalyzer.Data.DataContext.Realizations
 {
-    class TaxContext
-    {
-    }
+    //public class TaxContext : ITaxContext
+    //{
+
+    //}
 }

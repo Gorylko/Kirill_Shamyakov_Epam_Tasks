@@ -10,6 +10,8 @@ namespace FinanceAnalyzer.UI.Interfaces
 
         void DisplayStartMenu();
 
+        void DisplayNotification(string message);
+
         void DisplayMessage(string message);
 
         void DisplayIncome<T>(IReadOnlyCollection<T> collection);

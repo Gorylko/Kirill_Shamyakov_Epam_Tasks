@@ -83,9 +83,9 @@ namespace FinanceAnalyzer.UI
                     await _financeService.AddNewIncome(doubleResult.Value);
                     return;
                 }
-                else if (currentAttempt == MaxAttemptsNumber)
+                else if(currentAttempt == MaxAttemptsNumber)
                 {
-                    throw new Exception(doubleResult.ErrorMessage);
+                    _displayer.DisplayNotification(doubleResult.ErrorMessage);
                 }
             }
         }
@@ -104,7 +104,7 @@ namespace FinanceAnalyzer.UI
                 }
                 else if (currentAttempt == MaxAttemptsNumber)
                 {
-                    throw new Exception(doubleResult.ErrorMessage);
+                    _displayer.DisplayNotification(doubleResult.ErrorMessage);
                 }
             }
         }

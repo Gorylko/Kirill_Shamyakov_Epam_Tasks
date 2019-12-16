@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FinanceAnalyzer.Data.DataContext.Interfaces
+﻿namespace FinanceAnalyzer.Data.DataContext.Interfaces
 {
-    interface ITaxContext
+    using System;
+    using System.Collections.Generic;
+    using System.Text;
+
+    public interface ITaxContext<T> : IDataContext<IReadOnlyCollection<T>, T>
     {
     }
 }
