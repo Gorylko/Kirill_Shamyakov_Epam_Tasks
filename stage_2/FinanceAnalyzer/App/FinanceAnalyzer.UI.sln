@@ -5,13 +5,19 @@ VisualStudioVersion = 16.0.29230.47
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceAnalyzer.UI", "FinanceAnalyzer.UI\FinanceAnalyzer.UI.csproj", "{3890A208-D6B3-4308-BE13-97E80F2A221D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceAnalyzer.Business", "FinanceAnalyzer.Business\FinanceAnalyzer.Business.csproj", "{FAC33FFF-A2B7-47D1-B4EB-144DB0054AC2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceAnalyzer.Business", "FinanceAnalyzer.Business\FinanceAnalyzer.Business.csproj", "{FAC33FFF-A2B7-47D1-B4EB-144DB0054AC2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceAnalyzer.Data", "FinanceAnalyzer.Data\FinanceAnalyzer.Data.csproj", "{3F983B67-F545-4A7D-A943-FDF5B3C965BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceAnalyzer.Data", "FinanceAnalyzer.Data\FinanceAnalyzer.Data.csproj", "{3F983B67-F545-4A7D-A943-FDF5B3C965BD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceAnalyzer.Shared", "FinanceAnalyzer.Shared\FinanceAnalyzer.Shared.csproj", "{AA253BB7-0369-4BDE-9FF4-B1C153052D41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceAnalyzer.Shared", "FinanceAnalyzer.Shared\FinanceAnalyzer.Shared.csproj", "{AA253BB7-0369-4BDE-9FF4-B1C153052D41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FinanceAnalyzer.IoC", "FinanceAnalyzer.IoC\FinanceAnalyzer.IoC.csproj", "{5EFE8CA7-630B-4056-A060-0A5F34B8B99C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceAnalyzer.IoC", "FinanceAnalyzer.IoC\FinanceAnalyzer.IoC.csproj", "{5EFE8CA7-630B-4056-A060-0A5F34B8B99C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{31DDAB60-308F-4981-A0A7-B87686F3F010}"
+	ProjectSection(SolutionItems) = preProject
+		stylecop.json = stylecop.json
+		test.ruleset = test.ruleset
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

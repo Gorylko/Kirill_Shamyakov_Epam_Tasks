@@ -10,6 +10,7 @@ namespace FinanceAnalyzer.UI
     internal class AppLauncher : ILauncher
     {
         private bool _isAppOn;
+        private const int MaxAttemptsNumber = 3;
         private readonly IFinanceService _financeService;
         private readonly IDataReceiver _dataReceiver;
         private readonly IDisplayer _displayer;
@@ -72,40 +73,40 @@ namespace FinanceAnalyzer.UI
 
         private async Task AddNewIncome()
         {
-            await Policy
-                .Handle<Exception>()
-                .RetryAsync(3)
-                .ExecuteAsync(async () =>
+            for (int currentAttempt = 1; currentAttempt <= MaxAttemptsNumber; currentAttempt++)
+            {
+                _displayer.DisplayMessage("Enter new income");
+                var doubleResult = _dataReceiver.GetDouble();
+
+                if (doubleResult.IsSuccessful)
                 {
-                    _displayer.DisplayMessage("Enter new income");
-                    var doubleResult = _dataReceiver.GetDouble();
-
-                    if (!doubleResult.IsSuccessful)
-                    {
-                        throw new Exception(doubleResult.ErrorMessage);
-                    }
-
                     await _financeService.AddNewIncome(doubleResult.Value);
-                });
+                    return;
+                }
+                else if (currentAttempt == MaxAttemptsNumber)
+                {
+                    throw new Exception(doubleResult.ErrorMessage);
+                }
+            }
         }
 
         private async Task AddNewExpense()
         {
-            await Policy
-               .Handle<Exception>()
-               .RetryAsync(3)
-               .ExecuteAsync(async () =>
-               {
-                   _displayer.DisplayMessage("Enter new expense");
-                   var doubleResult = _dataReceiver.GetDouble();
+            for (int currentAttempt = 1; currentAttempt <= MaxAttemptsNumber; currentAttempt++)
+            {
+                _displayer.DisplayMessage("Enter new expense");
+                var doubleResult = _dataReceiver.GetDouble();
 
-                   if (!doubleResult.IsSuccessful)
-                   {
-                       throw new Exception(doubleResult.ErrorMessage);
-                   }
-
-                   await _financeService.AddNewExpense(doubleResult.Value);
-               });
+                if (doubleResult.IsSuccessful)
+                {
+                    await _financeService.AddNewExpense(doubleResult.Value);
+                    return;
+                }
+                else if (currentAttempt == MaxAttemptsNumber)
+                {
+                    throw new Exception(doubleResult.ErrorMessage);
+                }
+            }
         }
 
 
