@@ -8,6 +8,6 @@
         AddNewExpense = 4,
         DisplayFullInformation = 5,
         ClearHistory = 6,
-        Exit = 7
+        Exit = 7,
     }
 }

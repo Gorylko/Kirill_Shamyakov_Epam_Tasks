@@ -5,6 +5,7 @@
     using System.Text;
     using System.Threading.Tasks;
     using FinanceAnalyzer.Data.DataContext.Interfaces;
+    using MapStrategies = FinanceAnalyzer.Data.Mappers.DoubleCollectionMapStrategies;
 
     public class TaxContext : ITaxContext<decimal>
     {
@@ -12,12 +13,19 @@
 
         public async Task ClearAll()
         {
-            throw new System.NotImplementedException();
+            await File.WriteAllTextAsync(FilePath, string.Empty);
         }
 
         public async Task<IReadOnlyCollection<decimal>> GetAll()
         {
-            throw new System.NotImplementedException();
+            using (var fileStream = new FileStream(FilePath, FileMode.OpenOrCreate))
+            {
+                using (var streamReader = new StreamReader(fileStream))
+                {
+                    var data = await streamReader.ReadToEndAsync();
+                    return MapStrategies.MapDecimalCollection(data);
+                }
+            }
         }
 
         public async Task Save(decimal obj)

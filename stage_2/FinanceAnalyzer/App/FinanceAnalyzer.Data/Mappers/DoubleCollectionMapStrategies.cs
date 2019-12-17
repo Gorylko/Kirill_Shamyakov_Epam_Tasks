@@ -11,8 +11,8 @@
             return !string.IsNullOrEmpty(source)
                 ? source
                 .Split('\n')
-                .Where(el => double.TryParse(el, NumberStyles.Any, CultureInfo.InvariantCulture, out double number))
-                .Select(sortedEl => double.Parse(sortedEl))
+                .Where(element => double.TryParse(element, NumberStyles.Any, CultureInfo.InvariantCulture, out double number))
+                .Select(sortedElement => double.Parse(sortedElement))
                 .ToArray()
                 : null;
         }
@@ -22,8 +22,8 @@
             return !string.IsNullOrEmpty(source)
                 ? source
                 .Split('\n')
-                .Where(el => decimal.TryParse(el, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal number))
-                .Select(sortedEl => decimal.Parse(sortedEl))
+                .Where(element => decimal.TryParse(element, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal number))
+                .Select(sortedElement => decimal.Parse(sortedElement))
                 .ToArray()
                 : null;
         }
