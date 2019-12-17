@@ -1,4 +1,8 @@
-﻿namespace FinanceAnalyzer.Business.Services.Interfaces
+﻿// <copyright file="IFinanceService.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
+
+namespace FinanceAnalyzer.Business.Services.Interfaces
 {
     using System.Collections.Generic;
     using System.Threading.Tasks;

@@ -6,32 +6,26 @@
 
     public static class DoubleCollectionMapStrategies
     {
-        public static IReadOnlyCollection<double> MapDoubleCollection(string sourse)
+        public static IReadOnlyCollection<double> MapDoubleCollection(string source)
         {
-            if(sourse == null)
-            {
-                return default;
-            }
-
-            return sourse
+            return !string.IsNullOrEmpty(source)
+                ? source
                 .Split('\n')
                 .Where(el => double.TryParse(el, NumberStyles.Any, CultureInfo.InvariantCulture, out double number))
                 .Select(sortedEl => double.Parse(sortedEl))
-                .ToArray();
+                .ToArray()
+                : null;
         }
 
-        public static IReadOnlyCollection<decimal> MapDecimalCollection(string sourse)
+        public static IReadOnlyCollection<decimal> MapDecimalCollection(string source)
         {
-            if (sourse == null)
-            {
-                return default;
-            }
-
-            return sourse
+            return !string.IsNullOrEmpty(source)
+                ? source
                 .Split('\n')
                 .Where(el => decimal.TryParse(el, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal number))
                 .Select(sortedEl => decimal.Parse(sortedEl))
-                .ToArray();
+                .ToArray()
+                : null;
         }
     }
 }

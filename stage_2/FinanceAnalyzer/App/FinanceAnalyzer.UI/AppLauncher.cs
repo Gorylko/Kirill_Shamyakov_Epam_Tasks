@@ -103,6 +103,5 @@
         {
             _isAppOn = false;
         }
-
     }
 }

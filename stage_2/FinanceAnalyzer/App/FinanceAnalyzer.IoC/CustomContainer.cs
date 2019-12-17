@@ -12,16 +12,13 @@
         public static void Initialize()
         {
             _container = new Container(
-                x => x.Scan
-                       (
+                x => x.Scan(
                            scan =>
                            {
                                AddBusinessDependency(scan);
                                AddDataDependency(scan);
                                scan.LookForRegistries();
-                           }
-                       )
-          );
+                           }));
         }
 
         private static void AddBusinessDependency(IAssemblyScanner scan)
@@ -37,9 +34,6 @@
             scan.AssemblyContainingType<IIncomeContext<decimal>>();
         }
 
-        public static IContainer Container
-        {
-            get { return _container; }
-        }
+        public static IContainer Container => _container;
     }
 }

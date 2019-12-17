@@ -27,7 +27,7 @@
 
         public async Task Save(decimal obj)
         {
-            await _expensesContext.Save(obj); 
+            await _expensesContext.Save(obj);
         }
     }
 }

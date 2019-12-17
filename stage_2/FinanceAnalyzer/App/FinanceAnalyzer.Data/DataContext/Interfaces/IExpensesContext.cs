@@ -2,5 +2,7 @@
 {
     using System.Collections.Generic;
 
-    public interface IExpensesContext<T> : IDataContext<IReadOnlyCollection<T>, T> { }
+    public interface IExpensesContext<T> : IDataContext<IReadOnlyCollection<T>, T>
+    {
+    }
 }
