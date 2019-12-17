@@ -28,10 +28,10 @@ namespace FinanceAnalyzer.UI
         {
             CustomContainer.Initialize();
 
-            var conteiner = CustomContainer.Container;
-            conteiner.Configure(c => c.AddRegistry<UIRegistry>());
+            var container = CustomContainer.Container;
+            container.Configure(c => c.AddRegistry<UIRegistry>());
 
-            return conteiner;
+            return container;
         }
     }
 }
