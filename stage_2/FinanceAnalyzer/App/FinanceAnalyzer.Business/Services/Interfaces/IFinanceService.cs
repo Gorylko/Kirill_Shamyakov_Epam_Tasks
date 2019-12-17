@@ -1,9 +1,9 @@
-﻿using FinanceAnalyzer.Shared.Entities;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace FinanceAnalyzer.Business.Services.Interfaces
+﻿namespace FinanceAnalyzer.Business.Services.Interfaces
 {
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using FinanceAnalyzer.Shared.Entities;
+
     public interface IFinanceService<T>
     {
         Task<FinanceInfo> GetFullInformation();

@@ -1,10 +1,10 @@
-﻿using FinanceAnalyzer.UI.DataReceivers;
-using FinanceAnalyzer.UI.Displayers;
-using FinanceAnalyzer.UI.Interfaces;
-using StructureMap;
-
-namespace FinanceAnalyzer.UI.Dependency
+﻿namespace FinanceAnalyzer.UI.Dependency
 {
+    using FinanceAnalyzer.UI.DataReceivers;
+    using FinanceAnalyzer.UI.Displayers;
+    using FinanceAnalyzer.UI.Interfaces;
+    using StructureMap;
+
     public class UIRegistry : Registry
     {
         public UIRegistry()

@@ -1,9 +1,9 @@
-﻿using FinanceAnalyzer.Business.Services.Interfaces;
-using FinanceAnalyzer.Business.Services.Realizations;
-using StructureMap;
-
-namespace FinanceAnalyzer.Business.Dependency
+﻿namespace FinanceAnalyzer.Business.Dependency
 {
+    using FinanceAnalyzer.Business.Services.Interfaces;
+    using FinanceAnalyzer.Business.Services.Realizations;
+    using StructureMap;
+
     public class BusinessRegistry : Registry
     {
         public BusinessRegistry()

@@ -1,9 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-
-namespace FinanceAnalyzer.Data.Mappers
+﻿namespace FinanceAnalyzer.Data.Mappers
 {
+    using System.Collections.Generic;
+    using System.Globalization;
+    using System.Linq;
+
     public static class DoubleCollectionMapStrategies
     {
         public static IReadOnlyCollection<double> MapDoubleCollection(string sourse)

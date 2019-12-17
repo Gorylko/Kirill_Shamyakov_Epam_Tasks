@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace FinanceAnalyzer.Data.DataContext.Interfaces
+﻿namespace FinanceAnalyzer.Data.DataContext.Interfaces
 {
-    public interface IExpensesContext<T> : IDataContext<IReadOnlyCollection<T>, T> { }//can be expanded
+    using System.Collections.Generic;
+
+    public interface IExpensesContext<T> : IDataContext<IReadOnlyCollection<T>, T> { }
 }

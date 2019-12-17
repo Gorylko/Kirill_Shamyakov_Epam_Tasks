@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-
-namespace FinanceAnalyzer.UI.Interfaces
+﻿namespace FinanceAnalyzer.UI.Interfaces
 {
+    using System.Threading.Tasks;
+
     internal interface ILauncher
     {
         Task Launch();

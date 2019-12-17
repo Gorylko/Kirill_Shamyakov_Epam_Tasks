@@ -1,6 +1,10 @@
-﻿using System.Collections.Generic;
+﻿// <copyright file="IIncomeContext.cs" company="PlaceholderCompany">
+// Copyright (c) PlaceholderCompany. All rights reserved.
+// </copyright>
 
 namespace FinanceAnalyzer.Data.DataContext.Interfaces
 {
-    public interface IIncomeContext<T> : IDataContext<IReadOnlyCollection<T>, T> { } //can be expanded
+    using System.Collections.Generic;
+
+    public interface IIncomeContext<T> : IDataContext<IReadOnlyCollection<T>, T> { }
 }

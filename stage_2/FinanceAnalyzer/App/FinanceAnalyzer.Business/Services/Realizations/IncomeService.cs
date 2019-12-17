@@ -1,11 +1,11 @@
-﻿using FinanceAnalyzer.Business.Services.Interfaces;
-using FinanceAnalyzer.Data.DataContext.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace FinanceAnalyzer.Business.Services.Realizations
+﻿namespace FinanceAnalyzer.Business.Services.Realizations
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using FinanceAnalyzer.Business.Services.Interfaces;
+    using FinanceAnalyzer.Data.DataContext.Interfaces;
+
     internal class IncomeService : IIncomeService
     {
         private readonly IIncomeContext<decimal> _incomeContext;

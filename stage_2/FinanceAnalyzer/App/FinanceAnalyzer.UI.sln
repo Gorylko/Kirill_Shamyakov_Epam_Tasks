@@ -15,6 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FinanceAnalyzer.IoC", "Fina
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{31DDAB60-308F-4981-A0A7-B87686F3F010}"
 	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
 		stylecop.json = stylecop.json
 		test.ruleset = test.ruleset
 	EndProjectSection

@@ -1,12 +1,10 @@
-﻿using FinanceAnalyzer.Business.Services.Interfaces;
-using FinanceAnalyzer.Shared.Enums;
-using FinanceAnalyzer.UI.Interfaces;
-using Polly;
-using System;
-using System.Threading.Tasks;
-
-namespace FinanceAnalyzer.UI
+﻿namespace FinanceAnalyzer.UI
 {
+    using System.Threading.Tasks;
+    using FinanceAnalyzer.Business.Services.Interfaces;
+    using FinanceAnalyzer.Shared.Enums;
+    using FinanceAnalyzer.UI.Interfaces;
+
     internal class AppLauncher : ILauncher
     {
         private const int MaxAttemptsNumber = 3;

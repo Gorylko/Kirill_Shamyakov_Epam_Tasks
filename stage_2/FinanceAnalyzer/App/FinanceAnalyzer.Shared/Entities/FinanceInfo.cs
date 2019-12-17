@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-
-namespace FinanceAnalyzer.Shared.Entities
+﻿namespace FinanceAnalyzer.Shared.Entities
 {
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class FinanceInfo
     {
         public IReadOnlyCollection<decimal> IncomeHistoryCollection { get; set; }

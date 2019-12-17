@@ -1,15 +1,15 @@
-﻿using FinanceAnalyzer.IoC;
-using FinanceAnalyzer.UI.Dependency;
-using FinanceAnalyzer.UI.Interfaces;
-using StructureMap;
-using System;
-using System.Threading.Tasks;
-
-namespace FinanceAnalyzer.UI
+﻿namespace FinanceAnalyzer.UI
 {
-    class Program
+    using System;
+    using System.Threading.Tasks;
+    using FinanceAnalyzer.IoC;
+    using FinanceAnalyzer.UI.Dependency;
+    using FinanceAnalyzer.UI.Interfaces;
+    using StructureMap;
+
+    internal class Program
     {
-        static async Task Main(string[] args)
+        private static async Task Main(string[] args)
         {
             var launcher = GetContainer().GetInstance<ILauncher>();
 
@@ -17,7 +17,7 @@ namespace FinanceAnalyzer.UI
             {
                 await launcher.Launch();
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 Console.Clear();
                 Console.WriteLine(ex);

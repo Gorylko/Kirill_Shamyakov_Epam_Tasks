@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-
-namespace FinanceAnalyzer.Data.DataContext.Interfaces
+﻿namespace FinanceAnalyzer.Data.DataContext.Interfaces
 {
+    using System.Threading.Tasks;
+
     public interface IDataContext<TResult, TValue>
     {
         Task<TResult> GetAll();

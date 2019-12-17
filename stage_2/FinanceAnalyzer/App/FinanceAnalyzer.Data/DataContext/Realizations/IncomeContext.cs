@@ -1,12 +1,12 @@
-﻿using FinanceAnalyzer.Data.DataContext.Interfaces;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
-using MapStrategies = FinanceAnalyzer.Data.Mappers.DoubleCollectionMapStrategies;
-
-namespace FinanceAnalyzer.Data.DataContext.Realizations
+﻿namespace FinanceAnalyzer.Data.DataContext.Realizations
 {
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Text;
+    using System.Threading.Tasks;
+    using FinanceAnalyzer.Data.DataContext.Interfaces;
+    using MapStrategies = FinanceAnalyzer.Data.Mappers.DoubleCollectionMapStrategies;
+
     public class IncomeContext : IIncomeContext<decimal>
     {
         private const string FilePath = "income.txt";

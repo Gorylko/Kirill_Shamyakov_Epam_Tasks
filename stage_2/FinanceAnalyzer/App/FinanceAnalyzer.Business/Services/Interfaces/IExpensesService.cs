@@ -1,7 +1,6 @@
-﻿using FinanceAnalyzer.Shared.Results;
-using System.Collections.Generic;
-
-namespace FinanceAnalyzer.Business.Services.Interfaces
+﻿namespace FinanceAnalyzer.Business.Services.Interfaces
 {
+    using System.Collections.Generic;
+
     public interface IExpensesService : IService<decimal, IReadOnlyCollection<decimal>> { }
 }

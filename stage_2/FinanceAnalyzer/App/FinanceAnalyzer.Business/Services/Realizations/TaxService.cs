@@ -1,11 +1,11 @@
-﻿using FinanceAnalyzer.Data.DataContext.Interfaces;
-using System;
-using FinanceAnalyzer.Business.Services.Interfaces;
-using System.Threading.Tasks;
-using System.Collections.Generic;
-
-namespace FinanceAnalyzer.Business.Services.Realizations
+﻿namespace FinanceAnalyzer.Business.Services.Realizations
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using FinanceAnalyzer.Business.Services.Interfaces;
+    using FinanceAnalyzer.Data.DataContext.Interfaces;
+
     internal class TaxService : ITaxService
     {
         private const decimal TaxPercentage = 13;

@@ -1,11 +1,11 @@
-﻿using FinanceAnalyzer.Business.Services.Interfaces;
-using FinanceAnalyzer.Shared.Entities;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace FinanceAnalyzer.Business.Services.Realizations
+﻿namespace FinanceAnalyzer.Business.Services.Realizations
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Threading.Tasks;
+    using FinanceAnalyzer.Business.Services.Interfaces;
+    using FinanceAnalyzer.Shared.Entities;
+
     public class FinanceService : IFinanceService<decimal>
     {
         private readonly IExpensesService _expensesService;

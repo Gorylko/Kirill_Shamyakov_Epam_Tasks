@@ -1,10 +1,10 @@
-﻿using FinanceAnalyzer.Business.Services.Interfaces;
-using FinanceAnalyzer.Data.DataContext.Interfaces;
-using StructureMap;
-using StructureMap.Graph;
-
-namespace FinanceAnalyzer.IoC
+﻿namespace FinanceAnalyzer.IoC
 {
+    using FinanceAnalyzer.Business.Services.Interfaces;
+    using FinanceAnalyzer.Data.DataContext.Interfaces;
+    using StructureMap;
+    using StructureMap.Graph;
+
     public class CustomContainer
     {
         private static IContainer _container;

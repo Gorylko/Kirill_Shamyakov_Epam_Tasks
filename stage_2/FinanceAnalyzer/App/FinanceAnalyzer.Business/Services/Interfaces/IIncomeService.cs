@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-
-namespace FinanceAnalyzer.Business.Services.Interfaces
+﻿namespace FinanceAnalyzer.Business.Services.Interfaces
 {
+    using System.Collections.Generic;
+
     public interface IIncomeService : IService<decimal, IReadOnlyCollection<decimal>> { }
 }

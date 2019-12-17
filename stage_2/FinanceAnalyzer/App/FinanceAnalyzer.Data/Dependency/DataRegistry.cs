@@ -1,9 +1,9 @@
-﻿using FinanceAnalyzer.Data.DataContext.Interfaces;
-using FinanceAnalyzer.Data.DataContext.Realizations;
-using StructureMap;
-
-namespace FinanceAnalyzer.Data.Dependency
+﻿namespace FinanceAnalyzer.Data.Dependency
 {
+    using FinanceAnalyzer.Data.DataContext.Interfaces;
+    using FinanceAnalyzer.Data.DataContext.Realizations;
+    using StructureMap;
+
     public class DataRegistry : Registry
     {
         public DataRegistry()

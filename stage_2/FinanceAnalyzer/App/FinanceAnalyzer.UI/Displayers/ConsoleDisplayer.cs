@@ -1,10 +1,10 @@
-﻿using FinanceAnalyzer.Shared.Entities;
-using FinanceAnalyzer.UI.Interfaces;
-using System;
-using System.Collections.Generic;
-
-namespace FinanceAnalyzer.UI.Displayers
+﻿namespace FinanceAnalyzer.UI.Displayers
 {
+    using System;
+    using System.Collections.Generic;
+    using FinanceAnalyzer.Shared.Entities;
+    using FinanceAnalyzer.UI.Interfaces;
+
     public class ConsoleDisplayer : IDisplayer
     {
         public void DisplayStartMenu()

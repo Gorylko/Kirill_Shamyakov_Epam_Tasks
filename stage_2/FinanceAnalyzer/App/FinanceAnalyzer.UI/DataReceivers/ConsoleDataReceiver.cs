@@ -1,10 +1,10 @@
-﻿using FinanceAnalyzer.Shared.Enums;
-using FinanceAnalyzer.UI.Interfaces;
-using System;
-using System.Globalization;
-
-namespace FinanceAnalyzer.UI.DataReceivers
+﻿namespace FinanceAnalyzer.UI.DataReceivers
 {
+    using System;
+    using System.Globalization;
+    using FinanceAnalyzer.Shared.Enums;
+    using FinanceAnalyzer.UI.Interfaces;
+
     public class ConsoleDataReceiver : IDataReceiver
     {
         public bool TryGetDecimal(out decimal number, bool isOnFreePlace = false)

@@ -1,8 +1,8 @@
-﻿using FinanceAnalyzer.Shared.Entities;
-using System.Collections.Generic;
-
-namespace FinanceAnalyzer.UI.Interfaces
+﻿namespace FinanceAnalyzer.UI.Interfaces
 {
+    using System.Collections.Generic;
+    using FinanceAnalyzer.Shared.Entities;
+
     internal interface IDisplayer
     {
         void DisplayCollection<T>(IReadOnlyCollection<T> collection);

@@ -1,11 +1,11 @@
-﻿using FinanceAnalyzer.Data.DataContext.Interfaces;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace FinanceAnalyzer.Data.DataContext.Realizations
+﻿namespace FinanceAnalyzer.Data.DataContext.Realizations
 {
+    using System.Collections.Generic;
+    using System.IO;
+    using System.Text;
+    using System.Threading.Tasks;
+    using FinanceAnalyzer.Data.DataContext.Interfaces;
+
     public class TaxContext : ITaxContext<decimal>
     {
         private const string FilePath = "tax.txt";
