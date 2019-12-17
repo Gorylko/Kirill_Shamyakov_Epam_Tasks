@@ -1,65 +1,37 @@
 ﻿using FinanceAnalyzer.Shared.Enums;
-using FinanceAnalyzer.Shared.Results;
 using FinanceAnalyzer.UI.Interfaces;
 using System;
 using System.Globalization;
-using System.Threading.Tasks;
 
 namespace FinanceAnalyzer.UI.DataReceivers
 {
     public class ConsoleDataReceiver : IDataReceiver
     {
-        public DataResult<decimal> GetDecimal()
+        public bool TryGetDecimal(out decimal number, bool isOnFreePlace = false)
         {
-            if (decimal.TryParse(Console.ReadLine(), NumberStyles.Any, CultureInfo.InvariantCulture, out decimal number))
+            if (!isOnFreePlace)
             {
-                return new DataResult<decimal>
-                {
-                    Value = number,
-                    IsSuccessful = true
-                };
+                Console.SetCursorPosition(0, 1);
             }
 
-            return GetErrorResult<decimal>();
+            return decimal.TryParse(Console.ReadLine(), NumberStyles.Any, CultureInfo.InvariantCulture, out number);
         }
 
-        public DataResult<int> GetInt()
+        public bool TryGetInt(out int number, bool isOnFreePlace = false)
         {
-            if (int.TryParse(Console.ReadLine(), out int number))
+            if (!isOnFreePlace)
             {
-                return new DataResult<int>
-                {
-                    Value = number,
-                    IsSuccessful = true
-                };
+                Console.SetCursorPosition(0, 1);
             }
 
-            return GetErrorResult<int>();
+            return int.TryParse(Console.ReadLine(), out number);
         }
 
-        public DataResult<ActionType> GetAction()
+        public ActionType GetAction()
         {
-            var intResult = GetInt();
+            TryGetInt(out var intResult, true);
 
-            if (intResult.IsSuccessful)
-            {
-                return new DataResult<ActionType>
-                {
-                    Value = (ActionType)intResult.Value,
-                    IsSuccessful = true
-                };
-            }
-
-            return GetErrorResult<ActionType>();
-        }
-
-        private DataResult<T> GetErrorResult<T>(string errorMessage = "Invalid value of user input")
-        {
-            return new DataResult<T>
-            {
-                IsSuccessful = false,
-                ErrorMessage = errorMessage
-            };
+            return (ActionType)intResult;
         }
     }
 }

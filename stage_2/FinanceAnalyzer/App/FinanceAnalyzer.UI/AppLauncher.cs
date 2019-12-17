@@ -9,11 +9,13 @@ namespace FinanceAnalyzer.UI
 {
     internal class AppLauncher : ILauncher
     {
-        private bool _isAppOn;
         private const int MaxAttemptsNumber = 3;
+
         private readonly IFinanceService<decimal> _financeService;
         private readonly IDataReceiver _dataReceiver;
         private readonly IDisplayer _displayer;
+
+        private bool _isAppOn;
 
         public AppLauncher(
             IFinanceService<decimal> financeService,
@@ -31,13 +33,7 @@ namespace FinanceAnalyzer.UI
             while (_isAppOn)
             {
                 _displayer.DisplayStartMenu();
-
-                var actionResult = _dataReceiver.GetAction();
-
-                if (actionResult.IsSuccessful)
-                {
-                    await PerformAction(actionResult.Value);
-                }
+                await PerformAction(_dataReceiver.GetAction());
             }
         }
 
@@ -75,40 +71,35 @@ namespace FinanceAnalyzer.UI
         {
             for (int currentAttempt = 1; currentAttempt <= MaxAttemptsNumber; currentAttempt++)
             {
-                _displayer.DisplayMessage("Enter new income");
-                var inputResult = _dataReceiver.GetDecimal();
-
-                if (inputResult.IsSuccessful)
+                _displayer.DisplayMessage("Enter new income", isClearAll: true);
+                if (_dataReceiver.TryGetDecimal(out var inputResult))
                 {
-                    await _financeService.AddNewIncome(inputResult.Value);
+                    await _financeService.AddNewIncome(inputResult);
                     return;
                 }
-                else if (currentAttempt == MaxAttemptsNumber)
-                {
-                    _displayer.DisplayNotification(inputResult.ErrorMessage);
-                }
+
+                _displayer.DisplayErrorMessage("Try again :(");
             }
+
+            _displayer.DisplayNotification("Ended typing attempts");
         }
 
         private async Task AddNewExpense()
         {
             for (int currentAttempt = 1; currentAttempt <= MaxAttemptsNumber; currentAttempt++)
             {
-                _displayer.DisplayMessage("Enter new expense");
-                var inputResult = _dataReceiver.GetDecimal();
-
-                if (inputResult.IsSuccessful)
+                _displayer.DisplayMessage("Enter new expense", isClearAll: true);
+                if (_dataReceiver.TryGetDecimal(out var inputResult))
                 {
-                    await _financeService.AddNewExpense(inputResult.Value);
+                    await _financeService.AddNewExpense(inputResult);
                     return;
                 }
-                else if (currentAttempt == MaxAttemptsNumber)
-                {
-                    _displayer.DisplayNotification(inputResult.ErrorMessage);
-                }
-            }
-        }
 
+                _displayer.DisplayErrorMessage("Try again :(");
+            }
+
+            _displayer.DisplayNotification("Ended typing attempts");
+        }
 
         private void TurnOffApp()
         {

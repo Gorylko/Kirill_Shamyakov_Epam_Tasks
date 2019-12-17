@@ -1,6 +1,5 @@
 ﻿using FinanceAnalyzer.Shared.Entities;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace FinanceAnalyzer.UI.Interfaces
 {
@@ -10,9 +9,13 @@ namespace FinanceAnalyzer.UI.Interfaces
 
         void DisplayStartMenu();
 
+        void ClearAll();
+
+        void DisplayErrorMessage(string message);
+
         void DisplayNotification(string message);
 
-        void DisplayMessage(string message);
+        void DisplayMessage(string message, bool isClearAll = false);
 
         void DisplayIncome<T>(IReadOnlyCollection<T> collection);
 

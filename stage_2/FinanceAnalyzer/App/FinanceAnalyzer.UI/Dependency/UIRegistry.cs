@@ -1,5 +1,4 @@
-﻿using FinanceAnalyzer.Business.Services.Interfaces;
-using FinanceAnalyzer.UI.DataReceivers;
+﻿using FinanceAnalyzer.UI.DataReceivers;
 using FinanceAnalyzer.UI.Displayers;
 using FinanceAnalyzer.UI.Interfaces;
 using StructureMap;

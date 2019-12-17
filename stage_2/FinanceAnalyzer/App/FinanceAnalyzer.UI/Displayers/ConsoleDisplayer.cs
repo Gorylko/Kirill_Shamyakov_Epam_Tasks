@@ -2,7 +2,6 @@
 using FinanceAnalyzer.UI.Interfaces;
 using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace FinanceAnalyzer.UI.Displayers
 {
@@ -23,8 +22,20 @@ namespace FinanceAnalyzer.UI.Displayers
 
         public void DisplayNotification(string message)
         {
+            ClearAll();
             DisplayMessage(message);
             Console.ReadKey();
+        }
+
+        public void DisplayErrorMessage(string message)
+        {
+            Console.SetCursorPosition(0, 2);
+            Console.Write(message);
+        }
+
+        public void ClearAll()
+        {
+            Console.Clear();
         }
 
         public void DisplayCollection<T>(IReadOnlyCollection<T> collection)
@@ -40,14 +51,20 @@ namespace FinanceAnalyzer.UI.Displayers
             }
         }
 
-        public void DisplayMessage(string message)
+        public void DisplayMessage(string message, bool isClearAll = false)
         {
-            Console.Clear();
+            if (isClearAll)
+            {
+                ClearAll();
+            }
+
+            Console.SetCursorPosition(0, 0);
             Console.WriteLine(message);
         }
 
         public void DisplayIncome<T>(IReadOnlyCollection<T> collection)
         {
+            ClearAll();
             DisplayMessage("Income : ");
 
             if (collection.Count == 0)
@@ -66,6 +83,7 @@ namespace FinanceAnalyzer.UI.Displayers
 
         public void DisplayExpenses<T>(IReadOnlyCollection<T> collection)
         {
+            ClearAll();
             DisplayMessage("Expenses : ");
 
             if (collection.Count == 0)

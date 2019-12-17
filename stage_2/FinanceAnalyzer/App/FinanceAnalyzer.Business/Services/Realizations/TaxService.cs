@@ -1,7 +1,5 @@
 ﻿using FinanceAnalyzer.Data.DataContext.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace FinanceAnalyzer.Business.Services.Realizations
 {

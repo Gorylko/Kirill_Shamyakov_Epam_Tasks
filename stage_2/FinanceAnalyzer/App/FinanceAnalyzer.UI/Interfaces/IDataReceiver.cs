@@ -1,15 +1,13 @@
 ﻿using FinanceAnalyzer.Shared.Enums;
-using FinanceAnalyzer.Shared.Results;
-using System.Threading.Tasks;
 
 namespace FinanceAnalyzer.UI.Interfaces
 {
     internal interface IDataReceiver
     {
-        DataResult<int> GetInt();
+        bool TryGetInt(out int number, bool isOnFreePlace = false);
 
-        DataResult<decimal> GetDecimal();
+        bool TryGetDecimal(out decimal number, bool isOnFreePlace = false);
 
-        DataResult<ActionType> GetAction();
+        ActionType GetAction();
     }
 }
