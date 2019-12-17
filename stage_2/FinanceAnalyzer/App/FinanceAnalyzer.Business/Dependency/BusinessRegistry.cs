@@ -8,9 +8,10 @@ namespace FinanceAnalyzer.Business.Dependency
     {
         public BusinessRegistry()
         {
-            For<IIncomeService<decimal>>().Use<IncomeService>();
+            For<IIncomeService>().Use<IncomeService>();
             For<IFinanceService<decimal>>().Use<FinanceService>();
-            For<IExpensesService<decimal>>().Use<ExpensesService>();
+            For<IExpensesService>().Use<ExpensesService>();
+            For<ITaxService>().Use<TaxService>();
         }
     }
 }

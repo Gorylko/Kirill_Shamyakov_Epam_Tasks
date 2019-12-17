@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinanceAnalyzer.Business.Services.Realizations
 {
-    internal class IncomeService : IIncomeService<decimal>
+    internal class IncomeService : IIncomeService
     {
         private readonly IIncomeContext<decimal> _incomeContext;
 

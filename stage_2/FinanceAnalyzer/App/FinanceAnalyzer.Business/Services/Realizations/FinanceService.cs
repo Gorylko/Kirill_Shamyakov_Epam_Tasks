@@ -8,15 +8,18 @@ namespace FinanceAnalyzer.Business.Services.Realizations
 {
     public class FinanceService : IFinanceService<decimal>
     {
-        private readonly IExpensesService<decimal> _expensesService;
-        private readonly IIncomeService<decimal> _incomeService;
+        private readonly IExpensesService _expensesService;
+        private readonly IIncomeService _incomeService;
+        private readonly ITaxService _taxService;
 
         public FinanceService(
-            IExpensesService<decimal> expensesService,
-            IIncomeService<decimal> incomeService)
+            IExpensesService expensesService,
+            IIncomeService incomeService,
+            ITaxService taxService)
         {
             _expensesService = expensesService ?? throw new ArgumentNullException(nameof(expensesService));
             _incomeService = incomeService ?? throw new ArgumentNullException(nameof(incomeService));
+            _taxService = taxService ?? throw new ArgumentNullException(nameof(taxService));
         }
 
         public async Task<FinanceInfo> GetFullInformation()
@@ -40,12 +43,12 @@ namespace FinanceAnalyzer.Business.Services.Realizations
 
         public async Task AddNewIncome(decimal value)
         {
-            await _incomeService.Save(value);
+            await _incomeService.Save(await _taxService.TakeTax(value));
         }
 
         public async Task AddNewExpense(decimal value)
         {
-            await _expensesService.Save(value);
+            await _expensesService.Save(await _taxService.TakeTax(value));
         }
 
         public async Task ClearHistory()

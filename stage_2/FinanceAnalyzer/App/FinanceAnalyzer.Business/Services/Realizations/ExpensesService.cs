@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FinanceAnalyzer.Business.Services.Realizations
 {
-    internal class ExpensesService : IExpensesService<decimal>
+    internal class ExpensesService : IExpensesService
     {
         private IExpensesContext<decimal> _expensesContext;
 

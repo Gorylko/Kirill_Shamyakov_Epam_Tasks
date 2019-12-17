@@ -26,8 +26,8 @@ namespace FinanceAnalyzer.IoC
 
         private static void AddBusinessDependency(IAssemblyScanner scan)
         {
-            scan.AssemblyContainingType<IIncomeService<decimal>>();
-            scan.AssemblyContainingType<IExpensesService<decimal>>();
+            scan.AssemblyContainingType<IIncomeService>();
+            scan.AssemblyContainingType<IExpensesService>();
             scan.AssemblyContainingType<IFinanceService<decimal>>();
         }
 

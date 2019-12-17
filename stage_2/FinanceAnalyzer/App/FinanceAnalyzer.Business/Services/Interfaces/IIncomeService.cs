@@ -2,5 +2,5 @@
 
 namespace FinanceAnalyzer.Business.Services.Interfaces
 {
-    public interface IIncomeService<T> : IService<T, IReadOnlyCollection<T>> { }
+    public interface IIncomeService : IService<decimal, IReadOnlyCollection<decimal>> { }
 }

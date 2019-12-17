@@ -10,6 +10,7 @@ namespace FinanceAnalyzer.Data.Dependency
         {
             For<IExpensesContext<decimal>>().Use<ExpensesContext>();
             For<IIncomeContext<decimal>>().Use<IncomeContext>();
+            For<ITaxContext<decimal>>().Use<TaxContext>();
         }
     }
 }
