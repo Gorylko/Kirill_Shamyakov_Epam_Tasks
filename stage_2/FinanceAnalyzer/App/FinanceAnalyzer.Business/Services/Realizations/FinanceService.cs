@@ -24,11 +24,10 @@
 
         public async Task<FinanceInfo> GetFullInformation()
         {
-            IExpensesService _expensesService1 = _expensesService;
             return new FinanceInfo
             {
                 IncomeHistoryCollection = await _incomeService.GetAll(),
-                ExpensesHistoryCollection = await _expensesService1.GetAll(),
+                ExpensesHistoryCollection = await _expensesService.GetAll(),
             };
         }
 

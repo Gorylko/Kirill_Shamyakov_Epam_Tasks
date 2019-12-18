@@ -8,7 +8,7 @@
     {
         public static IReadOnlyCollection<double> MapDoubleCollection(string source)
         {
-            return !string.IsNullOrEmpty(source)
+            return source != null
                 ? source
                 .Split('\n')
                 .Where(element => double.TryParse(element, NumberStyles.Any, CultureInfo.InvariantCulture, out double number))
@@ -19,7 +19,7 @@
 
         public static IReadOnlyCollection<decimal> MapDecimalCollection(string source)
         {
-            return !string.IsNullOrEmpty(source)
+            return source != null
                 ? source
                 .Split('\n')
                 .Where(element => decimal.TryParse(element, NumberStyles.Any, CultureInfo.InvariantCulture, out decimal number))

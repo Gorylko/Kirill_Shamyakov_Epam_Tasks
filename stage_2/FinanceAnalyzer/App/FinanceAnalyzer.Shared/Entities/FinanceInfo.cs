@@ -9,9 +9,25 @@
 
         public IReadOnlyCollection<decimal> ExpensesHistoryCollection { get; set; }
 
-        public decimal TotalIncome => IncomeHistoryCollection.Sum();
+        public decimal TotalIncome
+        {
+            get
+            {
+                return IncomeHistoryCollection == null
+                    ? 0
+                    : IncomeHistoryCollection.Sum();
+            }
+        }
 
-        public decimal TotalExpenses => ExpensesHistoryCollection.Sum();
+        public decimal TotalExpenses
+        {
+            get
+            {
+                return ExpensesHistoryCollection == null
+                    ? 0
+                    : ExpensesHistoryCollection.Sum();
+            }
+        }
 
         public decimal Profit => TotalIncome - TotalExpenses;
     }
