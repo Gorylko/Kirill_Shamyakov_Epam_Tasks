@@ -1,5 +1,3 @@
-USE [FinanceAnalyzer];
-GO
 CREATE PROCEDURE [dbo].[sp_select_incomes_by_user_id]
 	@userId INT
 AS
