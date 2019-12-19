@@ -6,6 +6,6 @@
 
     internal static class SqlConstants
     {
-        internal const string ConnectionString = "";
+        internal static string ConnectionString = null;
     }
 }

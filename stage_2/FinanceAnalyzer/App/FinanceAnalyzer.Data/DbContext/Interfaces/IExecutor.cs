@@ -5,7 +5,7 @@
     using System.Data;
     using System.Text;
 
-    internal interface IExecutor
+    public interface IExecutor
     {
         DataSet ExecuteDataSet(string procedureName, IDictionary<string, object> values = null);
 
