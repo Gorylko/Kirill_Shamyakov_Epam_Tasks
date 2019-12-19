@@ -15,7 +15,7 @@ CREATE TABLE [dbo].[Income]
 	[Id] INT IDENTITY (1,1) NOT NULL,
 	[UserId] INT NOT NULL,
    	[Amount] DECIMAL NOT NULL,
-	FOREIGN KEY ([UserId]) REFERENCES [dbo].[User].[Id],
+	FOREIGN KEY ([UserId]) REFERENCES [dbo].[User]([Id]),
 
  	PRIMARY KEY CLUSTERED([Id] ASC)
 );
@@ -26,7 +26,7 @@ CREATE TABLE [dbo].[Expense]
 	[Id] INT IDENTITY (1,1) NOT NULL,
 	[UserId] INT NOT NULL,
    	[Amount] DECIMAL NOT NULL,
-	FOREIGN KEY ([UserId]) REFERENCES [dbo].[User].[Id],
+	FOREIGN KEY ([UserId]) REFERENCES [dbo].[User]([Id]),
 
  	PRIMARY KEY CLUSTERED([Id] ASC)
 );
@@ -37,7 +37,7 @@ CREATE TABLE [dbo].[Tax]
 	[Id] INT IDENTITY (1,1) NOT NULL,
 	[UserId] INT NOT NULL,
    	[Amount] DECIMAL NOT NULL,
-	FOREIGN KEY ([UserId]) REFERENCES [dbo].[User].[Id],
+	FOREIGN KEY ([UserId]) REFERENCES [dbo].[User]([Id]),
 
  	PRIMARY KEY CLUSTERED([Id] ASC)
 );
