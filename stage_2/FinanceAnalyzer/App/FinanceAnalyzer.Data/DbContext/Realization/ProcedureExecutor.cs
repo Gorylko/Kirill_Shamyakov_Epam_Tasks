@@ -1,17 +1,17 @@
 ﻿namespace FinanceAnalyzer.Data.DbContext.Realization
 {
+    using FinanceAnalyzer.Data.DbContext.Interfaces;
+    using FinanceAnalyzer.Data.Helpers;
     using System.Collections.Generic;
     using System.Data;
     using System.Data.SqlClient;
-    using FinanceAnalyzer.Data.DbContext.Interfaces;
-    using FinanceAnalyzer.Data.Constants;
-    using FinanceAnalyzer.Data.Helpers;
+    using System.Threading.Tasks;
 
     internal class ProcedureExecutor : IExecutor
     {
         private SqlConnectionHelper _connectionHelper = new SqlConnectionHelper();
 
-        public DataSet ExecuteDataSet(string procedureName, IDictionary<string, object> values = null)
+        public async Task<DataSet> ExecuteDataSet(string procedureName, IDictionary<string, object> values = null)
         {
             DataSet dataSet = null;
             using (var connection = new SqlConnection(_connectionHelper.GetConnectionString()))
@@ -21,20 +21,20 @@
                 connection.Open();
                 var adapter = new SqlDataAdapter(procedure);
                 dataSet = new DataSet();
-                adapter.Fill(dataSet);
+                await Task.Run(() => adapter.Fill(dataSet));
             }
 
             return dataSet;
         }
 
-        public int ExecuteNonQuery(string procedureName, IDictionary<string, object> values = null)
+        public async Task<int> ExecuteNonQuery(string procedureName, IDictionary<string, object> values = null)
         {
             using (var connecton = new SqlConnection(_connectionHelper.GetConnectionString()))
             {
                 var procedure = CreateProcedure(procedureName, values);
                 procedure.Connection = connecton;
                 connecton.Open();
-                return procedure.ExecuteNonQuery();
+                return await procedure.ExecuteNonQueryAsync();
             }
         }
 

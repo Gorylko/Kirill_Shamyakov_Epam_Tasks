@@ -1,6 +1,6 @@
 CREATE PROCEDURE [dbo].[sp_insert_expense]
 (
-    @amount DECIMAL,
+    @amount DECIMAL(10, 3),
     @userId INT
 )
 AS

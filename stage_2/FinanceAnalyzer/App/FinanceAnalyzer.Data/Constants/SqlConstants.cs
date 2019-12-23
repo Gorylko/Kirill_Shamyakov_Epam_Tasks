@@ -6,6 +6,6 @@
 
     internal static class SqlConstants
     {
-        internal static string ConnectionString = null;
+        internal static int CurrentUserId = 1;  // Нэ бей! Это временно)
     }
 }

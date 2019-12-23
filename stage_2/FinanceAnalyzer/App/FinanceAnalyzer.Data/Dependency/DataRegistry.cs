@@ -2,6 +2,7 @@
 {
     using FinanceAnalyzer.Data.DataContext.Interfaces;
     using FinanceAnalyzer.Data.DataContext.Realizations;
+    using FinanceAnalyzer.Data.DataContext.Realizations.MsSql;
     using FinanceAnalyzer.Data.DbContext.Interfaces;
     using FinanceAnalyzer.Data.DbContext.Realization;
     using StructureMap;
@@ -10,7 +11,7 @@
     {
         public DataRegistry()
         {
-            For<IExpensesContext<decimal>>().Use<ExpensesContext>();
+            For<IExpensesContext<decimal>>().Use<DataContext.Realizations.MsSql.ExpensesContext>();
             For<IIncomeContext<decimal>>().Use<DataContext.Realizations.MsSql.IncomeContext>();
             For<ITaxContext<decimal>>().Use<TaxContext>();
             For<IExecutor>().Use<ProcedureExecutor>();

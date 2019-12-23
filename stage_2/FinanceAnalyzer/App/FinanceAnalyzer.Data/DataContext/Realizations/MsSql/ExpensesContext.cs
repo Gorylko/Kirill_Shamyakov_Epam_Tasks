@@ -10,23 +10,23 @@
     using FinanceAnalyzer.Data.Mappers;
     using MapStrategy = FinanceAnalyzer.Data.Mappers.IncomeMapStrategies;
 
-    public class IncomeContext : IIncomeContext<decimal>
+    public class ExpensesContext : IExpensesContext<decimal>
     {
         private IExecutor _executor;
 
-        public IncomeContext(IExecutor executor)
+        public ExpensesContext(IExecutor executor)
         {
             _executor = executor;
         }
 
         public async Task ClearAll()
         {
-            await _executor.ExecuteNonQuery("sp_delete_all_incomes");
+            await _executor.ExecuteNonQuery("sp_delete_all_expenses");
         }
 
         public async Task<IReadOnlyCollection<decimal>> GetAll()
         {
-            var dataSet = await _executor.ExecuteDataSet("sp_select_incomes_by_user_id", new Dictionary<string, object>
+            var dataSet = await _executor.ExecuteDataSet("sp_select_expenses_by_user_id", new Dictionary<string, object>
             {
                 { "userId", SqlConstants.CurrentUserId },
             });
@@ -37,7 +37,7 @@
 
         public async Task Save(decimal obj)
         {
-            await _executor.ExecuteNonQuery("sp_insert_income", new Dictionary<string, object> 
+            await _executor.ExecuteNonQuery("sp_insert_expense", new Dictionary<string, object>
             {
                 { "amount", obj },
                 { "userId", SqlConstants.CurrentUserId },
