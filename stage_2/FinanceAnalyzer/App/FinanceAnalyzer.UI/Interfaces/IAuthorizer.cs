@@ -1,14 +1,14 @@
-﻿using FinanceAnalyzer.Shared.Entities;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FinanceAnalyzer.UI.Interfaces
+﻿namespace FinanceAnalyzer.UI.Interfaces
 {
+    using FinanceAnalyzer.Shared.Entities;
+    using System.Threading.Tasks;
+
     internal interface IAuthorizer
     {
-        User GetCurrentUser();
+        Task<User> GetCurrentUser();
 
-        bool IsAuthorized();
+        Task<bool> TryAuthorize();
+
+        Task<User> GetCookie();
     }
 }

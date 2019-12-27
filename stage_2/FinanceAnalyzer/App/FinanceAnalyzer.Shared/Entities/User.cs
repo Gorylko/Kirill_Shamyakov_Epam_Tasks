@@ -1,5 +1,8 @@
-﻿namespace FinanceAnalyzer.Shared.Entities
+﻿using System;
+
+namespace FinanceAnalyzer.Shared.Entities
 {
+    [Serializable]
     public class User
     {
         public int Id { get; set; }
