@@ -16,7 +16,7 @@
 
         public ExpensesContext(IExecutor executor)
         {
-            _executor = executor;
+            _executor = executor ?? throw new ArgumentNullException(nameof(executor));
         }
 
         public async Task ClearAll()
