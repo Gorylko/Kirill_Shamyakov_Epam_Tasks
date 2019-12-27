@@ -23,7 +23,12 @@
 
         public async Task<User> GetById(int id)
         {
-            
+            var dataSet = _executor.ExecuteDataSet(
+                "sp_select_user_by_id",
+                new Dictionary<string, object>
+                {
+                    { "id", id },
+                });
         }
 
         public async Task Save(User obj)

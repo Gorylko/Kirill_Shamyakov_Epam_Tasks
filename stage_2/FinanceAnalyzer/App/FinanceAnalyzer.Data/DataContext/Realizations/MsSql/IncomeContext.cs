@@ -26,10 +26,12 @@
 
         public async Task<IReadOnlyCollection<decimal>> GetAll()
         {
-            var dataSet = await _executor.ExecuteDataSet("sp_select_incomes_by_user_id", new Dictionary<string, object>
-            {
-                { "userId", SqlConstants.CurrentUserId },
-            });
+            var dataSet = await _executor.ExecuteDataSet(
+                "sp_select_incomes_by_user_id",
+                new Dictionary<string, object>
+                {
+                    { "userId", SqlConstants.CurrentUserId },
+                });
 
             var mapper = new Mapper<DataSet, IReadOnlyCollection<decimal>> { Map = MapStrategy.MapIncomes };
             return mapper.Map(dataSet);

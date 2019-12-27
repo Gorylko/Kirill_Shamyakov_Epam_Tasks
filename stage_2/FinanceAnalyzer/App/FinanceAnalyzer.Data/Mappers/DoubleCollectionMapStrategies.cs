@@ -4,9 +4,9 @@
     using System.Globalization;
     using System.Linq;
 
-    public static class DoubleCollectionMapStrategies
+    internal static class DoubleCollectionMapStrategies
     {
-        public static IReadOnlyCollection<double> MapDoubleCollection(string source)
+        internal static IReadOnlyCollection<double> MapDoubleCollection(string source)
         {
             return source != null
                 ? source
@@ -17,7 +17,7 @@
                 : null;
         }
 
-        public static IReadOnlyCollection<decimal> MapDecimalCollection(string source)
+        internal static IReadOnlyCollection<decimal> MapDecimalCollection(string source)
         {
             return source != null
                 ? source
