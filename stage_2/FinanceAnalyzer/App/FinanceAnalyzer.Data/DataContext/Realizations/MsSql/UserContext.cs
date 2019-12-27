@@ -25,7 +25,10 @@
 
         public async Task<IReadOnlyCollection<User>> GetAll()
         {
-            throw new NotImplementedException();
+            var dataSet = await _executor.ExecuteDataSet("sp_select_all_users");
+
+            var mapper = new Mapper<DataSet, IReadOnlyCollection<User>> { MapCollection = UserMapStrategies.MapUserCollection };
+            return mapper.MapCollection(dataSet);
         }
 
         public async Task<User> GetById(int id)
