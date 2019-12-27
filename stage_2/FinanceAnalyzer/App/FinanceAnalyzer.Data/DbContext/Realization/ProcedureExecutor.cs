@@ -21,7 +21,7 @@
                 connection.Open();
                 var adapter = new SqlDataAdapter(procedure);
                 dataSet = new DataSet();
-                await Task.Run(() => adapter.Fill(dataSet));
+                await Task.FromResult(adapter.Fill(dataSet));
             }
 
             return dataSet;

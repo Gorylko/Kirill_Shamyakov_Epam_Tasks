@@ -6,7 +6,7 @@ namespace FinanceAnalyzer.Data.DataContext.Interfaces
 {
     using System.Collections.Generic;
 
-    public interface IIncomeContext<T> : IDataContext<IReadOnlyCollection<T>, T>
+    public interface IIncomeContext<T> : IDataContext<T>
     {
     }
 }

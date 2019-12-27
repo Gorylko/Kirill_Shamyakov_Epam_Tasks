@@ -12,7 +12,7 @@
 
     public class ExpensesContext : IExpensesContext<decimal>
     {
-        private IExecutor _executor;
+        private readonly IExecutor _executor;
 
         public ExpensesContext(IExecutor executor)
         {
@@ -31,8 +31,13 @@
                 { "userId", SqlConstants.CurrentUserId },
             });
 
-            var mapper = new Mapper<DataSet, Task<IReadOnlyCollection<decimal>>> { Map = MapStrategy.MapIncomes };
-            return await mapper.Map(dataSet);
+            var mapper = new Mapper<DataSet, IReadOnlyCollection<decimal>> { Map = MapStrategy.MapIncomes };
+            return mapper.Map(dataSet);
+        }
+
+        public Task<decimal> GetById(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public async Task Save(decimal obj)

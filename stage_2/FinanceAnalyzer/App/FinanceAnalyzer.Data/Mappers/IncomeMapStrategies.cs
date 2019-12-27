@@ -9,7 +9,7 @@
 
     internal static class IncomeMapStrategies
     {
-        internal static async Task<IReadOnlyCollection<decimal>> MapIncomes(DataSet dataSet)
+        internal static IReadOnlyCollection<decimal> MapIncomes(DataSet dataSet)
         {
             return dataSet.Tables[0]
                 .AsEnumerable()
