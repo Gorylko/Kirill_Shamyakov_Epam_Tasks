@@ -1,10 +1,18 @@
 ﻿namespace FinanceAnalyzer.UI.Data
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Text;
+    using FinanceAnalyzer.Shared.Entities;
+    using FinanceAnalyzer.UI.Interfaces;
 
-    public class Authorizer
+    internal class Authorizer : IAuthorizer
     {
+        public User GetCurrentUser()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public bool IsAuthorized()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

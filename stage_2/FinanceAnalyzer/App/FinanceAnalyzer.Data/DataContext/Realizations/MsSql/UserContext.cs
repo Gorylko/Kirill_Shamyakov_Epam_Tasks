@@ -9,7 +9,7 @@
     using FinanceAnalyzer.Data.Mappers;
     using FinanceAnalyzer.Shared.Entities;
 
-    class UserContext : IUserContext
+    internal class UserContext : IUserContext
     {
         private readonly IExecutor _executor;
 

@@ -1,7 +1,9 @@
 ﻿namespace FinanceAnalyzer.UI
 {
+    using System;
     using System.Threading.Tasks;
     using FinanceAnalyzer.Business.Services.Interfaces;
+    using FinanceAnalyzer.Shared.Entities;
     using FinanceAnalyzer.Shared.Enums;
     using FinanceAnalyzer.UI.Interfaces;
 
@@ -11,28 +13,37 @@
 
         private readonly IFinanceService<decimal> _financeService;
         private readonly IDataReceiver _dataReceiver;
+        private readonly IAuthorizer _authorizer;
         private readonly IDisplayer _displayer;
 
+        private User _currentUser;
         private bool _isAppOn;
 
         public AppLauncher(
             IFinanceService<decimal> financeService,
             IDataReceiver dataReceiver,
+            IAuthorizer authorizer,
             IDisplayer displayer)
         {
-            _financeService = financeService;
-            _dataReceiver = dataReceiver;
-            _displayer = displayer;
+            _financeService = financeService ?? throw new ArgumentNullException(nameof(financeService));
+            _dataReceiver = dataReceiver ?? throw new ArgumentNullException(nameof(dataReceiver));
+            _authorizer = authorizer ?? throw new ArgumentNullException(nameof(authorizer));
+            _displayer = displayer ?? throw new ArgumentNullException(nameof(displayer));
+
             _isAppOn = true;
         }
 
         public async Task Launch()
         {
-            while (_isAppOn)
-            {
-                _displayer.DisplayStartMenu();
-                await PerformAction(_dataReceiver.GetAction());
-            }
+            //_currentUser = _authorizer.GetCurrentUser();
+            //do
+            //{
+                while (_isAppOn)
+                {
+                    _displayer.DisplayStartMenu();
+                    await PerformAction(_dataReceiver.GetAction());
+                }
+            //} while (_authorizer.IsAuthorized());
         }
 
         private async Task PerformAction(ActionType action)

@@ -1,5 +1,6 @@
 ﻿namespace FinanceAnalyzer.UI.Dependency
 {
+    using FinanceAnalyzer.UI.Data;
     using FinanceAnalyzer.UI.DataReceivers;
     using FinanceAnalyzer.UI.Displayers;
     using FinanceAnalyzer.UI.Interfaces;
@@ -10,6 +11,7 @@
         public UIRegistry()
         {
             For<ILauncher>().Use<AppLauncher>();
+            For<IAuthorizer>().Use<Authorizer>();
             For<IDisplayer>().Use<ConsoleDisplayer>();
             For<IDataReceiver>().Use<ConsoleDataReceiver>();
         }

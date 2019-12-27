@@ -28,6 +28,11 @@
             }
         }
 
+        public Task<decimal> GetById(int id)
+        {
+            throw new System.NotImplementedException();
+        }
+
         public async Task Save(decimal obj)
         {
             using (var streamWriter = new StreamWriter(FilePath, true, Encoding.Default))

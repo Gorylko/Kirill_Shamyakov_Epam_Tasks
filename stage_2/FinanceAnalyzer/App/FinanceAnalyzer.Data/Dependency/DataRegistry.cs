@@ -11,8 +11,9 @@
     {
         public DataRegistry()
         {
-            For<IExpensesContext<decimal>>().Use<DataContext.Realizations.MsSql.ExpensesContext>();
-            For<IIncomeContext<decimal>>().Use<DataContext.Realizations.MsSql.IncomeContext>();
+            For<IExpensesContext<decimal>>().Use<ExpensesContext>();
+            For<IIncomeContext<decimal>>().Use<IncomeContext>();
+            For<IUserContext>().Use<UserContext>();
             For<ITaxContext<decimal>>().Use<TaxContext>();
             For<IExecutor>().Use<ProcedureExecutor>();
         }
