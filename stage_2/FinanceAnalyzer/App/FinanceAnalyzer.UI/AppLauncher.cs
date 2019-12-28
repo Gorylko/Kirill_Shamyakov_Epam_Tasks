@@ -110,6 +110,27 @@
             _displayer.DisplayNotification("Ended typing attempts");
         }
 
+        //private async Task<User> GetUserCookie()
+        //{
+        //    var cookie = await _authorizer.GetCookie();
+
+        //    if (cookie != null)
+        //    {
+        //        return cookie;
+        //    }
+
+        //    while (await _authorizer.TryAuthorize(GetLoginInformation()))
+        //    {
+        //    }
+
+        //    return null;
+        //}
+
+        //private User GetLoginInformation()
+        //{
+
+        //}
+
         private void TurnOffApp()
         {
             _isAppOn = false;

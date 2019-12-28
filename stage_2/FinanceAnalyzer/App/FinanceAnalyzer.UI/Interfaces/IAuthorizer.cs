@@ -7,7 +7,7 @@
     {
         Task<User> GetCurrentUser();
 
-        Task<bool> TryAuthorize();
+        Task<bool> TryAuthorize(User user);
 
         Task<User> GetCookie();
     }

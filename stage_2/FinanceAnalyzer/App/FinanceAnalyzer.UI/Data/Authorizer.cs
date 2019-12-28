@@ -9,19 +9,19 @@
     internal class Authorizer : IAuthorizer
     {
         private User _user;
-        public async Task<User> GetCurrentUser()//не смотреть на этот ужас!
+
+        public async Task<User> GetCurrentUser()// не смотреть на этот ужас!
         {
             var cookie = await GetCookie();
 
             if(cookie == null)
             {
-                TryAuthorize(); 
             }
 
             return _user;
         }
 
-        public async Task<bool> TryAuthorize()
+        public async Task<bool> TryAuthorize(User user)
         {
             throw new System.NotImplementedException();
         }
@@ -34,10 +34,7 @@
             //    await JsonSerializer.SerializeAsync<User>(fs, tom);
             //}
 
-            using (FileStream fileStream = new FileStream("user.json", FileMode.OpenOrCreate))
-            {
-                return await JsonSerializer.DeserializeAsync<User>(fileStream);
-            }
+            return null;
         }
     }
 }
