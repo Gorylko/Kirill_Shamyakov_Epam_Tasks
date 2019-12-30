@@ -11,7 +11,7 @@
         public UIRegistry()
         {
             For<ILauncher>().Use<AppLauncher>();
-            For<IAuthorizer>().Use<Authorizer>();
+            For<ICookieManager>().Use<CookieManager>();
             For<IDisplayer>().Use<ConsoleDisplayer>();
             For<IDataReceiver>().Use<ConsoleDataReceiver>();
         }

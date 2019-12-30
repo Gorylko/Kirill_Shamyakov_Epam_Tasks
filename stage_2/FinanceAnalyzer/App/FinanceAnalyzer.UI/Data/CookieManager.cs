@@ -6,7 +6,7 @@
     using System.Text.Json;
     using System.Threading.Tasks;
 
-    internal class Authorizer : IAuthorizer
+    internal class CookieManager : ICookieManager
     {
         private User _user;
 

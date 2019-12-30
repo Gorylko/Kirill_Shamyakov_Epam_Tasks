@@ -5,6 +5,7 @@
     using FinanceAnalyzer.Business.Services.Interfaces;
     using FinanceAnalyzer.Shared.Entities;
     using FinanceAnalyzer.Shared.Enums;
+    using FinanceAnalyzer.Shared.Exceptions;
     using FinanceAnalyzer.UI.Interfaces;
 
     internal class AppLauncher : ILauncher
@@ -14,7 +15,7 @@
         private readonly IFinanceService<decimal> _financeService;
         private readonly IDataReceiver _dataReceiver;
         private readonly ILoginService _loginService;
-        private readonly IAuthorizer _authorizer;
+        private readonly ICookieManager _cookieManager;
         private readonly IDisplayer _displayer;
 
         private User _currentUser;
@@ -24,13 +25,13 @@
             IFinanceService<decimal> financeService,
             IDataReceiver dataReceiver,
             ILoginService loginService,
-            IAuthorizer authorizer,
+            ICookieManager authorizer,
             IDisplayer displayer)
         {
             _financeService = financeService ?? throw new ArgumentNullException(nameof(financeService));
             _dataReceiver = dataReceiver ?? throw new ArgumentNullException(nameof(dataReceiver));
             _loginService = loginService ?? throw new ArgumentNullException(nameof(loginService));
-            _authorizer = authorizer ?? throw new ArgumentNullException(nameof(authorizer));
+            _cookieManager = authorizer ?? throw new ArgumentNullException(nameof(authorizer));
             _displayer = displayer ?? throw new ArgumentNullException(nameof(displayer));
 
             _isAppOn = true;
@@ -38,7 +39,12 @@
 
         public async Task Launch()
         {
-            var user = await _authorizer.GetUserFromCookie();
+            _currentUser = await _cookieManager.GetUserFromCookie();
+
+            if (_currentUser == null)
+            {
+                _currentUser = await LoginInApp() ?? throw new InvalidLoginException("Invalid login");
+            }
 
             while (_isAppOn)
             {
@@ -111,7 +117,7 @@
             _displayer.DisplayNotification("Ended typing attempts");
         }
 
-        private async Task<User> AthorizeInApp()
+        private async Task<User> LoginInApp()
         {
             for (int currentAttempt = 1; currentAttempt <= MaxAttemptsNumber; currentAttempt++)
             {

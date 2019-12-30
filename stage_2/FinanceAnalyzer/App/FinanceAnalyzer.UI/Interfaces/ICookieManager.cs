@@ -3,7 +3,7 @@
     using FinanceAnalyzer.Shared.Entities;
     using System.Threading.Tasks;
 
-    internal interface IAuthorizer
+    internal interface ICookieManager
     {
         Task<User> GetUserFromCookie();
     }
