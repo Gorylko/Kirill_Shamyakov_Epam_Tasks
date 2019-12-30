@@ -35,9 +35,9 @@
             }
         }
 
-        public void DeleteCookies()
+        public Task DeleteCookies()
         {
-            File.Delete(UserCookiePath);
+            return Task.Run(() => File.Delete(UserCookiePath));
         }
     }
 }

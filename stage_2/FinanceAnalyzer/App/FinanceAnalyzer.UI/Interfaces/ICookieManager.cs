@@ -9,6 +9,6 @@
 
         Task SaveUserCookie(User user);
 
-        void DeleteCookies();
+        Task DeleteCookies();
     }
 }
