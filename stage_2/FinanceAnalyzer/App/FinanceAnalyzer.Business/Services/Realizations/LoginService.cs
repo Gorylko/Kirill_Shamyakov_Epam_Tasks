@@ -8,7 +8,7 @@
 
     public class LoginService : ILoginService
     {
-        IUserContext _userContext;
+        private readonly IUserContext _userContext;
 
         public LoginService(IUserContext userContext)
         {
