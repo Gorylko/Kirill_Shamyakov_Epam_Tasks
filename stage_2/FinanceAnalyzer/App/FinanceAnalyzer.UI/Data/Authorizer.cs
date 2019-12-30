@@ -10,11 +10,11 @@
     {
         private User _user;
 
-        public async Task<User> GetCurrentUser()// не смотреть на этот ужас!
+        public async Task<User> GetCurrentUser()
         {
             var cookie = await GetCookie();
 
-            if(cookie == null)
+            if (cookie == null)
             {
             }
 
@@ -33,8 +33,10 @@
             //    User user = new Person() { Name = "Tom", Age = 35 };
             //    await JsonSerializer.SerializeAsync<User>(fs, tom);
             //}
-
-            return null;
+            using (FileStream fileStream = new FileStream("user.json", FileMode.OpenOrCreate))
+            {
+                return await JsonSerializer.DeserializeAsync<User>(fileStream);
+            }
         }
     }
 }
