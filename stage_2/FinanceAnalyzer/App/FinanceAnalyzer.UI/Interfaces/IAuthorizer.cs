@@ -6,9 +6,5 @@
     internal interface IAuthorizer
     {
         Task<User> GetCurrentUser();
-
-        Task<bool> TryAuthorize(User user);
-
-        Task<User> GetCookie();
     }
 }
