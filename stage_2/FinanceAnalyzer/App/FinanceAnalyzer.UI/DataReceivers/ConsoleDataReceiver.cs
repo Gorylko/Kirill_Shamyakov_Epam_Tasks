@@ -17,16 +17,14 @@
             return decimal.TryParse(Console.ReadLine(), NumberStyles.Any, CultureInfo.InvariantCulture, out number);
         }
 
-        public bool TryGetString(out string userInput, bool isOnFreePlace = false)
+        public string GetString(bool isOnFreePlace = false)
         {
             if (!isOnFreePlace)
             {
                 Console.SetCursorPosition(0, 1);
             }
 
-            userInput = Console.ReadLine();
-
-            return IsNotSqlInjection(userInput);
+            return Console.ReadLine();
         }
 
         public bool TryGetInt(out int number, bool isOnFreePlace = false)

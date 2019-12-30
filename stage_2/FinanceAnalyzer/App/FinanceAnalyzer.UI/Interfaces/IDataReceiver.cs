@@ -8,7 +8,7 @@
 
         bool TryGetDecimal(out decimal number, bool isOnFreePlace = false);
 
-        bool TryGetString(out string userInput, bool isOnFreePlace = false);
+        string GetString(bool isOnFreePlace = false);
 
         ActionType GetAction();
     }

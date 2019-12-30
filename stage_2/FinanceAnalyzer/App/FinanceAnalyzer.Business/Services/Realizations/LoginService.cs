@@ -7,7 +7,7 @@
 
     public class LoginService : ILoginService
     {
-        public Task<User> Login(User user)
+        public Task<User> Login(string login, string password)
         {
             throw new NotImplementedException();
         }

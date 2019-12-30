@@ -13,6 +13,7 @@
 
         private readonly IFinanceService<decimal> _financeService;
         private readonly IDataReceiver _dataReceiver;
+        private readonly ILoginService _loginService;
         private readonly IAuthorizer _authorizer;
         private readonly IDisplayer _displayer;
 
@@ -22,11 +23,13 @@
         public AppLauncher(
             IFinanceService<decimal> financeService,
             IDataReceiver dataReceiver,
+            ILoginService loginService,
             IAuthorizer authorizer,
             IDisplayer displayer)
         {
             _financeService = financeService ?? throw new ArgumentNullException(nameof(financeService));
             _dataReceiver = dataReceiver ?? throw new ArgumentNullException(nameof(dataReceiver));
+            _loginService = loginService ?? throw new ArgumentNullException(nameof(loginService));
             _authorizer = authorizer ?? throw new ArgumentNullException(nameof(authorizer));
             _displayer = displayer ?? throw new ArgumentNullException(nameof(displayer));
 
@@ -36,7 +39,6 @@
         public async Task Launch()
         {
             var user = await _authorizer.GetUserFromCookie();
-           
 
             while (_isAppOn)
             {
@@ -109,19 +111,33 @@
             _displayer.DisplayNotification("Ended typing attempts");
         }
 
-        private User AthorizeInApp()
+        private async Task<User> AthorizeInApp()
         {
             for (int currentAttempt = 1; currentAttempt <= MaxAttemptsNumber; currentAttempt++)
             {
-                _displayer.DisplayMessage("Enter your login", isClearAll: true);
-                if (_dataReceiver.TryGetDecimal(out var inputResult))
+                _displayer.DisplayMessage("Enter your login");
+                string loginString = _dataReceiver.GetString();
+
+                _displayer.DisplayMessage("Enter your password");
+                string passwordString = _dataReceiver.GetString();
+
+                if (loginString == null
+                    && passwordString == null)
                 {
-                    await _financeService.AddNewIncome(inputResult);
-                    return;
+                    continue;
+                }
+
+                var user = await _loginService.Login(loginString, passwordString);
+
+                if (user != null)
+                {
+                    return user;
                 }
 
                 _displayer.DisplayErrorMessage("Try again :(");
             }
+
+            return default;
         }
 
         private void TurnOffApp()
