@@ -35,15 +35,14 @@
 
         public async Task Launch()
         {
-            //_currentUser = _authorizer.GetCurrentUser();
-            //do
-            //{
-                while (_isAppOn)
-                {
-                    _displayer.DisplayStartMenu();
-                    await PerformAction(_dataReceiver.GetAction());
-                }
-            //} while (_authorizer.IsAuthorized());
+            var user = await _authorizer.GetUserFromCookie();
+           
+
+            while (_isAppOn)
+            {
+                _displayer.DisplayStartMenu();
+                await PerformAction(_dataReceiver.GetAction());
+            }
         }
 
         private async Task PerformAction(ActionType action)
@@ -110,26 +109,20 @@
             _displayer.DisplayNotification("Ended typing attempts");
         }
 
-        //private async Task<User> GetUserCookie()
-        //{
-        //    var cookie = await _authorizer.GetCookie();
+        private User AthorizeInApp()
+        {
+            for (int currentAttempt = 1; currentAttempt <= MaxAttemptsNumber; currentAttempt++)
+            {
+                _displayer.DisplayMessage("Enter your login", isClearAll: true);
+                if (_dataReceiver.TryGetDecimal(out var inputResult))
+                {
+                    await _financeService.AddNewIncome(inputResult);
+                    return;
+                }
 
-        //    if (cookie != null)
-        //    {
-        //        return cookie;
-        //    }
-
-        //    while (await _authorizer.TryAuthorize(GetLoginInformation()))
-        //    {
-        //    }
-
-        //    return null;
-        //}
-
-        //private User GetLoginInformation()
-        //{
-
-        //}
+                _displayer.DisplayErrorMessage("Try again :(");
+            }
+        }
 
         private void TurnOffApp()
         {

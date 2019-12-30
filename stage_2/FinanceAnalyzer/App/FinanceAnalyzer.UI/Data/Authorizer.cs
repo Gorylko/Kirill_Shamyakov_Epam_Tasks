@@ -10,7 +10,7 @@
     {
         private User _user;
 
-        public async Task<User> GetCurrentUser()
+        public async Task<User> GetUserFromCookie()
         {
             var cookie = await GetCookie();
 
