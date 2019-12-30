@@ -51,14 +51,18 @@
             }
         }
 
-        public void DisplayMessage(string message, bool isClearAll = false)
+        public void DisplayMessage(string message, bool isClearAll = false, bool isOnFreePlace = false)
         {
             if (isClearAll)
             {
                 ClearAll();
             }
 
-            Console.SetCursorPosition(0, 0);
+            if (!isOnFreePlace)
+            {
+                Console.SetCursorPosition(0, 0);
+            }
+
             Console.WriteLine(message);
         }
 

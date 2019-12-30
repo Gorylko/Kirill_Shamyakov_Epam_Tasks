@@ -6,5 +6,7 @@
     internal interface ICookieManager
     {
         Task<User> GetUserFromCookie();
+
+        Task SaveUserCookie(User user);
     }
 }

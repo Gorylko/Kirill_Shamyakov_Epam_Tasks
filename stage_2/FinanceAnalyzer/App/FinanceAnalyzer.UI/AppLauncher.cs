@@ -124,8 +124,8 @@
                 _displayer.DisplayMessage("Enter your login");
                 string loginString = _dataReceiver.GetString();
 
-                _displayer.DisplayMessage("Enter your password");
-                string passwordString = _dataReceiver.GetString();
+                _displayer.DisplayMessage("Enter your password", isOnFreePlace: true);
+                string passwordString = _dataReceiver.GetString(isOnFreePlace: true);
 
                 if (loginString == null
                     && passwordString == null)
@@ -137,6 +137,7 @@
 
                 if (user != null)
                 {
+                    await _cookieManager.SaveUserCookie(user);
                     return user;
                 }
 

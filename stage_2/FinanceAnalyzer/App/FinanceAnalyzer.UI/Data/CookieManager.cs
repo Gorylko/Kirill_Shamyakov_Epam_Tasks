@@ -1,10 +1,10 @@
 ﻿namespace FinanceAnalyzer.UI.Data
 {
-    using FinanceAnalyzer.Shared.Entities;
-    using FinanceAnalyzer.UI.Interfaces;
     using System.IO;
     using System.Text.Json;
     using System.Threading.Tasks;
+    using FinanceAnalyzer.Shared.Entities;
+    using FinanceAnalyzer.UI.Interfaces;
 
     internal class CookieManager : ICookieManager
     {
@@ -12,31 +12,22 @@
 
         public async Task<User> GetUserFromCookie()
         {
-            var cookie = await GetCookie();
-
-            if (cookie == null)
+            try
             {
+                using (FileStream fileStream = new FileStream("user.json", FileMode.OpenOrCreate))
+                {
+                    return await JsonSerializer.DeserializeAsync<User>(fileStream);
+                }
             }
-
-            return _user;
+            catch (JsonException)
+            {
+                return default;
+            }
         }
 
-        public async Task<bool> TryAuthorize(User user)
+        public Task SaveUserCookie(User user)
         {
             throw new System.NotImplementedException();
-        }
-
-        public async Task<User> GetCookie()
-        {
-            //using (FileStream fs = new FileStream("user.json", FileMode.OpenOrCreate))
-            //{
-            //    User user = new Person() { Name = "Tom", Age = 35 };
-            //    await JsonSerializer.SerializeAsync<User>(fs, tom);
-            //}
-            using (FileStream fileStream = new FileStream("user.json", FileMode.OpenOrCreate))
-            {
-                return await JsonSerializer.DeserializeAsync<User>(fileStream);
-            }
         }
     }
 }
