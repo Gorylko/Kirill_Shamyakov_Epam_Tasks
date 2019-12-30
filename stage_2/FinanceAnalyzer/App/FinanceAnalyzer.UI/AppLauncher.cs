@@ -78,6 +78,10 @@
                 case ActionType.Exit:
                     TurnOffApp();
                     break;
+                case ActionType.Logout:
+                    _cookieManager.DeleteCookies();
+                    TurnOffApp();
+                    break;
                 default:
                     break;
             }

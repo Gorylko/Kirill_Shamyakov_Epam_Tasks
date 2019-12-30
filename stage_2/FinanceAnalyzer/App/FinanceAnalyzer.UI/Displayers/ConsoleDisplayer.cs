@@ -17,7 +17,8 @@
 4. Add new expense
 5. Display full information
 6. Clear history
-7. Exit");
+7. Exit
+8. Logout");
         }
 
         public void DisplayNotification(string message)

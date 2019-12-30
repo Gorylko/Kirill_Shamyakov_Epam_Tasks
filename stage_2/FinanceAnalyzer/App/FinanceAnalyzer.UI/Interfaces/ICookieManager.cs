@@ -8,5 +8,7 @@
         Task<User> GetUserFromCookie();
 
         Task SaveUserCookie(User user);
+
+        void DeleteCookies();
     }
 }

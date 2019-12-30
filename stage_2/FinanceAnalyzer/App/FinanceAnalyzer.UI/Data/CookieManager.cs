@@ -8,13 +8,15 @@
 
     internal class CookieManager : ICookieManager
     {
+        private const string UserCookiePath = "user.json";
+
         private User _user;
 
         public async Task<User> GetUserFromCookie()
         {
             try
             {
-                using (FileStream fileStream = new FileStream("user.json", FileMode.OpenOrCreate))
+                using (FileStream fileStream = new FileStream(UserCookiePath, FileMode.OpenOrCreate))
                 {
                     return await JsonSerializer.DeserializeAsync<User>(fileStream);
                 }
@@ -25,9 +27,17 @@
             }
         }
 
-        public Task SaveUserCookie(User user)
+        public async Task SaveUserCookie(User user)
         {
-            throw new System.NotImplementedException();
+            using (FileStream fileStream = new FileStream(UserCookiePath, FileMode.OpenOrCreate))
+            {
+                await JsonSerializer.SerializeAsync<User>(fileStream, user);
+            }
+        }
+
+        public void DeleteCookies()
+        {
+            File.Delete(UserCookiePath);
         }
     }
 }

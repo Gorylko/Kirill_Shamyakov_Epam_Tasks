@@ -9,5 +9,6 @@
         DisplayFullInformation = 5,
         ClearHistory = 6,
         Exit = 7,
+        Logout = 8,
     }
 }
