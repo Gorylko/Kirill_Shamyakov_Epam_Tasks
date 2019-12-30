@@ -10,8 +10,6 @@
     {
         private const string UserCookiePath = "user.json";
 
-        private User _user;
-
         public async Task<User> GetUserFromCookie()
         {
             try
