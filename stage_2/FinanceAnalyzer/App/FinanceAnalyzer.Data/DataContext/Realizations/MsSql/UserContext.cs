@@ -44,6 +44,11 @@
             return mapper.Map(dataSet);
         }
 
+        public Task<User> GetByLoginAndPassword(string login, string password)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task Save(User obj)
         {
             throw new NotImplementedException();
