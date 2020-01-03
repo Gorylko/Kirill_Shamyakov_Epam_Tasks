@@ -43,10 +43,5 @@
 
             return (ActionType)intResult;
         }
-
-        private bool IsNotSqlInjection(string input)
-        {
-            return !input.Contains(";");
-        }
     }
 }
