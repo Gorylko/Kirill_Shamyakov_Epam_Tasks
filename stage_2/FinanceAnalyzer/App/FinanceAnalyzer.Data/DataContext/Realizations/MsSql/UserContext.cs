@@ -7,6 +7,7 @@
     using FinanceAnalyzer.Data.DataContext.Interfaces;
     using FinanceAnalyzer.Data.DbContext.Interfaces;
     using FinanceAnalyzer.Data.Mappers;
+    using FinanceAnalyzer.Data.Models;
     using FinanceAnalyzer.Shared.Entities;
 
     internal class UserContext : IUserContext
@@ -23,15 +24,15 @@
             throw new NotImplementedException();
         }
 
-        public async Task<IReadOnlyCollection<User>> GetAll()
+        public async Task<IReadOnlyCollection<UserDto>> GetAll()
         {
             var dataSet = await _executor.ExecuteDataSet("sp_select_all_users");
 
-            var mapper = new Mapper<DataSet, IReadOnlyCollection<User>> { MapCollection = UserMapStrategies.MapUserCollection };
+            var mapper = new Mapper<DataSet, IReadOnlyCollection<UserDto>> { MapCollection = UserMapStrategies.MapUserCollection };
             return mapper.MapCollection(dataSet);
         }
 
-        public async Task<User> GetById(int id)
+        public async Task<UserDto> GetById(int id)
         {
             var dataSet = await _executor.ExecuteDataSet(
                 "sp_select_user_by_id",
@@ -40,11 +41,11 @@
                     { "id", id },
                 });
 
-            var mapper = new Mapper<DataSet, User> { Map = UserMapStrategies.MapUser };
+            var mapper = new Mapper<DataSet, UserDto> { Map = UserMapStrategies.MapUser };
             return mapper.Map(dataSet);
         }
 
-        public async Task<User> GetByLoginAndPassword(string login, string password)
+        public async Task<UserDto> GetByLoginAndPassword(string login, byte[] password)
         {
             var dataSet = await _executor.ExecuteDataSet(
                 "sp_select_user_by_login_and_password",
@@ -54,13 +55,29 @@
                     { "password", password },
                 });
 
-            var mapper = new Mapper<DataSet, User> { Map = UserMapStrategies.MapUser };
+            var mapper = new Mapper<DataSet, UserDto> { Map = UserMapStrategies.MapUser };
             return mapper.Map(dataSet);
         }
 
-        public async Task Save(User obj)
+        public async Task<byte[]> GetUserSaltByLogin(string login)
         {
-            throw new NotImplementedException();
+            var value = await _executor.ExecuteScalar(
+                "sp_select_salt_by_user_login",
+                new Dictionary<string, object>
+                {
+                    { "login", login },
+                });
+            return value as byte[];
+        }
+
+        public async Task Save(UserDto obj)
+        {
+            await _executor.ExecuteNonQuery("sp_insert_user", new Dictionary<string, object>
+            {
+                { "login", obj.Login },
+                { "password", obj.Password },
+                { "passwordSalt", obj.PasswordSalt },
+            });
         }
     }
 }

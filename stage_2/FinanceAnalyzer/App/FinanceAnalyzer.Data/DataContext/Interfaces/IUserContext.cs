@@ -1,10 +1,13 @@
 ﻿namespace FinanceAnalyzer.Data.DataContext.Interfaces
 {
-    using FinanceAnalyzer.Shared.Entities;
     using System.Threading.Tasks;
+    using FinanceAnalyzer.Data.Models;
+    using FinanceAnalyzer.Shared.Entities;
 
-    public interface IUserContext : IDataContext<User>
+    public interface IUserContext : IDataContext<UserDto>
     {
-        Task<User> GetByLoginAndPassword(string login, string password);
+        Task<UserDto> GetByLoginAndPassword(string login, byte[] password);
+
+        Task<byte[]> GetUserSaltByLogin(string login);
     }
 }

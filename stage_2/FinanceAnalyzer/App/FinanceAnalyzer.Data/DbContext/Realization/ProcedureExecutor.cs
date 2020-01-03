@@ -38,6 +38,17 @@
             }
         }
 
+        public async Task<object> ExecuteScalar(string procedureName, IDictionary<string, object> values = null)
+        {
+            using (var connecton = new SqlConnection(_connectionHelper.GetConnectionString()))
+            {
+                var procedure = CreateProcedure(procedureName, values);
+                procedure.Connection = connecton;
+                connecton.Open();
+                return await procedure.ExecuteScalarAsync();
+            }
+        }
+
         private SqlCommand CreateProcedure(string procedureName, IDictionary<string, object> values = null)
         {
             var command = new SqlCommand

@@ -21,6 +21,14 @@
 8. Logout");
         }
 
+        public void DisplayLoginMenu()
+        {
+            Console.Clear();
+            Console.WriteLine(
+@"1. Login
+2. Register");
+        }
+
         public void DisplayNotification(string message)
         {
             ClearAll();

@@ -9,6 +9,8 @@
 
         void DisplayStartMenu();
 
+        void DisplayLoginMenu();
+
         void ClearAll();
 
         void DisplayErrorMessage(string message);
