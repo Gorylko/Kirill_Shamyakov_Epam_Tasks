@@ -125,15 +125,15 @@
 
             if (_currentUser == null)
             {
-                _currentUser = await LoginInApp() ?? throw new InvalidLoginException("Invalid login");
+                await OpenLoginMenu();
             }
         }
 
-        private async Task<User> LoginInApp()
+        private async Task LoginInApp() // Знаю что пока этот метод, и тот что ниже одинаковые, потом придумаю как всё это вынести в одно место
         {
             for (int currentAttempt = 1; currentAttempt <= MaxAttemptsNumber; currentAttempt++)
             {
-                _displayer.DisplayMessage("Enter your login");
+                _displayer.DisplayMessage("Enter your login", true);
                 string loginString = _dataReceiver.GetString();
 
                 _displayer.DisplayMessage("Enter your password", isOnFreePlace: true);
@@ -150,13 +150,68 @@
                 if (user != null)
                 {
                     await _cookieManager.SaveUserCookie(user);
-                    return user;
+                    _currentUser = user;
+                    return;
                 }
 
                 _displayer.DisplayNotification("Try again :(");
             }
 
-            return default;
+            _currentUser = default;
+        }
+
+        private async Task RegisterInApp()
+        {
+            for (int currentAttempt = 1; currentAttempt <= MaxAttemptsNumber; currentAttempt++)
+            {
+                _displayer.DisplayMessage("Enter your login", true);
+                string loginString = _dataReceiver.GetString();
+
+                _displayer.DisplayMessage("Enter your password", isOnFreePlace: true);
+                string passwordString = _dataReceiver.GetString(isOnFreePlace: true);
+
+                if (loginString == null
+                    && passwordString == null)
+                {
+                    continue;
+                }
+
+                var user = await _loginService.Register(loginString, passwordString);
+
+                if (user != null)
+                {
+                    await _cookieManager.SaveUserCookie(user);
+                    _currentUser = user;
+                    return;
+                }
+
+                _displayer.DisplayNotification("Try again :(");
+            }
+
+            _currentUser = default;
+        }
+
+        private async Task OpenLoginMenu()
+        {
+            for (int currentAttempt = 1; currentAttempt <= MaxAttemptsNumber; currentAttempt++)
+            {
+                _displayer.DisplayLoginMenu();
+
+                if (_dataReceiver.TryGetInt(out int result, isOnFreePlace: true))
+                {
+                    switch (result)
+                    {
+                        case 1:
+                            await LoginInApp();
+                            return;
+                        case 2:
+                            await RegisterInApp();
+                            return;
+                        default:
+                            break;
+                    }
+                }
+            }
         }
 
         private void TurnOffApp()
