@@ -26,7 +26,7 @@
 
             return (await _userContext.GetByLoginAndPassword(
                 login,
-                _cryptographer.Encrypt(password, salt))).ConvertToUser();
+                _cryptographer.Encrypt(password, salt))).ConvertToUser(password);
         }
 
         public async Task<User> Register(string login, string password)
@@ -42,7 +42,7 @@
 
             await _userContext.Save(userDto);
 
-            return userDto.ConvertToUser();
+            return userDto.ConvertToUser(password);
         }
     }
 }

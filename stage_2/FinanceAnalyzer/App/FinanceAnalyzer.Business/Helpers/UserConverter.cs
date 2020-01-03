@@ -5,7 +5,7 @@
 
     internal static class UserConverter
     {
-        public static User ConvertToUser(this UserDto userDto)
+        public static User ConvertToUser(this UserDto userDto, string uncryptedUserPassword = null)
         {
             return userDto == null
                 ? null
@@ -13,6 +13,7 @@
                 {
                     Id = userDto.Id,
                     Login = userDto.Login,
+                    Password = uncryptedUserPassword,
                 };
         }
     }
