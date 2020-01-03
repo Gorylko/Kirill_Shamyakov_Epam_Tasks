@@ -44,7 +44,7 @@
             return mapper.Map(dataSet);
         }
 
-        public async Task<User> GetByLoginAndPassword(byte[] login, byte[] password)
+        public async Task<User> GetByLoginAndPassword(string login, byte[] password)
         {
             var dataSet = await _executor.ExecuteDataSet(
                 "sp_select_user_by_login_and_password",
@@ -58,7 +58,7 @@
             return mapper.Map(dataSet);
         }
 
-        public async Task<byte> GetUserSaltByLogin(string login)
+        public async Task<byte[]> GetUserSaltByLogin(string login)
         {
             var dataSet = await _executor.ExecuteDataSet(
                 "sp_select_salt_by_user_login",

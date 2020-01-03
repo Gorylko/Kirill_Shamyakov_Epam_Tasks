@@ -5,9 +5,9 @@
 
     internal class Cryptographer
     {
-        public byte[] Encrypt(string input)
+        public byte[] Encrypt(string input, out byte[] salt)
         {
-            var salt = new byte[16];
+            salt = new byte[16];
 
             using (var rng = RandomNumberGenerator.Create())
             {
