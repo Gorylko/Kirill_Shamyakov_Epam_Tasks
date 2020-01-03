@@ -1,10 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace FinanceAnalyzer.Business.Cryptographers
+﻿namespace FinanceAnalyzer.Business.Cryptographers
 {
-    class Cryptographer
+    using System.Security.Cryptography;
+    using Microsoft.AspNetCore.Cryptography.KeyDerivation;
+
+    internal class Cryptographer
     {
+        public byte[] Encrypt(string input)
+        {
+            var salt = new byte[16];
+
+            using (var rng = RandomNumberGenerator.Create())
+            {
+                rng.GetBytes(salt);
+            }
+
+            return Encrypt(input, salt);
+        }
+
+        public byte[] Encrypt(string input, byte[] salt)
+        {
+            return KeyDerivation.Pbkdf2(
+                password: input,
+                salt: salt,
+                prf: KeyDerivationPrf.HMACSHA1,
+                iterationCount: 10000,
+                numBytesRequested: 16);
+        }
     }
 }
