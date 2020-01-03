@@ -61,18 +61,23 @@
 
         public async Task<byte[]> GetUserSaltByLogin(string login)
         {
-            var dataSet = await _executor.ExecuteDataSet(
+            var value = await _executor.ExecuteScalar(
                 "sp_select_salt_by_user_login",
                 new Dictionary<string, object>
                 {
                     { "login", login },
                 });
-            return dataSet.
+            return value as byte[];
         }
 
         public async Task Save(UserDto obj)
         {
-            throw new NotImplementedException();
+            await _executor.ExecuteNonQuery("sp_insert_user", new Dictionary<string, object>
+            {
+                { "login", obj.Login },
+                { "password", obj.Password },
+                { "passwordSalt", obj.PasswordSalt },
+            });
         }
     }
 }
