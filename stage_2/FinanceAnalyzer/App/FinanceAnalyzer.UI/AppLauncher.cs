@@ -39,12 +39,7 @@
 
         public async Task Launch()
         {
-            _currentUser = await _cookieManager.GetUserFromCookie();
-
-            if (_currentUser == null)
-            {
-                _currentUser = await LoginInApp() ?? throw new InvalidLoginException("Invalid login");
-            }
+            await InitializeCurrentUser();
 
             while (_isAppOn)
             {
@@ -79,7 +74,7 @@
                     TurnOffApp();
                     break;
                 case ActionType.Logout:
-                    _cookieManager.DeleteCookies();
+                    await _cookieManager.DeleteCookies();
                     TurnOffApp();
                     break;
                 default:
@@ -121,6 +116,19 @@
             _displayer.DisplayNotification("Ended typing attempts");
         }
 
+        private async Task InitializeCurrentUser()
+        {
+            var cookieUser = await _cookieManager.GetUserFromCookie();
+            _currentUser = cookieUser == null
+                ? null
+                : await _loginService.Login(cookieUser.Login, cookieUser.Password);
+
+            if (_currentUser == null)
+            {
+                _currentUser = await LoginInApp() ?? throw new InvalidLoginException("Invalid login");
+            }
+        }
+
         private async Task<User> LoginInApp()
         {
             for (int currentAttempt = 1; currentAttempt <= MaxAttemptsNumber; currentAttempt++)
@@ -145,7 +153,7 @@
                     return user;
                 }
 
-                _displayer.DisplayErrorMessage("Try again :(");
+                _displayer.DisplayNotification("Try again :(");
             }
 
             return default;
