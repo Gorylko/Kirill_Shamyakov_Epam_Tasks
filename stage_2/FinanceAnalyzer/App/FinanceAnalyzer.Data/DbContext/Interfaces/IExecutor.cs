@@ -8,6 +8,8 @@
     {
         Task<DataSet> ExecuteDataSet(string procedureName, IDictionary<string, object> values = null);
 
+        Task<object> ExecuteScalar(string procedureName, IDictionary<string, object> values = null);
+
         Task<int> ExecuteNonQuery(string procedureName, IDictionary<string, object> values = null);
     }
 }
