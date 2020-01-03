@@ -9,7 +9,7 @@
     {
         internal static User MapUser(DataSet dataSet)
         {
-            return dataSet == null
+            return dataSet == null || dataSet.Tables.Count == 0 || dataSet.Tables[0].Rows.Count == 0
                 ? default
                 : new User
                 {

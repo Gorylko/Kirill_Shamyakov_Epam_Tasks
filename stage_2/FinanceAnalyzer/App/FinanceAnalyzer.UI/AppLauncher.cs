@@ -5,6 +5,7 @@
     using FinanceAnalyzer.Business.Services.Interfaces;
     using FinanceAnalyzer.Shared.Entities;
     using FinanceAnalyzer.Shared.Enums;
+    using FinanceAnalyzer.Shared.Exceptions;
     using FinanceAnalyzer.UI.Interfaces;
 
     internal class AppLauncher : ILauncher
@@ -13,7 +14,8 @@
 
         private readonly IFinanceService<decimal> _financeService;
         private readonly IDataReceiver _dataReceiver;
-        private readonly IAuthorizer _authorizer;
+        private readonly ILoginService _loginService;
+        private readonly ICookieManager _cookieManager;
         private readonly IDisplayer _displayer;
 
         private User _currentUser;
@@ -22,12 +24,14 @@
         public AppLauncher(
             IFinanceService<decimal> financeService,
             IDataReceiver dataReceiver,
-            IAuthorizer authorizer,
+            ILoginService loginService,
+            ICookieManager authorizer,
             IDisplayer displayer)
         {
             _financeService = financeService ?? throw new ArgumentNullException(nameof(financeService));
             _dataReceiver = dataReceiver ?? throw new ArgumentNullException(nameof(dataReceiver));
-            _authorizer = authorizer ?? throw new ArgumentNullException(nameof(authorizer));
+            _loginService = loginService ?? throw new ArgumentNullException(nameof(loginService));
+            _cookieManager = authorizer ?? throw new ArgumentNullException(nameof(authorizer));
             _displayer = displayer ?? throw new ArgumentNullException(nameof(displayer));
 
             _isAppOn = true;
@@ -35,15 +39,13 @@
 
         public async Task Launch()
         {
-            //_currentUser = _authorizer.GetCurrentUser();
-            //do
-            //{
-                while (_isAppOn)
-                {
-                    _displayer.DisplayStartMenu();
-                    await PerformAction(_dataReceiver.GetAction());
-                }
-            //} while (_authorizer.IsAuthorized());
+            await InitializeCurrentUser();
+
+            while (_isAppOn)
+            {
+                _displayer.DisplayStartMenu();
+                await PerformAction(_dataReceiver.GetAction());
+            }
         }
 
         private async Task PerformAction(ActionType action)
@@ -69,6 +71,10 @@
                     await _financeService.ClearHistory();
                     break;
                 case ActionType.Exit:
+                    TurnOffApp();
+                    break;
+                case ActionType.Logout:
+                    await _cookieManager.DeleteCookies();
                     TurnOffApp();
                     break;
                 default:
@@ -110,26 +116,48 @@
             _displayer.DisplayNotification("Ended typing attempts");
         }
 
-        //private async Task<User> GetUserCookie()
-        //{
-        //    var cookie = await _authorizer.GetCookie();
+        private async Task InitializeCurrentUser()
+        {
+            var cookieUser = await _cookieManager.GetUserFromCookie();
+            _currentUser = cookieUser == null
+                ? null
+                : await _loginService.Login(cookieUser.Login, cookieUser.Password);
 
-        //    if (cookie != null)
-        //    {
-        //        return cookie;
-        //    }
+            if (_currentUser == null)
+            {
+                _currentUser = await LoginInApp() ?? throw new InvalidLoginException("Invalid login");
+            }
+        }
 
-        //    while (await _authorizer.TryAuthorize(GetLoginInformation()))
-        //    {
-        //    }
+        private async Task<User> LoginInApp()
+        {
+            for (int currentAttempt = 1; currentAttempt <= MaxAttemptsNumber; currentAttempt++)
+            {
+                _displayer.DisplayMessage("Enter your login");
+                string loginString = _dataReceiver.GetString();
 
-        //    return null;
-        //}
+                _displayer.DisplayMessage("Enter your password", isOnFreePlace: true);
+                string passwordString = _dataReceiver.GetString(isOnFreePlace: true);
 
-        //private User GetLoginInformation()
-        //{
+                if (loginString == null
+                    && passwordString == null)
+                {
+                    continue;
+                }
 
-        //}
+                var user = await _loginService.Login(loginString, passwordString);
+
+                if (user != null)
+                {
+                    await _cookieManager.SaveUserCookie(user);
+                    return user;
+                }
+
+                _displayer.DisplayNotification("Try again :(");
+            }
+
+            return default;
+        }
 
         private void TurnOffApp()
         {

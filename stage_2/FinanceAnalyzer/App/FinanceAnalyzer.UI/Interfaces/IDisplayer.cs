@@ -15,7 +15,7 @@
 
         void DisplayNotification(string message);
 
-        void DisplayMessage(string message, bool isClearAll = false);
+        void DisplayMessage(string message, bool isClearAll = false, bool isOnFreePlace = false);
 
         void DisplayIncome<T>(IReadOnlyCollection<T> collection);
 

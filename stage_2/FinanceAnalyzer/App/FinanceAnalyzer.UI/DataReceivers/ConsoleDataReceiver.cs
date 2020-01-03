@@ -17,6 +17,16 @@
             return decimal.TryParse(Console.ReadLine(), NumberStyles.Any, CultureInfo.InvariantCulture, out number);
         }
 
+        public string GetString(bool isOnFreePlace = false)
+        {
+            if (!isOnFreePlace)
+            {
+                Console.SetCursorPosition(0, 1);
+            }
+
+            return Console.ReadLine();
+        }
+
         public bool TryGetInt(out int number, bool isOnFreePlace = false)
         {
             if (!isOnFreePlace)

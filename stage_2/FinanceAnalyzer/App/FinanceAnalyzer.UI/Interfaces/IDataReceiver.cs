@@ -8,6 +8,8 @@
 
         bool TryGetDecimal(out decimal number, bool isOnFreePlace = false);
 
+        string GetString(bool isOnFreePlace = false);
+
         ActionType GetAction();
     }
 }

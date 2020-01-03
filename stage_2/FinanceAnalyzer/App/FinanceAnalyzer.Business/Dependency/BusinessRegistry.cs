@@ -15,6 +15,7 @@ namespace FinanceAnalyzer.Business.Dependency
             For<IIncomeService>().Use<IncomeService>();
             For<IFinanceService<decimal>>().Use<FinanceService>();
             For<IExpensesService>().Use<ExpensesService>();
+            For<ILoginService>().Use<LoginService>();
             For<ITaxService>().Use<TaxService>();
         }
     }

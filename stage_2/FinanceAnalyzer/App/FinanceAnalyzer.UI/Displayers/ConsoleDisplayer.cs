@@ -17,7 +17,8 @@
 4. Add new expense
 5. Display full information
 6. Clear history
-7. Exit");
+7. Exit
+8. Logout");
         }
 
         public void DisplayNotification(string message)
@@ -51,14 +52,18 @@
             }
         }
 
-        public void DisplayMessage(string message, bool isClearAll = false)
+        public void DisplayMessage(string message, bool isClearAll = false, bool isOnFreePlace = false)
         {
             if (isClearAll)
             {
                 ClearAll();
             }
 
-            Console.SetCursorPosition(0, 0);
+            if (!isOnFreePlace)
+            {
+                Console.SetCursorPosition(0, 0);
+            }
+
             Console.WriteLine(message);
         }
 

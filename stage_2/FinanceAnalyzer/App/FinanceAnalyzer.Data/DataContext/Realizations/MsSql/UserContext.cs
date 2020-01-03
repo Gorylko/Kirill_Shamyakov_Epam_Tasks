@@ -44,6 +44,20 @@
             return mapper.Map(dataSet);
         }
 
+        public async Task<User> GetByLoginAndPassword(string login, string password)
+        {
+            var dataSet = await _executor.ExecuteDataSet(
+                "sp_select_user_by_login_and_password",
+                new Dictionary<string, object>
+                {
+                    { "login", login },
+                    { "password", password },
+                });
+
+            var mapper = new Mapper<DataSet, User> { Map = UserMapStrategies.MapUser };
+            return mapper.Map(dataSet);
+        }
+
         public async Task Save(User obj)
         {
             throw new NotImplementedException();
