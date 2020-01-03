@@ -4,7 +4,7 @@ using System.Text;
 
 namespace FinanceAnalyzer.Data.Models
 {
-    internal class UserDBModel
+    public class UserDto
     {
         public int Id { get; set; }
 

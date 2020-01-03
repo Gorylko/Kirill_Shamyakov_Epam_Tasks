@@ -4,9 +4,9 @@
     using FinanceAnalyzer.Data.Models;
     using FinanceAnalyzer.Shared.Entities;
 
-    public interface IUserContext : IDataContext<UserDBModel>
+    public interface IUserContext : IDataContext<UserDto>
     {
-        Task<User> GetByLoginAndPassword(string login, byte[] password);
+        Task<UserDto> GetByLoginAndPassword(string login, byte[] password);
 
         Task<byte[]> GetUserSaltByLogin(string login);
     }

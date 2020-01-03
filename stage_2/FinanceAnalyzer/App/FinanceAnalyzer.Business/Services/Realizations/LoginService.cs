@@ -3,8 +3,10 @@
     using System;
     using System.Threading.Tasks;
     using FinanceAnalyzer.Business.Cryptographers;
+    using FinanceAnalyzer.Business.Helpers;
     using FinanceAnalyzer.Business.Services.Interfaces;
     using FinanceAnalyzer.Data.DataContext.Interfaces;
+    using FinanceAnalyzer.Data.Models;
     using FinanceAnalyzer.Shared.Entities;
 
     public class LoginService : ILoginService
@@ -22,21 +24,25 @@
         {
             var salt = await _userContext.GetUserSaltByLogin(login);
 
-            return await _userContext.GetByLoginAndPassword(
+            return (await _userContext.GetByLoginAndPassword(
                 login,
-                _cryptographer.Encrypt(password, salt));
+                _cryptographer.Encrypt(password, salt))).ConvertToUser();
         }
 
-        public Task<User> Register(string login, string password)
+        public async Task<User> Register(string login, string password)
         {
             var encryptedPassword = _cryptographer.Encrypt(login, out byte[] salt);
 
-            _userContext.Save(new User
+            var userDto = new UserDto
             {
                 Login = login,
                 Password = encryptedPassword,
+                PasswordSalt = salt,
+            };
 
-            });
+            await _userContext.Save(userDto);
+
+            return userDto.ConvertToUser();
         }
     }
 }
